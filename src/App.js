@@ -30,13 +30,13 @@ function App() {
 
           <Header />
 
-          {/* <Switch>
+          <Switch>
 
           <Route exact path="/over">
             <Dashboard />
           </Route>
         
-        </Switch> */}
+        </Switch>
         </div>
       </Router>
     </ThemeProvider>
