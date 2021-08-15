@@ -46,6 +46,10 @@
   margin-bottom: 25px;
  }
 }
+.sb_icons{
+  font-size: 28px;
+  transition: transform 0.2s;
+}
 
 .sb_menu{
   .sb_menu_button{
@@ -69,7 +73,8 @@
       &:hover{
         color:$primary;
         .sb_icons{
-          font-size: 29px;
+          transform: scale(1.2);
+          transition: transform 0.3s;
         }
       }
       .sb_menu_button{
