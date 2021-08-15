@@ -6,6 +6,8 @@
   .sb_title{
     margin-top: 30px;
     font-size: 24px;
+    color:$primarystr;
+    margin-left: 20px;
   }
  .sb_info{
    margin-top: 40px;
@@ -60,10 +62,7 @@
   }
  
   .sb_menu_container{
-    
-   
     height: 55px;
-
     .sb_link{
       text-decoration: none;
       color:$dark;
@@ -91,6 +90,7 @@
     .sb_selected{
       color:$primary;
       .sb_menu_button{
+        margin-left: -4px;
         background-color: white;
         padding-left: 25px;
         border-radius: 5rem;
@@ -99,7 +99,6 @@
         background: rgba(255,110,64,.15);
         border-left-color: #ff6e40;
         border-right-color: #ff6e40;
-       
       }
     }
     
