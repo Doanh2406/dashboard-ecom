@@ -22,10 +22,11 @@ const outerTheme = createTheme({
 
 function App() {
   return (
+
     <ThemeProvider theme={outerTheme}>
       <Router>
         <div style={{ display: "flex", flexDriection: "row" }}>
-          {/* <SideBar /> */}
+          <SideBar />
 
           <Header />
 
