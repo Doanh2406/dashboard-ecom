@@ -19,7 +19,7 @@ function App() {
         
         <Switch>
 
-          <Route path="/">
+          <Route exact path="/over">
             <Dashboard />
           </Route>
         

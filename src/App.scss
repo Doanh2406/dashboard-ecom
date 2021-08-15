@@ -1,6 +1,10 @@
 @import './components/styles/value';
-
+@import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap" rel="stylesheet');
 
 :root{
   background-color: $backgroundColor ;
+ 
+}
+body {
+  font-family: 'Cabin', sans-serif;
 }
