@@ -25,17 +25,17 @@ function App() {
     <ThemeProvider theme={outerTheme}>
       <Router>
         <div style={{ display: "flex", flexDriection: "row" }}>
-          {/* <SideBar /> */}
+          <SideBar />
 
           <Header />
 
-          {/* <Switch>
+          <Switch>
 
           <Route exact path="/over">
             <Dashboard />
           </Route>
         
-        </Switch> */}
+        </Switch>
         </div>
       </Router>
     </ThemeProvider>
