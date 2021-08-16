@@ -1,4 +1,5 @@
 @import "../styles/value";
+
 .header {
   flex: 1;
   position: fixed !important;
@@ -37,13 +38,13 @@
   margin-left: 20px;
   color: gray;
   font-size: 24;
+  cursor: pointer;
 }
 .header__search-box {
   margin-left: 20px;
   color: gray;
   font-style: 18px;
   width: 100%;
-
   border: none;
 }
 .header__bage-icon {
@@ -60,6 +61,7 @@
 }
 .header__bage-icon__item {
   color: rgba(63, 59, 59, 0.822);
+  cursor: pointer;
   &:hover{
       color: $primary;
   }
@@ -72,6 +74,11 @@
   display: flex;
   align-items: center;
   min-width: 156px;
+  cursor: pointer;
+
+  &:hover{
+    background: $primarystr;
+  }
 }
 .header__button-icon {
     font-size: 10px;
