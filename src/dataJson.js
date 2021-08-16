@@ -211,23 +211,99 @@
 
 
   export const productdata = {
-    labels: ['SunDay', 'MonDay', 'ThusDay', 'Wenesday', 'namday', 'Friday', 'Satuday'],
+    labels: ['01','02','03','04','05','06','07','08','09','10','11','12'],
     datasets: [
       {
         label: 'This week',
-        data: [100, 180, 150, 200, 250, 300, 270],
+        data: [100, 180, 150, 200, 250, 300, 270,280,290,250,320,220],
         fill: false,
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgba(255, 99, 132, 0.2)',
+        backgroundColor: 'rgb(42,188,134)',
+        borderColor: 'rgb(42,188,134,0.2)',
         yAxisID: 'y-axis-1',
       },
       {
         label: 'Last week',
-        data: [90, 110, 75, 90, 100, 150, 200],
+        data: [90, 110, 75, 90, 100, 150, 200, 150, 200,240,260,250],
         fill: false,
-        backgroundColor: 'rgb(54, 162, 235)',
-        borderColor: 'rgba(54, 162, 235, 0.2)',
+        backgroundColor: 'rgb(255,110,64)',
+        borderColor: 'rgb(255,110,64,0.2)',
         yAxisID: 'y-axis-1',
       },
     ],
   };
+
+
+ export const dataBiaxia = [
+    {
+      name: '01',
+      uv: 4000,
+      pv: 2400,
+      amt: 2400,
+    },
+    {
+      name: '02',
+      uv: 3000,
+      pv: 1398,
+      amt: 2210,
+    },
+    {
+      name: '03',
+      uv: 2000,
+      pv: 9800,
+      amt: 2290,
+    },
+    {
+      name: '04',
+      uv: 2780,
+      pv: 3908,
+      amt: 2000,
+    },
+    {
+      name: '05',
+      uv: 1890,
+      pv: 4800,
+      amt: 2181,
+    },
+    {
+      name: '06',
+      uv: 2390,
+      pv: 3800,
+      amt: 2500,
+    },
+    {
+      name: '07',
+      uv: 3490,
+      pv: 4300,
+      amt: 2100,
+    },
+    {
+      name: '08',
+      uv: 1890,
+      pv: 4800,
+      amt: 2181,
+    },
+    {
+      name: '09',
+      uv: 2390,
+      pv: 3800,
+      amt: 2500,
+    },
+    {
+      name: '10',
+      uv: 3490,
+      pv: 4300,
+      amt: 2100,
+    },
+    {
+      name: '11',
+      uv: 1890,
+      pv: 4800,
+      amt: 2181,
+    },
+    {
+      name: '12',
+      uv: 2390,
+      pv: 3800,
+      amt: 2500,
+    },
+  ];

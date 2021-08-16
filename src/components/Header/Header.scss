@@ -1,7 +1,10 @@
 @import "../styles/value";
+
 .header {
   flex: 1;
-  position: fixed;
+  position: fixed !important;
+  z-index: 1000;
+  overflow: visible;
   top: 0;
   width: 100%;
   height: 50px;
@@ -10,17 +13,21 @@
   align-items: center;
   margin-top: 20px;
 
+  
 }
 .header__name {
-  min-width: 10%;
-  font-size: 24px;
+  min-width: 200px;
+  width: 10%;
+  font-size: 36px;
   font-weight: 600;
   color: $dark;
   margin-right: 10px;
 }
 .header__search {
+  width: 30%;
   height: 50px;
-  width: 52%;
+  min-width: 800px;
+  max-width: 1000px;
   background: #fff;
   display: flex;
   align-items: center;
@@ -28,6 +35,7 @@
 }
 .header__search-icon {
   margin: 10px;
+  
   margin-left: 20px;
   color: gray;
   font-size: 24;
@@ -41,7 +49,9 @@
   border: none;
 }
 .header__bage-icon {
-  width: 8%;
+  width: 150px;
+  
+  width: 10%;
   display: flex;
   justify-content: space-evenly;
   color: white;
@@ -58,6 +68,7 @@
   }
 }
 .header__button {
+  margin-right: 10px;
   background: $primary;
   border-radius: 10px;
   height: 50px;

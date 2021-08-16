@@ -4,3 +4,23 @@
 :root{
   background-color: $backgroundColor ;
 }
+.app{
+  display: flex;
+  
+}
+.sidebar{
+  flex: 1;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+}
+.body{
+  flex: 5;
+  margin-left: 50px;
+  
+}
+.header__class{
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
