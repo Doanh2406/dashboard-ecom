@@ -10,7 +10,7 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 function Header() {
   return (
    
-    <div className="header">
+    <div className="header" >
       <div className="header__name"> OverView</div>
       <div className="header__search">
         <SearchIcon className="header__search-icon"/>

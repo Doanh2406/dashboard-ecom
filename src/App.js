@@ -17,26 +17,32 @@ const outerTheme = createTheme({
     light: {
       main: "#ededed",
     },
+    backgroundColor: {
+      main: "#f5f4fe",
+    },
   },
 });
 
 function App() {
   return (
-
     <ThemeProvider theme={outerTheme}>
       <Router>
-        <div style={{ display: "flex", flexDriection: "row" }}>
-          <SideBar />
+        <div className="app">
+          <div className="sidebar">
+            <SideBar />
+          </div>
+          <div className="body">
+            <div className="header__class">
 
-          <Header />
+            <Header />
+            </div>
 
-          <Switch>
-
-          <Route exact path="/over">
-            <Dashboard />
-          </Route>
-        
-        </Switch>
+            <Switch>
+              <Route exact path="/">
+                <Dashboard />
+              </Route>
+            </Switch>
+          </div>
         </div>
       </Router>
     </ThemeProvider>
