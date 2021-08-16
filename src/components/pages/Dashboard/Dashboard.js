@@ -5,7 +5,7 @@ export default function Dashboard() {
   return (
     
     <div className="dashboard">
-      <Header />
+      
       <div className="dashboard__top">
         <div className="dashboard__top-left">
           <div className="dashboard__top-left__title">
