@@ -1,13 +1,14 @@
 @import '../styles/value';
 
 .sb_container{
+  position: fixed;
   width: 300px;
   margin-left: 20px;
   .sb_title{
     margin-top: 30px;
     font-size: 24px;
     color:$primarystr;
-    margin-left: 20px;
+    font-weight: 700;
   }
   
  .sb_info{
