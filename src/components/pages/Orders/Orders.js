@@ -7,7 +7,7 @@ export default function Orders() {
     <div className='or_container' >
       <LinkHome title='Orders' />
       <Table />
-    
+      
     </div>
 
   )

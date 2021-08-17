@@ -7,7 +7,7 @@
   height: 100vh;
   display: flex;
   flex-direction: row;
-  position: static;
+  
   .st_form{
     background:white;
     width: 20%;
@@ -91,7 +91,7 @@
   height: 18px;
   width: 18px;
   border-radius: 3px;
-  background-color: #eee;
+  background-color: rgb(228, 224, 224);
 }
 
 /* On mouse-over, add a grey background color */

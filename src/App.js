@@ -35,11 +35,15 @@ function App() {
             <div className="header__class">
 
             <Header />
+            <div style={{height:100}} />
             </div>
 
             <Switch>
               <Route exact path="/">
                 <Dashboard />
+              </Route>
+              <Route exact path="/orders">
+                <Orders />
               </Route>
             </Switch>
           </div>
