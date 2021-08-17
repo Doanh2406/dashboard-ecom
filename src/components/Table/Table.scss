@@ -19,10 +19,17 @@
       margin-left: 30px;
       border: 0.1px solid #D0CFCE;
       border-radius: 10px;
-      padding:0px 30px 0px 30px;
+      padding:0px 10px 0px 10px;
       flex-direction: row;
       align-items: center;
       height: 40px;
+      cursor: pointer;
+     
+    }
+    .tb_sort_clicked{
+      @extend .tb_sort;
+      border: 0.1px solid $primarystr;
+
     }
     .tb_a_btn{
       background: $primary;
@@ -33,9 +40,78 @@
       flex-direction: row;
       align-items: center;
       height: 40px;
+      cursor: pointer;
+      margin-right: 10px;
     }
+    .tb_a_btn_clicked{
+      @extend .tb_a_btn;
+     
+      background-color: $primarystr;
+      
+    }
+    .tb_sort_active{
+      background: #fff;
+      position: absolute;
+      width:115px;
+      height: 64px;
+      margin-top: 116px;
+      margin-left: 130px;
+      border: 0.1px solid #D0CFCE;
+      border-radius: 10px;
+      .tb_sort_active_item{
+        cursor: pointer;
+        margin-top: -16px;
+        padding-left: 10px;
+        &:hover{
+          background: $gray;
+          color: white;
+        }
+        
+      }
+      .item1{
+        margin-top: 0px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+      .item3{
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        padding-bottom: 1px;
+      }
+    }
+    .tb_count_active{
+     @extend .tb_sort_active;
+     width: 83px;
+     margin-left: 275px;
+     .tb_count_active_item{
+      cursor: pointer;
+      margin-top: -16px;
+      padding-left: 10px;
+      &:hover{
+        background: $gray;
+        color: white;
+      }
+     }
+    }
+    .tb_actionbig_active{
+      @extend .tb_sort_active;
+     margin-left: -125px;
+     margin-top: 25px;
+     
+     .tb_actionbig_active_item{
+      cursor: pointer;
+      margin-top: -16px;
+      padding-left: 10px;
+      &:hover{
+        background: $gray;
+        color: white;
+      }
+   
+      }
+     }
+   
   }
-  
+ 
 
 
 .tb_first_row{
@@ -61,7 +137,48 @@
     font-size: 14px;
     
   }
-
+  .tb_th_row_actions{
+    cursor: pointer;
+  }
+  .tb_th_row_actions_active{
+    background: #fff;
+    position: absolute;
+    width:115px;
+    height: 64px;
+    margin-top: 45px;
+    margin-left: -90px;
+    border-radius: 10px;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+   
+    .tb_th_row_actions_active_item{
+      cursor: pointer;
+      margin-top: -16px;
+      padding-left: 10px;
+      &:hover{
+        background: $gray;
+        color: white;
+      }
+      
+    }
+    .item1{
+      margin-top: 0px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+    .item3{
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      padding-bottom: 1px;
+    }
+  }
+  .tb_th_row_actions_clicked{
+    border-radius: 5px;
+    padding: 0px 5px 3px 5px;
+    cursor: pointer;
+    border: 1px solid $primary;
+  }
  
 }
 .tb_foot{
@@ -82,6 +199,12 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 30px;
+    
+  }
+  .tb_page_active{
+    @extend .tb_page;
+    background: $primary;
+    color: #fff;
   }
 }
 }

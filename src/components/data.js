@@ -1,16 +1,16 @@
  const datas=[
   {
     id:'123',
-    name:'Thai Xuan Nhat',
+    name:'Luongw Viet Nhat rat  dep trai',
     date:'25/2/2021',
-    total:'$1',
+    total:'vo gia',
     status:'Proscessing'
   },
   {
     id:'1234',
-    name:'Thai Xuan Nhat',
+    name:'LE xuan quoc DOanh',
     date:'25/2/2021',
-    total:'$1',
+    total:'free bao ship',
     status:'Shipped'
   },
   {
