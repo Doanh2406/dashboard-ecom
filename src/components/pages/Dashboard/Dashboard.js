@@ -5,9 +5,11 @@ import LineChart from "../../charts/LineChart";
 import LocalMallIcon from "@material-ui/icons/LocalMall";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import "./Dashboard.scss";
+import Header from "../../Header/Header";
 export default function Dashboard() {
   return (
     <div className="dashboard">
+      <Header/>
       <div className="dashboard__top">
         <div className="dashboard__top-left">
           <div className="dashboard__top-left__title">
@@ -45,7 +47,10 @@ export default function Dashboard() {
           </div>
         </div>
         <div className="dashboard__top-right">
-          <div className="dashboard__top-right__title">Channels</div>
+        <div className="dashboard__top-left__title">
+            <span className="dashboard__top-left__title-text">Channel</span>
+            <HelpOutlineIcon  color="primary" />
+          </div>
         </div>
       </div>
       <div className="dashboard__mid"></div>

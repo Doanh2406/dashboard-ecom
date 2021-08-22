@@ -32,12 +32,9 @@ function App() {
             <SideBar />
           </div>
           <div className="body">
-            <div className="header__class">
-
-            <Header />
-            </div>
-
+        
             <Switch>
+            {/* <Header/> */}
               <Route exact path="/">
                 <Dashboard />
               </Route>

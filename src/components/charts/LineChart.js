@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
       textAlign: "center",       
       marginTop: 20,
       color: theme.palette.text.secondary,
+      height:"400px"
     },
   }));
 function LineChart() {

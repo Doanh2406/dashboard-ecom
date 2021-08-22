@@ -2,8 +2,8 @@
 
 .header {
   flex: 1;
-  position: fixed !important;
-  z-index: 1000;
+  position: fixed;
+  z-index: 1;
   overflow: visible;
   top: 0;
   width: 100%;
@@ -12,7 +12,6 @@
   justify-content: flex-start;
   align-items: center;
   margin-top: 20px;
-  
 }
 .header__name {
   min-width: 200px;
@@ -34,7 +33,7 @@
 }
 .header__search-icon {
   margin: 10px;
-  
+
   margin-left: 20px;
   color: gray;
   font-size: 24;
@@ -49,7 +48,7 @@
 }
 .header__bage-icon {
   width: 150px;
-  
+
   width: 10%;
   display: flex;
   justify-content: space-evenly;
@@ -62,8 +61,8 @@
 .header__bage-icon__item {
   color: rgba(63, 59, 59, 0.822);
   cursor: pointer;
-  &:hover{
-      color: $primary;
+  &:hover {
+    color: $primary;
   }
 }
 .header__button {
@@ -76,17 +75,66 @@
   min-width: 156px;
   cursor: pointer;
 
-  &:hover{
+  &:hover {
     background: $primarystr;
   }
 }
 .header__button-icon {
-    font-size: 10px;
-    padding: 10px;
-    color: white;
+  font-size: 16px;
+  padding: 10px;
+  color: white;
 }
-.header__button-tittle{
-   
-    color: white;
-    font-size: 15px;
+.header__button-tittle {
+  color: white;
+  font-size: 15px;
+}
+
+// tao thong bao
+
+.header__overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+.header__infor {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 400px;
+  max-width: 100%;
+  background: #fff;
+  z-index: 3;
+ animation: slideLeft ease 1s;
+
+ display: flex;
+ flex-direction: column;
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(100%);}
+  to {
+    opacity: 1;
+  transform: translateX(0);
+  }
+}
+
+
+
+.header__infor__title {
+  height: 50px;
+  margin: 10px;
+  padding: 10px;
+  span{
+    font-style: 20px;
+    font-weight: 300;
+  }
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
