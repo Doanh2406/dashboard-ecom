@@ -1,0 +1,32 @@
+.app_bar {
+  background: #fff !important;
+  color: black !important;
+  border: none !important;
+}
+
+.button-group {
+  height: 70px;
+  width: 400px;
+  position: fixed;
+  bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.button__read {
+  width: 200px;
+  height: 70%;
+  border-radius: 10px;
+  background: rgb(23, 165, 23);
+  color: white;
+  border: none;
+  margin-right: 20px;
+}
+.button__delete {
+  width: 120px;
+  height: 70%;
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(212, 56, 56);
+  color: white;
+}

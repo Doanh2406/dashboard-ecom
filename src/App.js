@@ -33,12 +33,7 @@ function App() {
             <SideBar />
           </div>
           <div className="body">
-            <div className="header__class">
-
-            <Header />
-            <div style={{height:100}} />
-            </div>
-
+        
             <Switch>
               <Route exact path="/overview">
                 <Dashboard />

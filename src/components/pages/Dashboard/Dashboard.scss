@@ -1,7 +1,10 @@
 .dashboard{
     
     position: absolute;
-    top: 100px;
+    margin-top: 100px;
+    display: flex;
+}
+.dashboard__top{
     display: flex;
 }
 .dashboard__top-left__title{
@@ -21,7 +24,8 @@
 
 .dashboard__top-left__layout{
     background-color: #fff;
-    border-radius: 10px;
+    height: 520px;
+    border-radius: 20px;
 }
 .dashboard__top-left__layout-infor{
     display: flex;
@@ -74,4 +78,8 @@
     width: 170px;
     position: absolute;
     top:20px;
+}
+
+.dashboard__top-right{
+    margin-left: 30px;
 }
