@@ -27,7 +27,7 @@ export default function SideBar() {
       icons: <HomeIcon className='sb_icons' />
     },
     {
-      link: '/',
+      link: '/cart',
       name: 'Cart',
       icons: <ShoppingCartIcon className='sb_icons' />
     },
@@ -52,7 +52,7 @@ export default function SideBar() {
       icons: <AssignmentIndIcon className='sb_icons' />
     },
     {
-      link: '/',
+      link: '/incomes',
       name: 'Incomes',
       icons: <ReceiptIcon className='sb_icons' />
     },

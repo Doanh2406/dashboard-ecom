@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Dashboard, Orders,OrdersItems, Home } from "./components/pages";
+import { Dashboard, Orders,OrdersItems, Home,Cart } from "./components/pages";
 import SideBar from "./components/SideBar/SideBar";
 import Header from "./components/Header/Header";
 import "./App.scss";
@@ -28,13 +28,19 @@ function App() {
   return (
     <ThemeProvider theme={outerTheme}>
       <Router>
+      
         <div className="app">
+        
           <div className="sidebar">
             <SideBar />
           </div>
           <div className="body">
-        
+            <div style={{height:80}} />
+          <Header />
             <Switch>
+            <Route exact path="/cart">
+                <Cart />
+              </Route>
               <Route exact path="/overview">
                 <Dashboard />
               </Route>

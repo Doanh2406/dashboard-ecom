@@ -1,0 +1,106 @@
+@import '../../styles/value';
+
+.ca_delete{
+  
+  width:40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(255, 0, 0, 0.247);
+  border-radius: 5px;
+  cursor: pointer;
+  .ca_delete_icon{
+    color: red;
+  }
+  &:hover{
+    .ca_delete_icon{
+      color:white
+    }
+    background-color: red;
+    transition: 0.6s ease-out;
+  }
+  
+}
+.ca_input{
+  width: 40px;
+  height: 35px;
+  padding-left: 10px;
+  border-radius: 5px;
+  border:1px solid rgba(110, 110, 110, 0.356);
+  outline: none;
+  &:focus{
+    border: 1px solid $primary;
+    transition: 0.6s ease;
+  }
+}
+.ca_container{
+ 
+  padding:20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex:1;
+  flex-direction: row;
+  input{
+    font-size: 14px;
+    width: 70%;
+    height:30px;
+    border-top-left-radius: 10px;
+    padding-left: 10px;
+    border-bottom-left-radius: 10px;
+    border: 1px solid rgba(134, 134, 134, 0.363);
+    outline: none;
+    &:focus{
+      border: 1px solid $primary;
+      transition: 0.6s ease;
+    }
+  }
+  .ca_apply{
+    border-top-right-radius: 5px;
+    border: 1px solid rgba(214, 214, 214, 0.363);
+    padding:7px 3px 7px 3px;
+    background-color: $gray;
+    cursor: pointer;
+    font-size: 14px;
+    border-bottom-right-radius: 5px;
+  }
+
+}
+.ca_textarea {
+  
+  resize: vertical;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(214, 214, 214, 0.363);
+  height: 80px;
+  width: 80%;
+  font-size: 16px;
+
+}
+.ca_btn_container{
+  margin-top: -15px;
+  display: flex;
+  flex-direction: row-reverse;
+  padding:20px;
+  .ca_btn_checkout{
+    cursor: pointer;
+    margin-left: 30px;
+    margin-right: 5px;
+    padding: 10px 15px 10px 15px;
+    background-color: $primary;
+    color: #fff;
+    border-radius: 10px;
+    transition: all 0.3s ease-in;
+    &:hover{
+      background-color: $primarystr;
+    }
+  }
+  .ca_btn_clear{
+    @extend .ca_btn_checkout;
+    background-color: rgba(255, 0, 0, 0.705);
+    &:hover{
+      background-color: $danger;
+    }
+  }
+}
