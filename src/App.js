@@ -1,10 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Dashboard, Orders } from "./components/pages";
+import { Dashboard, Orders,OrdersItems, Home } from "./components/pages";
 import SideBar from "./components/SideBar/SideBar";
 import Header from "./components/Header/Header";
 import "./App.scss";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+import Footer from "./components/Footer/Footer";
 
 const outerTheme = createTheme({
   palette: {
@@ -39,16 +40,25 @@ function App() {
             </div>
 
             <Switch>
-              <Route exact path="/">
+              <Route exact path="/overview">
                 <Dashboard />
               </Route>
               <Route exact path="/orders">
                 <Orders />
               </Route>
+              <Route exact path="/orders/items">
+                <OrdersItems />
+              </Route>
+              <Route exact path="/">
+                <Home />
+              </Route>
             </Switch>
+            
           </div>
+          
         </div>
       </Router>
+      
     </ThemeProvider>
   );
 }

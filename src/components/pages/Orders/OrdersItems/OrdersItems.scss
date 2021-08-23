@@ -1,0 +1,134 @@
+@import '../../../styles/value';
+
+.ori_container{
+  display: flex;
+  flex-direction: row;
+  
+  .ori_first_container{
+    display: flex;
+    width: 70%;
+    flex-direction: column;
+    .ori_first_container_first_row{
+      display: flex;
+      flex:1;
+      background: #fff;
+      border-radius: 10px;
+      flex-direction: column;
+      padding: 20px;
+      font-size: 14px;
+     .ori_fcfr_title{
+       display: flex;
+       flex-direction: row;
+       width: 100%;
+       .ori_status{
+        margin-left: auto;
+        border-radius:5px;
+        justify-self:'center';
+        width: fit-content;
+        color:#fff;
+        padding: 2px 8px 2px 8px;
+        font-size: 14px;
+        
+      }
+      
+     }
+     .ori_fcfr_second_row{
+      display: flex;
+      flex:1;
+      flex-direction: row;
+      justify-content: space-between;
+     }
+     .ori_fcfr_third_row{
+      @extend .ori_fcfr_second_row;
+      .ori_fcfr_third_row_card{
+        padding: 20;
+        width: 49%;
+        border: 1px solid rgb(230, 230, 230);
+        border-radius: 10px;
+
+      }
+     }
+    }
+    .ori_first_container_second_row{
+      margin-top: 20px;
+      background-color: rgb(255, 255, 255);
+      border-radius: 10px;
+      font-size: 14px;
+      .ori_fcsr_container{
+        padding: 10px ;
+        display: flex;
+        flex:1;
+       
+        .ori_fcsr_fr_container_ori{
+          font-weight: 520;
+          
+          display: flex;
+          flex-direction: row;
+          flex:1;
+
+         .ori_fcsr_fr{
+          width: 20%;
+          
+         }
+        }
+       .ori_fcsr_fr_container{
+          align-items: center;
+          display: flex;
+          flex-direction: row;
+          flex:1;
+          border: 1px solid rgb(230, 230, 230);
+          border-radius: 10px;
+          padding:5px;
+         .ori_fcsr_fr{
+          width: 20%;
+          
+         }
+       }
+      }
+    }
+  }
+  .ori_second_container{
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+    .ori_second_container_first_row{
+      background-color: #fff;
+      margin-left: 20px;
+      border-radius: 10px;
+      height:32.3%;
+      width:  91%;
+      
+      
+      .or_scfr_container{
+        display: flex;
+        flex-direction: row;
+        .ori_scfr_price{
+          display: flex;
+          flex-direction: column;
+          width: 50%;
+         
+        }
+      }
+      
+    }
+    .ori_second_container_second_row{
+      @extend .ori_second_container_first_row;
+      margin-top: 20px;
+      .ori_scfr_btn_container{
+        display: flex;
+        flex:1;
+        color:$primary;
+        align-items: center;
+        justify-content: center;
+       
+        .ori_scfr_btn{
+          margin-top: 20px;
+          border: 1px solid $primary;
+          padding: 0px 20px 0px 20px;
+          border-radius: 10px;
+          
+        }
+      }
+    }
+  }
+}

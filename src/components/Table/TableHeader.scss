@@ -1,0 +1,105 @@
+@import '../styles/value';
+
+.tb_header{
+  display: flex;
+  flex:1;
+  flex-direction: row;
+  align-items: center;
+  background: #fff;
+  border-radius: 10px;  
+  height: 80px;
+  .tb_sort{
+    display: flex;
+    margin-left: 30px;
+    border: 0.1px solid #D0CFCE;
+    border-radius: 10px;
+    padding:0px 10px 0px 10px;
+    flex-direction: row;
+    align-items: center;
+    height: 40px;
+    cursor: pointer;
+   
+  }
+  .tb_sort_clicked{
+    @extend .tb_sort;
+    border: 0.1px solid $primarystr;
+
+  }
+  .tb_a_btn{
+    background: $primary;
+    color: #fff;
+    padding: 0px 10px 0px 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 40px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  .tb_a_btn_clicked{
+    @extend .tb_a_btn;
+   
+    background-color: $primarystr;
+    
+  }
+  .tb_sort_active{
+    background: #fff;
+    position: absolute;
+    width:115px;
+    height: 64px;
+    margin-top: 116px;
+    margin-left: 130px;
+    border: 0.1px solid #D0CFCE;
+    border-radius: 10px;
+    .tb_sort_active_item{
+      cursor: pointer;
+      margin-top: -16px;
+      padding-left: 10px;
+      &:hover{
+        background: $gray;
+        color: white;
+      }
+      
+    }
+    .item1{
+      margin-top: 0px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+    .item3{
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      padding-bottom: 1px;
+    }
+  }
+  .tb_count_active{
+   @extend .tb_sort_active;
+   width: 83px;
+   margin-left: 275px;
+   .tb_count_active_item{
+    cursor: pointer;
+    margin-top: -16px;
+    padding-left: 10px;
+    &:hover{
+      background: $gray;
+      color: white;
+    }
+   }
+  }
+  .tb_actionbig_active{
+    @extend .tb_sort_active;
+   margin-left: -125px;
+   margin-top: 25px;
+   
+   .tb_actionbig_active_item{
+    cursor: pointer;
+    margin-top: -16px;
+    padding-left: 10px;
+    &:hover{
+      background: $gray;
+      color: white;
+    }
+ 
+    }
+  }}

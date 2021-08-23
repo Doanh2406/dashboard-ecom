@@ -1,0 +1,159 @@
+@import '../../styles/value';
+
+.h_container{
+  display: flex;
+  flex-direction: row;
+  .h_cl1{
+   
+    width:65%;
+    .h1_cl1_card_container{
+     margin-left: -30px;
+      .h1_cl1_row1{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      
+      }
+    }
+  }
+  .h_cl2{
+    margin-left: 20px;
+    width: 33%;
+    display: flex;
+    margin-top: 28px;
+    flex-direction: column;
+    .h_cl2_key{
+      background-color: #fff;
+      width: 100%;
+      border-radius: $radius;
+      .h_cl2_key_f{
+        cursor: pointer;
+
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        padding: 10px;
+        align-items: center;
+      }
+      .h_cl2_key_s{
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 20px;
+        .h_cl2_key_s_input{
+          width: 85%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 10px;
+          box-sizing: border-box;
+          height: 50px
+        }
+      }
+    }
+    .h_cl2_ca{
+      @extend .h_cl2_key;
+      margin-top: 20px;
+      .h_cl2_ca_s{
+        padding:10px;
+        margin-top: -50px;
+      }
+    }
+    .h_cl2_price{
+      @extend.h_cl2_ca;
+      .h_cl2_price_s{
+        padding:10px;
+        
+        margin-top: -10px;
+        display: flex;
+        flex:1;
+        justify-content: center;
+        align-items: center;
+
+      }
+    }
+    .h_cl2_color{
+      @extend .h_cl2_ca;
+      .h_cl2_color_s{
+        padding:10px;
+       display: flex;
+       flex-direction: row;
+       justify-content: center;
+       align-items: center;
+       margin-bottom: 30px;
+       /* The container */
+        .cl_container {
+
+          display: block;
+          position: relative;
+          padding-left: 35px;
+          margin-bottom: 12px;
+          cursor: pointer;
+          font-size: 14px;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+
+        /* Hide the browser's default checkbox */
+        .cl_container input {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+          height: 0;
+          width: 0;
+        }
+
+        /* Create a custom checkbox */
+        .cl_checkmark {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 22px;
+          width: 22px;
+          border-radius: 3px;
+          background-color: rgb(228, 224, 224);
+        }
+
+        /* On mouse-over, add a grey background color */
+        .cl_container:hover input ~ .cl_checkmark {
+          background-color: #ccc;
+        }
+
+        /* When the checkbox is checked, add a blue background */
+        .cl_container input:checked ~ .cl_checkmark {
+          background-color:$primary;
+        }
+
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .cl_checkmark:after {
+          content: "";
+          position: absolute;
+          display: none;
+        }
+
+        /* Show the checkmark when checked */
+        .cl_container input:checked ~ .cl_checkmark:after {
+          display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .cl_container .cl_checkmark:after {
+          left: 7px;
+          top: 2px;
+          width: 5px;
+          height: 10px;
+          border: solid white;
+          border-width: 0 3px 3px 0;
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+      }
+    }
+  }
+}

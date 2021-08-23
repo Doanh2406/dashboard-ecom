@@ -10,6 +10,9 @@ import PersonIcon from '@material-ui/icons/Person';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import HomeIcon from '@material-ui/icons/Home';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import ReceiptIcon from '@material-ui/icons/Receipt';
 import Setting from './Setting';
 export default function SideBar() {
 
@@ -18,6 +21,16 @@ export default function SideBar() {
   const [setting, setSetting] = useState(false)
 
   const menu = [
+    {
+      link: '/',
+      name: 'Shop',
+      icons: <HomeIcon className='sb_icons' />
+    },
+    {
+      link: '/',
+      name: 'Cart',
+      icons: <ShoppingCartIcon className='sb_icons' />
+    },
     {
       link: '/over',
       name: 'Over View',
@@ -37,6 +50,11 @@ export default function SideBar() {
       link: '/customer',
       name: 'Customer',
       icons: <AssignmentIndIcon className='sb_icons' />
+    },
+    {
+      link: '/',
+      name: 'Incomes',
+      icons: <ReceiptIcon className='sb_icons' />
     },
 
   ];
