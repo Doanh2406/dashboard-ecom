@@ -1,14 +1,10 @@
 import React, { useState } from 'react'
 import LinkHome from '../../LinkHome/LinkHome'
-import TableHeader from '../../Table/TableHeader'
-import Card from '../../Card/Card'
-import './Home.scss'
-import data_card from './data_card'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import SearchIcon from '@material-ui/icons/Search';
-import MySlider from './MySlider'
-import TablePages from '../../Table/TablePages'
-export default function Home() {
+import MySlider from '../Home/MySlider'
+import ProductsTable from './ProductsTable'
+export default function Products() {
   const [keywords, setKeywords] = useState(false)
   const [category, setCategory] = useState(false)
   const [price, setPrice] = useState(false)
@@ -19,33 +15,11 @@ export default function Home() {
   return (
     <div className='h_container'>
       <div className='h_cl1'>
-        <LinkHome title='Shop' />
-        <TableHeader />
-        <div className='h1_cl1_card_container'>
-          <div className='h1_cl1_row1'>
-            {
-              data_card.slice(0, 3).map((item) => {
-                return (
-                  <Card data={item} />
-                )
-              })
-            }
-          </div>
-          <div className='h1_cl1_row1'>
-            {
-              data_card.slice(3, 6).map((item) => {
-                return (
-                  <Card data={item} />
-                )
-              })
-            }
-          </div>
-        </div>
-        <div style={{ height: 30}} />
-        <TablePages />
-        
+        <LinkHome title='Products' />
+          <ProductsTable />
+        <div style={{ height: 100 }} />
       </div>
-            
+
       <div className='h_cl2' >
         <h3>Filter Products</h3>
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Dashboard, Orders,OrdersItems, Home,Cart } from "./components/pages";
+import { Dashboard, Orders,OrdersItems, Home,Cart, Products, Customers } from "./components/pages";
 import SideBar from "./components/SideBar/SideBar";
 import Header from "./components/Header/Header";
 import "./App.scss";
@@ -49,6 +49,12 @@ function App() {
               </Route>
               <Route exact path="/orders/items">
                 <OrdersItems />
+              </Route>
+              <Route exact path="/products">
+                <Products />
+              </Route>
+              <Route exact path="/customers">
+                <Customers />
               </Route>
               <Route exact path="/">
                 <Home />

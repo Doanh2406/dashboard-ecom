@@ -47,7 +47,7 @@ export default function SideBar() {
       icons: <LocalShippingIcon className='sb_icons' />
     },
     {
-      link: '/customer',
+      link: '/customers',
       name: 'Customer',
       icons: <AssignmentIndIcon className='sb_icons' />
     },
