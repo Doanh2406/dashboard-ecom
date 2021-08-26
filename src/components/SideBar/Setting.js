@@ -14,19 +14,19 @@ export default function Setting({ action }) {
         </div>
         <hr style={{ opacity: 0.3 }} ></hr>
         <div className='st_check'>
-          <label class="container">One
+          <label class="container">Remember next visits
             <input type="checkbox"  />
             <span class="checkmark"></span>
           </label>
-          <label class="container">Two
+          <label class="container">Enable report generation.
             <input type="checkbox" />
             <span class="checkmark"></span>
           </label>
-          <label class="container">Three
+          <label class="container">Speed up demands
             <input type="checkbox" />
             <span class="checkmark"></span>
           </label>
-          <label class="container">Four
+          <label class="container">Hide menus
             <input type="checkbox" />
             <span class="checkmark"></span>
           </label>

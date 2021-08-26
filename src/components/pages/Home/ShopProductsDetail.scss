@@ -1,0 +1,201 @@
+@import '../../styles/value';
+
+.spd_container{
+ 
+  .spd_fr_container{
+    width: 95%;
+    
+    border-radius: $radius;
+    background-color: #fff;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    padding:20px;
+    .spd_fr_fc{
+      .spd_fr_fc_fr{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        img{
+          width: 400px;
+          height: 400px;
+          border-radius: $radius;
+          margin-left: 10px;
+          margin-right: 10px;
+        }
+        .spd_arrow{
+          display: flex;
+          cursor: pointer;
+          height: 30px;
+          justify-content: center;
+          align-items: center ;
+          background-color: rgba(114, 114, 114, 0.548);
+          width: 30px;
+          
+          border-radius: 30px;
+          color: #fff;
+          transition: all 0.5s ease-in-out;
+          &:hover{
+            background-color: $dark;
+          }
+        }
+      }
+      .spd_fr_fc_sr{
+        @extend .spd_fr_fc_fr;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 20px;
+        
+        width:478px;
+        .spd_arrow{
+          display: flex;
+          cursor: pointer;
+          min-height: 30px;
+          min-width: 30px;
+          justify-content: center;
+          align-items: center ;
+          background-color: rgba(114, 114, 114, 0.548);
+          border-radius: 15px;
+          color: #fff;
+          transition: all 0.5s ease-in-out;
+          &:hover{
+            background-color: $dark;
+           }
+          }
+        .spd_photo{
+          margin-left: 10px;
+        
+          height: 100px;
+        width: 100px;     
+        }
+        .spd_half{
+          overflow: hidden;
+          width: 50px;
+         
+        }
+        .spd_photo_active{
+         border: 1px solid  $primary;
+         height: 100px;
+         min-width: 100px;
+        }
+      }
+    }
+    .spd_fr_sc{
+      margin-left: 50px;
+      width: 100%;
+      .spd_fr_sc_title{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex:1;
+      
+      }
+      .spd_fr_sc_price{
+        display: flex;
+        flex-direction: row;
+        font-size: 24px;
+        font-weight: 520;
+        
+      }
+      .spd_fr_sc_star{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: 14px;
+        margin-top: -20px;
+      }
+      .spd_fr_sc_add{
+        display: flex;
+        flex-direction: row;
+        
+       
+        .spd_add{
+          display: flex;
+          color: #fff;
+          background-color: $primary;
+          padding:0px 10px 0px 10px;
+          border-top-right-radius: $radius;
+          border-bottom-right-radius: $radius;
+          margin-top: -1px;
+          transition: all 0.5s ease;
+          cursor: pointer;
+          &:hover {
+           
+            background-color: $primarystr;
+            
+          }
+        }
+        
+        .spd_show{
+          input{
+            height: 30px;
+            border: 1px solid rgb(139, 139, 139);
+            padding:10px;
+            outline: none;
+            border-top-left-radius: $radius;
+            border-bottom-left-radius: $radius;
+            transition: all 0.3s ease-in;
+            &:hover{
+              border:1px solid $primary;
+            }
+            &:focus{
+              border:1px solid $primary;
+  
+            }
+          }
+          .spd_row{
+            position: absolute;
+            margin-left: 155px;
+            margin-top: -50px;
+            font-size: 24px;
+            color: rgb(139, 139, 139);
+            .spd_row_up{
+              cursor: pointer;
+              transition: all 0.5s ease-in;
+              &:hover{
+                color: #000;
+              }
+            }
+            .spd_row_down{
+             
+              transition: all 0.5s ease-in;
+  
+              cursor: pointer;
+              position: absolute;
+              margin-top: 25px;
+              margin-left: -24px;
+              &:hover{
+                color: #000;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .spd_sr_container{
+    @extend .spd_fr_container;
+    flex-direction: column;
+    .spd_sr_fr{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 15%;
+      color: rgb(112, 112, 112);
+      .spd_btn{
+        cursor: pointer;
+      }
+      .spd_active{
+        background-color: rgba(252, 81, 2, 0.445);
+        padding: 5px 10px 5px 10px;
+        color: $primary;
+        border-radius: $radius;
+        margin-top: 10px;
+      }
+    }
+  }
+}
+.des_container{
+ 
+}
