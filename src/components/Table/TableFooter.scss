@@ -1,0 +1,28 @@
+@import '../styles/value';
+
+.tb_foot{
+  display: flex;
+  flex:1;
+  flex-direction: row;
+  position: static;
+  color: $primary;
+  justify-content: center;
+  align-items: center;
+  .tb_page{
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    border: 0.1px solid #D0CFCE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    
+  }
+  .tb_page_active{
+    @extend .tb_page;
+    background: $primary;
+    color: #fff;
+  }
+}

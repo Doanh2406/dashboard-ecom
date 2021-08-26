@@ -1,0 +1,90 @@
+@import '../../styles/value';
+
+
+.cu_container{
+  .cu_fr{
+    display: flex;
+    flex-direction: row;
+   
+    .cu_fr_fc{
+      display: flex;
+      width:65%;
+      background-color: #fff;
+      border-radius: $radius;
+      padding:20px;
+      flex-direction: column;
+      
+    }
+    .cu_fr_sc{
+      display: flex;
+      width: 33%;
+      background-color: #fff;
+      border-radius: $radius;
+      margin-left: 20px;
+      padding:20px;
+      margin-right: 20px;
+      flex-direction: column;
+      
+      .cu_fr_sc_title{
+        display: flex;
+        flex-direction: row;
+        height: 40px;
+      
+        .cu_fr_sc_title_3dot{
+          margin-left: auto;
+          cursor: pointer;
+        }
+        .cu_three_container{
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(117, 116, 116, 0.2);
+          padding:10px;
+          background-color: #fff;
+          position: absolute;
+          width: 120px;
+          height: 80px;
+          font-size: 14px;
+          margin-left: 350px;
+          border-radius: $radius;
+          border:1px solid rgba(146, 146, 146, 0.445);
+          margin-top: 50px;
+          
+         
+          .cu_three_item{
+            cursor: pointer;
+            color:rgba(0, 0, 0, 0.9);
+            transition: all 0.3s ease;
+            &:hover{
+              color:$primary;
+
+            }
+          }
+        }
+      }
+      .cu_fr_sc_body{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex:1;
+        
+        .cu_btn_dow{
+          cursor: pointer;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          border-radius: $radius;
+          padding:0px 10px 0px 10px;
+          color: $primary;
+          border:1px solid $primary;
+          transition: all 0.5s ease;
+          &:hover{
+            background-color: $primary;
+            color:#fff;
+          }
+        }
+      }
+    }
+  }
+  .cu_sr{
+
+  }
+}

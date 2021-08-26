@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react'
-import './Table.scss'
-import datas from '../data';
+import './CustomersTable.scss'
+import customers_data from './customers_data';
 
 import { NavLink } from 'react-router-dom';
-import TableHeader from './TableHeader';
-import TablePages from './TablePages';
-export default function Table({row}) {
-  
+import TableHeader from '../../Table/TableHeader';
+import TablePages from '../../Table/TablePages'
+export default function CustomersTable({ row }) {
+
   const [actions, setActions] = useState(null)
   const [checkAll, setCheckAll] = useState(false)
   const actionRef = useRef();
 
- 
+
   const handleActions = (index) => {
     if (index === actions) {
       setActions(null)
@@ -30,7 +30,7 @@ export default function Table({row}) {
 
   return (
     <div className='tb_container'>
-     <TableHeader />
+      <TableHeader />
 
 
       <div className='tb_first_row'>
@@ -43,20 +43,25 @@ export default function Table({row}) {
         <div style={{ width: '10%' }} >
           <p>Id</p>
         </div>
+        <div style={{ width: '10%' }} >
+          <p>Photo</p>
+        </div>
         <div style={{ width: '20%' }} >
-          <p>Name</p>
+          <p>Full Name</p>
+        </div>
+        <div style={{ width: '20%' }} >
+          <p>Email</p>
+        </div>
+        <div style={{ width: '20%' }} >
+          <p>Country</p>
         </div>
         <div style={{ width: '20%' }} >
           <p>Date</p>
-        </div>
-        <div style={{ width: '20%' }} >
-          <p>Total</p>
-        </div>
-        <div style={{ width: '20%' }} >
+        </div><div style={{ width: '20%' }} >
           <p>Status</p>
         </div>
-       
- 
+
+
         <div style={{ width: '10%', display: 'flex', flexDirection: 'row-reverse', marginRight: 30 }} >
           <p>Actions</p>
         </div>
@@ -64,23 +69,15 @@ export default function Table({row}) {
       </div>
 
       {
-         datas.map((item, index) => {
+        customers_data.map((item, index) => {
           let status;
           switch (item.status) {
-            case 'Proscessing':
-              status = <p className='tb_status' style={{ backgroundColor: '#ff6e40' }}>Proscessing</p>
+            case 'active':
+              status = <p className='tb_status' style={{ backgroundColor: '#05b171' }}>Active</p>
               break;
-            case 'Shipped':
-              status = <p className='tb_status' style={{ backgroundColor: '#293134' }}>Shipped</p>
-              break;
-            case 'Completed':
-              status = <p className='tb_status' style={{ backgroundColor: '#05b171' }}>Completed</p>
-              break;
-            case 'Refunded':
-              status = <p className='tb_status' style={{ backgroundColor: '#faae42' }}>Refunded</p>
-              break;
+        
             default:
-              status = <p className='tb_status' style={{ backgroundColor: '#ea4444' }}>Cancelled</p>
+              status = <p className='tb_status' style={{ backgroundColor: '#ea4444' }}>Passive</p>
               break;
           }
 
@@ -96,24 +93,31 @@ export default function Table({row}) {
               <div style={{ width: '10%', color: '#ff6e40', cursor: 'pointer' }}  >
                 <NavLink className='tb_link' exact to={{
                   pathname: '/orders/items',
-                  datas: { data:item }
+                  datas: { data: item }
                 }}  >
                   <p>{item.id}</p>
                 </NavLink>
               </div>
+              <div style={{ width: '10%' }} >
+                <img src={item.photo} style={{ width: 50, height: 50, borderRadius: 10, }} />
+              </div>
               <div style={{ width: '20%' }} >
                 <p>{item.name}</p>
+              </div>
+              
+              <div style={{ width: '20%' }} >
+                <p>{item.Email}</p>
+              </div>
+              <div style={{ width: '20%' }} >
+                <p>{item.country}</p>
               </div>
               <div style={{ width: '20%' }} >
                 <p>{item.date}</p>
               </div>
               <div style={{ width: '20%' }} >
-                <p>{item.total}</p>
-              </div>
-              <div style={{ width: '20%' }} >
                 {status}
               </div>
-              
+
               <div style={{ width: '10%', display: 'flex', flexDirection: 'row-reverse', marginRight: 30 }} >
                 <p className={actions == index ? 'tb_th_row_actions_clicked' : 'tb_th_row_actions'} onClick={() => { handleActions(index) }}>...</p>
                 {
@@ -134,7 +138,7 @@ export default function Table({row}) {
           )
         })
       }
-    <TablePages />
+      <TablePages />
     </div>
   )
 }

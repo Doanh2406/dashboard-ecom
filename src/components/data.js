@@ -1,7 +1,7 @@
  const datas=[
   {
     id:'123',
-    name:'Luongw Viet Nhat rat  dep trai',
+    name:'Luongw Viet Nhat dep trai',
     date:'25/2/2021',
     total:'vo gia',
     status:'Proscessing'

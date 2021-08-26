@@ -10,6 +10,9 @@ import PersonIcon from '@material-ui/icons/Person';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import HomeIcon from '@material-ui/icons/Home';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import ReceiptIcon from '@material-ui/icons/Receipt';
 import Setting from './Setting';
 export default function SideBar() {
 
@@ -34,9 +37,14 @@ export default function SideBar() {
       icons: <LocalShippingIcon className='sb_icons' />
     },
     {
-      link: '/customer',
+      link: '/customers',
       name: 'Customer',
       icons: <AssignmentIndIcon className='sb_icons' />
+    },
+    {
+      link: '/incomes',
+      name: 'Incomes',
+      icons: <ReceiptIcon className='sb_icons' />
     },
 
   ];

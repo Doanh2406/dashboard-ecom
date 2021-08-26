@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react'
-import './Table.scss'
-import datas from '../data';
+import './ProductsTable.scss'
+import data_product from './data_product';
 
 import { NavLink } from 'react-router-dom';
-import TableHeader from './TableHeader';
-import TablePages from './TablePages';
-export default function Table({row}) {
-  
+import TableHeader from '../../Table/TableHeader';
+import TablePages from '../../Table/TablePages';
+export default function ProductsTable() {
+
   const [actions, setActions] = useState(null)
   const [checkAll, setCheckAll] = useState(false)
   const actionRef = useRef();
 
- 
+
   const handleActions = (index) => {
     if (index === actions) {
       setActions(null)
@@ -30,7 +30,7 @@ export default function Table({row}) {
 
   return (
     <div className='tb_container'>
-     <TableHeader />
+      <TableHeader title='All Products' />
 
 
       <div className='tb_first_row'>
@@ -44,19 +44,22 @@ export default function Table({row}) {
           <p>Id</p>
         </div>
         <div style={{ width: '20%' }} >
+          <p>Photo</p>
+        </div>
+        <div style={{ width: '20%' }} >
           <p>Name</p>
         </div>
         <div style={{ width: '20%' }} >
-          <p>Date</p>
+          <p>Stock</p>
         </div>
         <div style={{ width: '20%' }} >
-          <p>Total</p>
+          <p>Price</p>
         </div>
         <div style={{ width: '20%' }} >
-          <p>Status</p>
+          <p>Create At</p>
         </div>
-       
- 
+
+
         <div style={{ width: '10%', display: 'flex', flexDirection: 'row-reverse', marginRight: 30 }} >
           <p>Actions</p>
         </div>
@@ -64,23 +67,14 @@ export default function Table({row}) {
       </div>
 
       {
-         datas.map((item, index) => {
-          let status;
-          switch (item.status) {
-            case 'Proscessing':
-              status = <p className='tb_status' style={{ backgroundColor: '#ff6e40' }}>Proscessing</p>
-              break;
-            case 'Shipped':
-              status = <p className='tb_status' style={{ backgroundColor: '#293134' }}>Shipped</p>
-              break;
-            case 'Completed':
-              status = <p className='tb_status' style={{ backgroundColor: '#05b171' }}>Completed</p>
-              break;
-            case 'Refunded':
-              status = <p className='tb_status' style={{ backgroundColor: '#faae42' }}>Refunded</p>
+        data_product.map((item, index) => {
+          let stock;
+          switch (item.stock) {
+            case  true:
+              stock = <p  style={{ color: '#05b171' }}>In Stock</p>
               break;
             default:
-              status = <p className='tb_status' style={{ backgroundColor: '#ea4444' }}>Cancelled</p>
+              stock = <p  style={{ color: '#ea4444' }}>Out of Stock</p>
               break;
           }
 
@@ -96,24 +90,29 @@ export default function Table({row}) {
               <div style={{ width: '10%', color: '#ff6e40', cursor: 'pointer' }}  >
                 <NavLink className='tb_link' exact to={{
                   pathname: '/orders/items',
-                  datas: { data:item }
+                  datas: { data: item }
                 }}  >
                   <p>{item.id}</p>
                 </NavLink>
               </div>
               <div style={{ width: '20%' }} >
+                <img src={item.photo} style={{width:50,height:50,borderRadius:10,}} />
+              </div>
+              
+              <div style={{ width: '20%' }} >
                 <p>{item.name}</p>
               </div>
               <div style={{ width: '20%' }} >
-                <p>{item.date}</p>
+                {stock}
               </div>
               <div style={{ width: '20%' }} >
-                <p>{item.total}</p>
+                <p>{item.price}</p>
               </div>
               <div style={{ width: '20%' }} >
-                {status}
+                <p>{item.createdAt}</p>
               </div>
               
+
               <div style={{ width: '10%', display: 'flex', flexDirection: 'row-reverse', marginRight: 30 }} >
                 <p className={actions == index ? 'tb_th_row_actions_clicked' : 'tb_th_row_actions'} onClick={() => { handleActions(index) }}>...</p>
                 {
@@ -134,7 +133,7 @@ export default function Table({row}) {
           )
         })
       }
-    <TablePages />
+      <TablePages />
     </div>
   )
 }
