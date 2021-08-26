@@ -19,7 +19,7 @@ export default function SideBar() {
 
   const menu = [
     {
-      link: '/over',
+      link: '/',
       name: 'Over View',
       icons: <BarChartIcon className='sb_icons' />
     },

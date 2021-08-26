@@ -1,32 +1,22 @@
 import React from "react";
 import "./Notification.scss";
-import Avatar from "@material-ui/core/Avatar";
-import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import QueryBuilderIcon from "@material-ui/icons/QueryBuilder";
 
-import { makeStyles } from "@material-ui/core/styles";
-import { blue } from "@material-ui/core/colors";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    "& > *": {
-      margin: theme.spacing(1),
-    },
-  },
-  green: {
-    color: "#fff",
-    backgroundColor: blue,
-  },
-}));
-function Notification({ icon, title, time, colorIcon }) {
-    const classes = useStyles();
+function Notification({ icon, title, time, status }) {
+
+  const stringColor = `icon__color color-${status}`;
   return (
     <div>
       <div className="tab-items">
         <div className="tab-item">
           <div className="tab-item__icon">
-            <Avatar className={classes.green}>{icon}</Avatar>
+            <div className={stringColor}>
+
+              <div className="icon__colors">
+              {icon}
+              </div>
+            </div>
           </div>
           <div className="tab-item__content">
             <span className="tab-item__title">{title}</span>
