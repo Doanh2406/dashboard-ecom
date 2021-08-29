@@ -8,6 +8,7 @@ import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import Footer from "./components/Footer/Footer";
 import SignIn from "./components/pages/SignIn/SignIn";
 import SignUp from "./components/pages/SignUp/SignUp";
+import { useSelector } from "react-redux";
 const outerTheme = createTheme({
   palette: {
     primary: {
@@ -26,23 +27,12 @@ const outerTheme = createTheme({
 });
 
 function App() {
-  const [user, setUser] = React.useState(true)
+  const userInfo = useSelector(state=>state.userInfo)
   return (
     <>
       <Router>
-<<<<<<< HEAD
         {
-          user ?
-=======
-      
-        <div className="app">
-        
-          <div className="sidebar">
-            <SideBar />
-          </div>
-          <div className="body">
-        
->>>>>>> bfd7a661cdc6edc554ac42ec1bdbd3e8ea8104d3
+          userInfo ?
             <Switch>
                <Route exact path="/">
                 <SignIn />

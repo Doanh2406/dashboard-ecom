@@ -1,14 +1,24 @@
 import React, {useState} from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom'
+import { signUp } from '../../redux/actions/userActions';
 import '../SignIn/SignIn.scss'
 export default function SignUp() {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [cPassword,setCPassword] = useState();
-  console.log(name)
-  const handleSignUp = ()=>{
+  const userSignUp = useSelector(state=>state.userSignUp);
+  
+  const dispatch = useDispatch();
+  const handleSignUp = async()=>{
     
+    if(password!==cPassword){
+      alert('Password and confirm password are not match')
+    }else{
+      await dispatch(signUp(name,email,password));
+      
+    }
   }
   return (
     <div className='re_container'>
@@ -17,9 +27,9 @@ export default function SignUp() {
           <p style={{ fontSize: 32, marginBottom:-5 }}>Sign up</p>
           <input required onChange={e=>setName(e.target.value)} style={{marginTop:30}} placeholder='Enter your name' />
           <input required onChange={e=>setEmail(e.target.value)}  placeholder='Enter your email' />
-          <input required onChange={e=>setPassword(e.target.value)} placeholder='Enter your password' />
+          <input type='password' required onChange={e=>setPassword(e.target.value)} placeholder='Enter your password' />
 
-          <input  required onChange={e=>setCPassword(e.target.value)} placeholder='Enter your password confirm' />
+          <input type='password'  required onChange={e=>setCPassword(e.target.value)} placeholder='Enter your password confirm' />
           
           <div style={{height:40}} />
           <p className='re_btn' onClick={()=>handleSignUp()} >Sign Up</p>

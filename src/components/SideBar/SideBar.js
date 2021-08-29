@@ -55,6 +55,9 @@ export default function SideBar() {
     setSetting(!setting)
    
   }
+  const handleLogOut = ()=>{
+    
+  }
   return (
     <>
     {
@@ -86,7 +89,7 @@ export default function SideBar() {
                 </div>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center', marginLeft:20, marginTop:-5,cursor:'pointer',}} >
                   <ExitToAppIcon style={{fontSize:20,color:'#ff6e40'}} />
-                  <p style={{fontSize:14,marginLeft:10,color:'#ff6e40'}}>Logout</p>
+                  <p style={{fontSize:14,marginLeft:10,color:'#ff6e40'}} onClick={()=>handleLogOut()} >Logout</p>
                 </div>
               </div>
               <div style={{zIndex:1, top: 0, left: 0, position: 'absolute', width: '100vw', height: '100vh', cursor: 'context-menu' }} onClick={() => setShow(!show)}>
