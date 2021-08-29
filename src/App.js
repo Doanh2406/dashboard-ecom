@@ -30,8 +30,19 @@ function App() {
   return (
     <>
       <Router>
+<<<<<<< HEAD
         {
           user ?
+=======
+      
+        <div className="app">
+        
+          <div className="sidebar">
+            <SideBar />
+          </div>
+          <div className="body">
+        
+>>>>>>> bfd7a661cdc6edc554ac42ec1bdbd3e8ea8104d3
             <Switch>
                <Route exact path="/">
                 <SignIn />

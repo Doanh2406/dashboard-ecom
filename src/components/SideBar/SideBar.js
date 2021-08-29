@@ -23,16 +23,6 @@ export default function SideBar() {
   const menu = [
     {
       link: '/',
-      name: 'Shop',
-      icons: <HomeIcon className='sb_icons' />
-    },
-    {
-      link: '/cart',
-      name: 'Cart',
-      icons: <ShoppingCartIcon className='sb_icons' />
-    },
-    {
-      link: '/over',
       name: 'Over View',
       icons: <BarChartIcon className='sb_icons' />
     },
