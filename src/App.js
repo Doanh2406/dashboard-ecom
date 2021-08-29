@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Dashboard, Orders, OrdersItems, Home, Cart, Products, Customers, ShopProductsDetail } from "./components/pages";
 import SideBar from "./components/SideBar/SideBar";
@@ -27,34 +27,26 @@ const outerTheme = createTheme({
 });
 
 function App() {
-  const userInfo = useSelector(state=>state.userInfo)
+  const userSignin = useSelector(state => state.userSignIn)
+  console.log(userSignin.userInfo)
+
   return (
     <>
+
       <Router>
-        {
-          userInfo ?
-            <Switch>
-               <Route exact path="/">
-                <SignIn />
-              </Route>
-              <Route exact path="/signup">
-                <SignUp />
-              </Route>
-            
-            </Switch>
-            :
-            <ThemeProvider theme={outerTheme}>
+        <ThemeProvider theme={outerTheme}>
+          <Switch>
+            {
+              userSignin.userInfo ?
+                <div className="app">
 
+                  <div className="sidebar">
+                    <SideBar />
+                  </div>
+                  <div className="body">
+                    <div style={{ height: 80 }} />
+                    <Header />
 
-              <div className="app">
-
-                <div className="sidebar">
-                  <SideBar />
-                </div>
-                <div className="body">
-                  <div style={{ height: 80 }} />
-                  <Header />
-                  <Switch>
                     <Route exact path="/cart">
                       <Cart />
                     </Route>
@@ -76,18 +68,35 @@ function App() {
                     <Route exact path="/shop/products">
                       <ShopProductsDetail />
                     </Route>
+
+
+
+
+
                     <Route exact path="/">
                       <Home />
                     </Route>
-                  </Switch>
-
-                </div>
-
-              </div>
 
 
-            </ThemeProvider>
-        }
+                  </div>
+
+                </div> :
+                <>
+                  <Route exact path='/' >
+                    <SignIn />
+                  </Route>
+                  <Route exact path="/signup">
+                    <SignUp />
+                  </Route>
+                </>
+            }
+
+
+
+
+
+          </Switch>
+        </ThemeProvider>
       </Router>
     </>
   );

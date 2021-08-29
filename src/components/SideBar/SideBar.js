@@ -14,15 +14,30 @@ import HomeIcon from '@material-ui/icons/Home';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import ReceiptIcon from '@material-ui/icons/Receipt';
 import Setting from './Setting';
+import { useHistory } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { signin } from '../redux/actions/userActions';
+
+
 export default function SideBar() {
 
-
+  const dispatch= useDispatch();
   const [show, setShow] = useState(false)
   const [setting, setSetting] = useState(false)
 
   const menu = [
     {
       link: '/',
+      name: 'Shopping',
+      icons: <HomeIcon className='sb_icons' />
+    },
+    {
+      link: '/cart',
+      name: 'Cart',
+      icons: <ShoppingCartIcon className='sb_icons' />
+    },
+    {
+      link: '/overview',
       name: 'Over View',
       icons: <BarChartIcon className='sb_icons' />
     },
@@ -48,6 +63,8 @@ export default function SideBar() {
     },
 
   ];
+  let history = useHistory();
+ 
   const handleClick = () => {
     setShow(!show)
   }
@@ -56,7 +73,7 @@ export default function SideBar() {
    
   }
   const handleLogOut = ()=>{
-    
+    dispatch(signin())
   }
   return (
     <>
