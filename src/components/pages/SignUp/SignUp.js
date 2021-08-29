@@ -8,7 +8,7 @@ export default function SignUp() {
   const [cPassword,setCPassword] = useState();
   console.log(name)
   const handleSignUp = ()=>{
-
+    
   }
   return (
     <div className='re_container'>
@@ -16,10 +16,10 @@ export default function SignUp() {
         <div className='re_form_fr'>
           <p style={{ fontSize: 32, marginBottom:-5 }}>Sign up</p>
           <input required onChange={e=>setName(e.target.value)} style={{marginTop:30}} placeholder='Enter your name' />
-          <input required  placeholder='Enter your email' />
-          <input required placeholder='Enter your password' />
+          <input required onChange={e=>setEmail(e.target.value)}  placeholder='Enter your email' />
+          <input required onChange={e=>setPassword(e.target.value)} placeholder='Enter your password' />
 
-          <input required placeholder='Enter your password confirm' />
+          <input  required onChange={e=>setCPassword(e.target.value)} placeholder='Enter your password confirm' />
           
           <div style={{height:40}} />
           <p className='re_btn' onClick={()=>handleSignUp()} >Sign Up</p>
