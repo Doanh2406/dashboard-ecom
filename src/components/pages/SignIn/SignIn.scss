@@ -1,0 +1,60 @@
+@import '../../styles/value';
+
+.re_container{
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: $primary;
+  align-items: center;
+  justify-content: center;
+  .re_form{
+    width: 45%;
+    display: flex;
+    flex-direction: row;
+    background-color: #fff;
+    border-radius: $radius;
+    padding:30px;
+    .re_form_fr{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      input{
+        margin-top: 30px;
+        font-size: 16px;
+        padding:5px;
+        padding-left: 30px;
+        outline: none;
+        border-radius: $radius;
+        border:1px solid #8f8f8f;
+        height: 40px;
+        width: 80%;
+        transition: all 0.3s ease;
+        &:hover{
+          border:1px solid $primary;
+
+        }
+        &:focus{
+          border:1px solid $primary;
+
+        }
+      }
+    }
+    .re_form_sr{
+      @extend .re_form_fr;
+      margin-left: 30px;
+      align-items: center;
+    }
+  }
+}
+.re_btn{
+  background-color: $primary;
+  color:#fff;
+  padding:10px 20px 10px 20px;
+  border-radius: $radius;
+  width: fit-content;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  &:hover{
+    background-color: $primarystr;
+  }
+}
