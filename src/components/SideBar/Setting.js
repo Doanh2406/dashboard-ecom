@@ -3,6 +3,7 @@ import React from 'react'
 import './Setting.scss'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 export default function Setting({ action }) {
+  
   return (
     <div className='st_container'>
       <div className='st_overlay' onClick={() => action()} />
