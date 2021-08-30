@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './SideBar.scss'
-import ava from '../../assets/ava.jpg'
+import ava from '../../assets/ava.png'
 import { NavLink } from 'react-router-dom';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import ListAltIcon from '@material-ui/icons/ListAlt';
@@ -15,12 +15,12 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import ReceiptIcon from '@material-ui/icons/Receipt';
 import Setting from './Setting';
 import { useHistory } from "react-router-dom";
-import { useDispatch } from 'react-redux';
-import { signin } from '../redux/actions/userActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { signin, signout } from '../redux/actions/userActions';
 
 
 export default function SideBar() {
-
+  const userSignIn = useSelector(state => state.userSignIn)
   const dispatch= useDispatch();
   const [show, setShow] = useState(false)
   const [setting, setSetting] = useState(false)
@@ -63,7 +63,6 @@ export default function SideBar() {
     },
 
   ];
-  let history = useHistory();
  
   const handleClick = () => {
     setShow(!show)
@@ -73,7 +72,7 @@ export default function SideBar() {
    
   }
   const handleLogOut = ()=>{
-    dispatch(signin())
+    dispatch(signout());
   }
   return (
     <>
@@ -85,10 +84,10 @@ export default function SideBar() {
     <div className='sb_container'>
       <p className='sb_title'>Ekaf Ekin</p>
       <div className='sb_info' style={show?{background:'#ededed'}:null}  onClick={handleClick} >
-        <img className='sb_ava' src={ava} alt='avatar' />
+        <img className='sb_ava' src={userSignIn.userInfo.avatar?userSignIn.userInfo.avatar:ava} alt='avatar' />
         <div className='sb_info_name_des' >
-          <p className='sb_info_name'>Ygritte</p>
-          <p className='sb_info_des'>iron</p>
+          <p className='sb_info_name'>{userSignIn.userInfo.name}</p>
+          <p className='sb_info_des'>Seller</p>
           {
             show && (<>
               <div className='sb_info_menu'>

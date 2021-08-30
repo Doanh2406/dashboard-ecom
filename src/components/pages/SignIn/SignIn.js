@@ -20,7 +20,7 @@ export default function SignIn() {
           <p style={{ fontSize: 32, }}>Sign In</p>
           <p style={{ color: '#8c8c8c', marginTop: -20 }}>Sign in to ekaf ekin to continue</p>
           <input required onChange={e=>setEmail(e.target.value)} style={{marginTop:30}} placeholder='Enter your email' />
-          <input required onChange={e=>setPassword(e.target.value)} security placeholder='Enter your password' />
+          <input type='password' required  onChange={e=>setPassword(e.target.value)}  placeholder='Enter your password' />
           <div style={{ display: 'flex', flexDirection: 'row', alignItems:'center',fontSize:14,marginLeft:5,marginTop:10 }}>
             <p >Can't access your account?</p>
             <span style={{color:'#ff6e40',marginLeft:5}}>Reset your password now.</span>
