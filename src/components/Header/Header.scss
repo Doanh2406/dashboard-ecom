@@ -4,14 +4,15 @@
   flex: 1;
   position: fixed;
   z-index: 1;
-  overflow: visible;
+  
   top: 0;
   width: 100%;
   height: 50px;
   display: flex;
-  
+  background-color: #f5f4fe;
   align-items: center;
-  margin-top: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 .header__name {
   min-width: 200px;

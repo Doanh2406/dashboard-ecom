@@ -7,7 +7,7 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import TabsInfor from "../Tabs/TabsInfor";
-
+import { NavLink } from 'react-router-dom'
 function Header() {
   const [infor, setInfor] = useState(false);
   function handleBoxClick() {
@@ -49,7 +49,10 @@ function Header() {
       </div>
       <div className="header__button">
         <AddCircleOutlineIcon className="header__button-icon" />
-        <span className="header__button-tittle">Add Product</span>
+          <NavLink exact to='/addproduct' style={{textDecoration:'none'}}>
+           <span className="header__button-tittle" >Add Product</span>
+          </NavLink>
+
       </div>
     </div>
   );

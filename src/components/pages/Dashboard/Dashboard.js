@@ -27,7 +27,7 @@ export default function Dashboard() {
                 </div>
               </div>
               <div className="dashboard__layout-selects">
-                <select className="dashboard__layout-select">
+                <select  className="dashboard__layout-select">
                   <option className="dashboard__layout-select__item" value="0">January</option>
                   <option className="dashboard__layout-select__item" value="1">Febuary</option>
                   <option className="dashboard__layout-select__item" value="2">March</option>

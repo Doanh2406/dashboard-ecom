@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Dashboard, Orders, OrdersItems, Home, Cart, Products, Customers, ShopProductsDetail } from "./components/pages";
+import { Dashboard, Orders, OrdersItems, Home, Cart, Products, Customers, ShopProductsDetail, AddProduct } from "./components/pages";
 import SideBar from "./components/SideBar/SideBar";
 import Header from "./components/Header/Header";
 import "./App.scss";
@@ -67,6 +67,9 @@ function App() {
                     </Route>
                     <Route exact path="/shop/products">
                       <ShopProductsDetail />
+                    </Route>
+                    <Route exact path="/addproduct">
+                      <AddProduct />
                     </Route>
 
 

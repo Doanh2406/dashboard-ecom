@@ -6,6 +6,7 @@ import Cart from "./Cart/Cart";
 import Customers from "./Customers/Customers";
 import Products from "./Products/Products";
 import ShopProductsDetail from "./Home/ShopProductsDetail";
+import AddProduct from "./AddProduct/AddProduct";
 export{
   Dashboard,
   Orders,
@@ -14,5 +15,6 @@ export{
   Cart,
   Products,
   Customers,
-  ShopProductsDetail
+  ShopProductsDetail,
+  AddProduct
 }
