@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Dashboard, Orders, OrdersItems, Home, Cart, Products, Customers, ShopProductsDetail, AddProduct } from "./components/pages";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
+import { Dashboard, Orders, OrdersItems, Home, Cart, Products, Customers, ShopProductsDetail, AddProduct, Profile } from "./components/pages";
 import SideBar from "./components/SideBar/SideBar";
 import Header from "./components/Header/Header";
 import "./App.scss";
@@ -9,6 +9,7 @@ import Footer from "./components/Footer/Footer";
 import SignIn from "./components/pages/SignIn/SignIn";
 import SignUp from "./components/pages/SignUp/SignUp";
 import { useSelector } from "react-redux";
+import NoMatchPage from "./components/NoMatchPage/NoMatchPage";
 const outerTheme = createTheme({
   palette: {
     primary: {
@@ -28,24 +29,25 @@ const outerTheme = createTheme({
 
 function App() {
   const userSignin = useSelector(state => state.userSignIn)
-  
+
 
   return (
-    <>
 
-      <Router>
-        <ThemeProvider theme={outerTheme}>
-          <Switch>
-            {
-              userSignin.userInfo ?
-                <div className="app">
 
-                  <div className="sidebar">
-                    <SideBar />
-                  </div>
-                  <div className="body">
-                    <div style={{ height: 80 }} />
+    <Router>
+      <ThemeProvider theme={outerTheme}>
+       
+          {
+            userSignin.userInfo ?
+            
+              <div className="app">
+                <div className="sidebar">
+                  <SideBar />
+                </div>
+                <div className="body">
+                  <div style={{ height: 80 }} />
                     <Header />
+                  <Switch>
 
                     <Route exact path="/cart">
                       <Cart />
@@ -71,37 +73,44 @@ function App() {
                     <Route exact path="/addproduct">
                       <AddProduct />
                     </Route>
-
-
-
-
-
+                    <Route path="/profile">
+                      <Profile />
+                    </Route>
                     <Route exact path="/">
                       <Home />
                     </Route>
+                    <Route exact path="*">
+                      <NoMatchPage />
+                    </Route>
+                    </Switch>
+                </div>
+
+              </div>
+              :
+              <Switch>
+                <Route exact path="/" >
+                  <SignIn />
+                </Route>
+                <Route path="/signup">
+                  <SignUp />
+                </Route>
 
 
-                  </div>
 
-                </div> :
-                <>
-                  <Route exact path='/' >
-                    <SignIn />
-                  </Route>
-                  <Route exact path="/signup">
-                    <SignUp />
-                  </Route>
-                </>
-            }
+                <Route path="*">
+                  <NoMatchPage />
+                </Route>
+              </Switch>
+          }
 
 
 
 
 
-          </Switch>
-        </ThemeProvider>
-      </Router>
-    </>
+        
+      </ThemeProvider>
+    </Router>
+
   );
 }
 

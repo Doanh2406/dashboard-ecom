@@ -1,58 +1,26 @@
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import React, { useState, useEffect, useRef } from 'react'
 import './TableHeader.scss'
-export default function TableHeader() {
- 
-  const [sort, setSort] = useState(true)
-  const [sortV, setSortV] = useState('Sort By')
-  const [count, setCount] = useState(true)
-  const [countV, setCountV] = useState(10)
+export default function TableHeader({title}) {
   const [actionBig, setActionBig] = useState(false)
-
-
-  const handleSort = () => {
-    setSort(!sort)
-  }
-  const handleCount = () => {
-    setCount(!count)
-  }
-  
-  useEffect(() => {
-    setCount(!count)
-  }, [countV])
-  useEffect(() => {
-    setSort(!sort)
-  }, [sortV])
+  const [sort,setSort] = useState(true)
   return (
     <div className='tb_header'>
-    <p style={{ marginLeft: 30 }}>All Orders</p>
-    <div className={sort ? 'tb_sort_clicked' : 'tb_sort'} onClick={handleSort}>
-      <p style={{ width: 51 }}>{sortV}</p>
-
-      <ExpandMoreIcon style={{ marginLeft: 20, marginTop: 5 }} />
-    </div>
-    {
-      sort && (
-        <div className='tb_sort_active'>
-          <p className='tb_sort_active_item item1' onClick={() => setSortV('None')}>None</p>
-          <p className='tb_sort_active_item' onClick={() => setSortV('Desc')}>Desc</p>
-          <p className='tb_sort_active_item item3' onClick={() => setSortV('Asc')}>Asc</p>
-        </div>
-      )
-    }
-    <div className={count ? 'tb_sort_clicked' : 'tb_sort'} onClick={handleCount}>
-      <p>{countV}</p>
-      <ExpandMoreIcon style={{ marginLeft: 20, marginTop: 5 }} />
-    </div>
-    {
-      count && (
-        <div className='tb_count_active'>
-          <p className='tb_count_active_item item1' style={{ marginTop: 0 }} onClick={() => setCountV(10)}>10</p>
-          <p className='tb_count_active_item' onClick={() => setCountV(20)} >20</p>
-          <p className='tb_count_active_item item3' onClick={() => setCountV(30)}>30</p>
-        </div>
-      )
-    }
+    <p style={{ marginLeft: 30,width:130 }}>{title?title:'All Order'}</p>
+    <select className='tb_select' onClick={()=>setSort(false)}>
+      {
+        sort && <option>Sort by</option>
+      }
+      <option>None</option>
+      <option>Asc</option>
+      <option>Des</option>
+    </select>
+    <select className='tb_select'>
+      <option>10</option>
+      <option>20</option>
+      <option>30</option>
+    
+    </select>
     <div>
       <form class="search-container">
         <input type="text" id="search-bar" placeholder="Search..." />

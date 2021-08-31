@@ -24,7 +24,7 @@ export default function SideBar() {
   const dispatch= useDispatch();
   const [show, setShow] = useState(false)
   const [setting, setSetting] = useState(false)
-
+  const history = useHistory();
   const menu = [
     {
       link: '/',
@@ -73,6 +73,7 @@ export default function SideBar() {
   }
   const handleLogOut = ()=>{
     dispatch(signout());
+    history.push('/')
   }
   return (
     <>
@@ -93,7 +94,9 @@ export default function SideBar() {
               <div className='sb_info_menu'>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center', marginLeft:20, cursor:'pointer'}} onClick={()=>console.log('cc')} >
                   <PersonIcon style={{fontSize:20}} />
+                  <NavLink to='/profile' style={{textDecoration:'none'}}>
                   <p style={{fontSize:14,marginLeft:10}}>Profile</p>
+                  </NavLink>
                 </div>
                 <div style={{display:'flex',flexDirection:'row',alignItems:'center', marginLeft:20, marginTop:-5,cursor:'pointer'}} onClick={()=>console.log('ccc')} >
                   <MailOutlineIcon style={{fontSize:20}} />

@@ -1,0 +1,102 @@
+@import '../../styles/value';
+
+.pro_container{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  .pro_fc{
+    width: 70%;
+    .pro_fc_row{
+      margin-bottom: 20px;
+      background-color: #fff;
+      border-radius: $radius;
+      padding:20px;
+      padding-left: 50px;
+      display: flex;
+      flex-direction: row;
+      padding-bottom: 50px;
+      img{
+        width:100px;
+        height:100px
+      }
+      .pro_fc_cl{
+        width: 45%;
+        .pro_title{
+          color:rgba(61, 61, 61, 0.76);
+        }
+        .pro_input{
+          outline: none;
+          border: 1px solid rgba(78, 78, 78, 0.568);
+          height: 40px;
+          width: 100%;
+          padding-left: 20px;
+          font-size: 15px;
+          border-radius: $radius;
+          transition: all 0.5 ease-in;
+          &:hover{
+            border: 1px solid $primary;
+            
+          }
+          &:focus{
+            border: 1px solid $primary;
+            
+          }
+        }
+        .pro_select{
+          height: 44px;
+          margin-right: -20px;
+          @extend .pro_input;
+         
+        }
+      }
+    }
+  }
+  .pro_sc{
+    width: 28%;
+    .pro_sc_setting{
+      display: flex;
+      flex-direction: column;
+      flex:1;
+      background-color: #fff;
+      border-radius: $radius;
+      margin-left: 30px;
+      padding:40px;
+       color:rgba(61, 61, 61, 0.76);
+      
+      .pro_sc_setting_item{
+        border-radius: $radius;
+        padding-left: 10px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        transition: all .1s ease-in;
+        p{
+          margin-left: 20px;
+        }
+        &:hover{
+          background-color: $primarystr;
+          color:#fff;
+        }
+        
+      }
+      .pro_active{
+        @extend .pro_sc_setting_item;
+        background-color: $primary;
+        color: #fff;
+      } 
+    }
+  }
+}
+.pro_btn{
+  padding: 5px 10px 5px 10px;
+  background-color: $primary;
+  opacity: .8;
+  color:#fff;
+  border-radius: $radius;
+  cursor: pointer;
+  transition: all .5s ease-in;
+  &:hover{
+    opacity: 1;
+  }
+}

@@ -30,7 +30,7 @@ export default function CustomersTable({ row }) {
 
   return (
     <div className='tb_container'>
-      <TableHeader />
+      <TableHeader title='All customers' />
 
 
       <div className='tb_first_row'>

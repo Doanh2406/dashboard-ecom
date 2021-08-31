@@ -21,7 +21,7 @@ export default function Home() {
       <div className='h_cl1'>
         <LinkHome title='Shop' />
         <div style={{height:20}} />
-        <TableHeader />
+        <TableHeader title='All products' />
         <div className='h1_cl1_card_container'>
           <div className='h1_cl1_row1'>
             {
