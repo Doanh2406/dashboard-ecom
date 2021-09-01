@@ -179,9 +179,21 @@ input{
   }
   .pm_menu_show{
     padding: 20px;
-    
     border: 1px solid rgba(160, 160, 160, 0.822);
     border-top: none;
     border-bottom: none;
+    animation: slideUp 1s forwards  ;
+    animation: slideDown 1s forwards  ;
+  
   }
+  @keyframes slideDown {
+    from {
+     
+      transform: translateY(-10%);}
+    to {
+     
+    transform: translateY(0);
+    }
+  }
+
 }

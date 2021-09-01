@@ -18,7 +18,7 @@ export default function Profile() {
           
           <img style={{marginTop:20}} src={ava} alt='photos' />
           <div style={{ marginLeft: 20,  }}>
-            <p style={{ fontWeight: 530, fontSize: 24 }}>{state.name}</p>
+            <p style={{ fontWeight: 530, fontSize: 24 }}>Le Xuan Quoc CUong</p>
             <div style={{ display: 'flex', flexDirection: 'row', marginTop: -18 }}>
               <p className='pro_btn'>Change Avatar</p>
               <p style={{ marginLeft: 10, background: 'red' }} className='pro_btn'>Remove Avatar</p>

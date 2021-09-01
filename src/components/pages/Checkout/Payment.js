@@ -3,7 +3,7 @@ import './Checkout.scss'
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 export default function Payment() {
-  const [tab, setTab] = useState()
+  const [tab, setTab] = useState(null)
   const handleOnclick = (n)=>{
     if(n===tab){
       setTab(null)
@@ -19,12 +19,14 @@ export default function Payment() {
         <div className='pm_menu_btn' onClick={() => handleOnclick(1)} >
           <input checked={tab===1?true:false} style={{ width: 20, marginRight: 10, marginLeft: 10 }} type="radio" name="method" value="first" />
           <label for="first"> Card / Your payment method</label>
-          <KeyboardArrowDownIcon style={{ marginLeft: 'auto' }} />
+          {
+            tab===1?  <KeyboardArrowUpIcon style={{ marginLeft: 'auto' }} /> :   <KeyboardArrowDownIcon style={{ marginLeft: 'auto' }} />
+          }
         </div>
         {
           tab === 1 && <div className='pm_menu_show'>
             <p>Card Number</p>
-            <input checked={tab===1?true:false} style={{ width: '98.5%' }} />
+            <input checked={tab===1?true:false} style={{ width: '98.%' }} />
             <p>Name of card</p>
             <input style={{ width: '98.5%' }} />
             <p>CVV code</p>
@@ -35,9 +37,12 @@ export default function Payment() {
         }
       </div>
       <div className='pm_menu'  >
-        <div className='pm_menu_btn' onClick={() => handleOnclick(2)} style={tab===null?{borderTop:0,borderBottom:0,borderTopLeftRadius:0,borderTopRightRadius:0}:tab!==2?{borderTopLeftRadius: 0,borderTopRightRadius:0 }:{borderTopLeftRadius:0,borderTopRightRadius:0,borderTop:0}} >
+        <div className='pm_menu_btn' onClick={() => handleOnclick(2)} style={tab===null?{borderTop:0,borderBottom:0,borderTopLeftRadius:0,borderTopRightRadius:0}:tab===1?{borderTopLeftRadius: 0,borderTopRightRadius:0,borderBottom:0 }:{borderTopLeftRadius:0,borderTopRightRadius:0,borderTop:0}} >
           <input checked={tab===2?true:false} style={{ width: 20, marginRight: 10, marginLeft: 10 }} type="radio" name="method" value="first" />
           <label for="first"> Pay with paypal</label>
+          {
+            tab===2?  <KeyboardArrowUpIcon style={{ marginLeft: 'auto' }} /> :   <KeyboardArrowDownIcon style={{ marginLeft: 'auto' }} />
+          }
         </div>
         {
           tab === 2 && <div className='pm_menu_show'>
@@ -53,6 +58,9 @@ export default function Payment() {
         <div className='pm_menu_btn' onClick={() => handleOnclick(3)} style={tab!==3?{ borderTopLeftRadius: 0, borderTopRightRadius: 0,borderBottomLeftRadius:10,borderBottomRightRadius:10 }:{borderTopLeftRadius:0,borderTopRightRadius:0,borderTop:0}} >
           <input checked={tab===3?true:false} style={{ width: 20, marginRight: 10, marginLeft: 10 }} type="radio" name="method" value="first" />
           <label for="first"> Cash on delivery</label>
+          {
+            tab===3?  <KeyboardArrowUpIcon style={{ marginLeft: 'auto' }} /> :   <KeyboardArrowDownIcon style={{ marginLeft: 'auto' }} />
+          }
         </div>
         {
           tab === 3 && <div className='pm_menu_show' style={{ borderBottomRightRadius: 10, borderBottomLeftRadius: 10,borderBottom:'1px solid rgba(160, 160, 160, 0.822)' }}>

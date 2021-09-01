@@ -85,9 +85,9 @@ export default function SideBar() {
     <div className='sb_container'>
       <p className='sb_title'>Ekaf Ekin</p>
       <div className='sb_info' style={show?{background:'#ededed'}:null}  onClick={handleClick} >
-        <img className='sb_ava' src={userSignIn.userInfo.avatar?userSignIn.userInfo.avatar:ava} alt='avatar' />
+        <img className='sb_ava' src={ava} alt='avatar' />
         <div className='sb_info_name_des' >
-          <p className='sb_info_name'>{userSignIn.userInfo.name}</p>
+          <p className='sb_info_name'>Le Xuan Quoc Cuong</p>
           <p className='sb_info_des'>Seller</p>
           {
             show && (<>
