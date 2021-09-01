@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
-import { Dashboard, Orders, OrdersItems, Home, Cart, Products, Customers, ShopProductsDetail, AddProduct, Profile } from "./components/pages";
+import { Dashboard, Orders, OrdersItems, Home, Cart, Products, Customers, ShopProductsDetail, AddProduct, Profile, Checkout } from "./components/pages";
 import SideBar from "./components/SideBar/SideBar";
 import Header from "./components/Header/Header";
 import "./App.scss";
@@ -75,6 +75,9 @@ function App() {
                     </Route>
                     <Route path="/profile">
                       <Profile />
+                    </Route>
+                    <Route path="/checkout">
+                      <Checkout />
                     </Route>
                     <Route exact path="/">
                       <Home />

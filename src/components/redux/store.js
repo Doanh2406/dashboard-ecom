@@ -15,6 +15,7 @@ const initialState = {
 const reducer = combineReducers({
   userSignUp: userSignUpReducer,
   userSignIn:userSigninReducer,
+  
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

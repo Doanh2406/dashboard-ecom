@@ -3,6 +3,7 @@ import './Cart.scss'
 import LinkHome from '../../LinkHome/LinkHome'
 import cart_data from './cart_data'
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import { NavLink } from 'react-router-dom';
 export default function Cart() {
   return (
     <>
@@ -99,7 +100,7 @@ export default function Cart() {
 
 
 
-          <div className='ori_second_container_first_row' style={{ marginTop: 20,paddingBottom:10 }}>
+          <div className='ori_second_container_first_row' style={{ marginTop: 20, paddingBottom: 10 }}>
             <div className='ca_container'>
               <input placeholder='Coupon Code' />
               <p className='ca_apply'>Apply</p>
@@ -108,13 +109,15 @@ export default function Cart() {
             <div className='ca_container'>
               <textarea className='ca_textarea' rows="25" />
             </div>
-          
+
           </div>
-            
+
           <div className='ca_btn_container'>
-          <p className='ca_btn_checkout'>Checkout</p>
+            <NavLink exact to='/checkout' style={{ textDecoration: 'none' }} >
+              <p className='ca_btn_checkout'>Checkout</p>
+            </NavLink>
             <p className='ca_btn_clear'>All Clears</p>
-            
+
           </div>
 
 

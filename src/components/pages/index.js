@@ -8,7 +8,7 @@ import Products from "./Products/Products";
 import ShopProductsDetail from "./Home/ShopProductsDetail";
 import AddProduct from "./AddProduct/AddProduct";
 import Profile from "./Profile/Profile";
-
+import Checkout from "./Checkout/Checkout";
 export{
   Dashboard,
   Orders,
@@ -19,5 +19,6 @@ export{
   Customers,
   ShopProductsDetail,
   AddProduct,
-  Profile
+  Profile,
+  Checkout
 }
