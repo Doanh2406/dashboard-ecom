@@ -64,7 +64,7 @@ export default function Checkout() {
 
         <div className='ch_fc'>
           <div className='ch_stage'>
-            <div style={tab === 1 ? {background:'#ff6e40',opacity:0.8}:seen>0 ? {background:'#05b171',opacity:0.8}:null} className='ch_stage_item' >
+            <div style={tab === 1 ? {background:'#ff6e40',opacity:0.8}:seen>0 ? {background:'#05b171'}:null} className='ch_stage_item' >
               <p style={tab === 1? {background:'#ff470d'}:seen>1 ? {background:'#007d3b',opacity:0.8}:null} className='ch_stage_item_num'>1</p>
               <p className='ch_stage_item_text'>Billing</p>
             </div>

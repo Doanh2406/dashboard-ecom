@@ -8,6 +8,8 @@ import CachedIcon from '@material-ui/icons/Cached';
 import { useSelector } from 'react-redux';
 import ProfileDetails from './ProfileDetails';
 import PasswordDetails from './PasswordDetails';
+import Notification from './Notification';
+import Integrations from './Integrations';
 export default function Profile() {
   const state = useSelector(state => state.userSignIn.userInfo)
   const [tab,setTab] = useState(1)
@@ -26,7 +28,7 @@ export default function Profile() {
           </div>
         </div>
       {
-        tab===1? <ProfileDetails /> :tab===2 &&<PasswordDetails />
+        tab===1? <ProfileDetails /> :tab===2 ?<PasswordDetails />:tab===3?<Notification />:<Integrations />
       }
           
 
@@ -41,11 +43,11 @@ export default function Profile() {
               <LockIcon />
             <p>Password</p>
           </div>
-          <div className='pro_sc_setting_item'>
+          <div className={tab===3?'pro_sc_setting_item pro_active':'pro_sc_setting_item'} onClick={()=>setTab(3)} >
             <NotificationsIcon  />
             <p>Notification</p>
           </div>
-          <div className='pro_sc_setting_item'>
+          <div className={tab===4?'pro_sc_setting_item pro_active':'pro_sc_setting_item'} onClick={()=>setTab(4)} >
             <CachedIcon />
             <p>Intergration</p>
           </div>

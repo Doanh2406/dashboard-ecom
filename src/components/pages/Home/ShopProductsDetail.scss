@@ -146,7 +146,7 @@
           }
           .spd_row{
             position: absolute;
-            margin-left: 155px;
+            margin-left: 185px;
             margin-top: -50px;
             font-size: 24px;
             color: rgb(139, 139, 139);
@@ -184,15 +184,24 @@
       width: 15%;
       color: rgb(112, 112, 112);
       .spd_btn{
-        cursor: pointer;
-        margin-left: 20px;
-      }
-      .spd_active{
-        background-color: $primarystr;
+        
+        background-color: $primary;
         padding: 5px 10px 5px 10px;
         color: #fff;
         border-radius: $radius;
         margin-top: 10px;
+        opacity: 0.4;
+        cursor: pointer;
+        transition: all 0.5s ease-in-out;
+        margin-left: 15px;
+        &:hover{
+          opacity: 1;
+        }
+      }
+      .spd_active{
+        @extend .spd_btn;
+        opacity: 0.8;
+        background-color: $primarystr;
         
       }
     }
@@ -252,21 +261,29 @@
 
 .sss_container{
   padding:20px;
-  p{
-    margin-left:20px
-  }
+ 
   .sss_menu{
+    
+    display: flex;
+    flex-direction: column;
     .sss_hide{
+      padding: 15px;
       color:$primarystr;
+      border: 1px solid rgb(167, 167, 167);
+      margin-top: -1px;
+      border-top: 0;
+      border-bottom: 0;
+      margin-bottom: -1px;
     }
     .sss_menu_item{
       cursor: pointer;
       display: flex;
       flex-direction: row;
       align-items: center;
-      border-radius: $radius;
+      padding-left: 10px;
+      padding-right: 10px;
       border: 1px solid rgb(167, 167, 167);
-      margin-bottom: 10px;
+      
       &:hover{
         border: 1px solid $primary;
       }
@@ -274,9 +291,9 @@
     }
     .sss_menu_item_active{
       @extend .sss_menu_item;
-      color:#fff;
-      background-color: rgba(255, 115, 0, 0.514);
-      border: 1px solid rgb(250, 250, 250);
+      
+      
+      border: 1px solid $primary;
       
     }
   }

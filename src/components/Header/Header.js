@@ -25,7 +25,7 @@ function Header() {
         />
       </div>
       <div className="header__bage-icon">
-        <Badge badgeContent={4} color="primary" onClick={handleBoxClick}>
+        <Badge  badgeContent={4} color="error" onClick={handleBoxClick}>
           <NotificationsNoneIcon className="header__bage-icon__item" />
         </Badge>
 
@@ -43,17 +43,19 @@ function Header() {
             </div>
           </div>
         ) : null}
-        <Badge badgeContent={4} color="primary">
+        <Badge badgeContent={4} color="error">
           <AddShoppingCartIcon className="header__bage-icon__item" />
         </Badge>
       </div>
+      <NavLink exact to='/addproduct' style={{textDecoration:'none'}}>
       <div className="header__button">
         <AddCircleOutlineIcon className="header__button-icon" />
-          <NavLink exact to='/addproduct' style={{textDecoration:'none'}}>
+         
            <span className="header__button-tittle" >Add Product</span>
-          </NavLink>
+        
 
       </div>
+      </NavLink>
     </div>
   );
 }

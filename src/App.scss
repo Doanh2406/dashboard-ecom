@@ -6,7 +6,7 @@
 }
 .app{
   display: flex;
-  
+  flex-direction: row;
 }
 .sidebar{
   flex: 1;
@@ -15,9 +15,10 @@
   // left: 0;
 }
 .body{
+
   flex: 5;
   margin-left: 50px;
-  
+ 
 }
 .header__class{
   position: sticky;

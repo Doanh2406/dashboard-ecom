@@ -19,21 +19,22 @@ export default function Cart() {
 
             <div className='ori_fcsr_container'>
               <div className='ori_fcsr_fr_container_ori'>
-                <div className='ori_fcsr_fr'>
+                <div style={{width:'20%'}} className='ori_fcsr_fr'>
                   <p style={{ marginLeft: 30 }}>Photo</p>
                 </div>
-                <div className='ori_fcsr_fr'>
+                <div style={{width:'30%'}} className='ori_fcsr_fr'>
                   <p>Name</p>
                 </div>
-                <div className='ori_fcsr_fr'>
+                <div style={{width:'30%'}} className='ori_fcsr_fr'>
                   <p>Quantity</p>
-                </div><div className='ori_fcsr_fr'>
-                  <p>Price</p>
+                </div>
+                <div  className='ori_fcsr_fr'>
+                  <p >Price</p>
                 </div>
                 <div className='ori_fcsr_fr'>
                   <p>Total</p>
                 </div>
-                <div className='ori_fcsr_fr'>
+                <div style={{width:'10%'}} className='ori_fcsr_fr'>
 
                 </div>
               </div>
@@ -42,13 +43,13 @@ export default function Cart() {
               cart_data.map(item => (
                 <div className='ori_fcsr_container'>
                   <div className='ori_fcsr_fr_container'>
-                    <div className='ori_fcsr_fr'>
+                    <div style={{width:'20%'}} className='ori_fcsr_fr'>
                       <img src={item.photo} style={{ marginLeft: 20, borderRadius: 10, width: 50, height: 50 }} alt='photos' />
                     </div>
-                    <div className='ori_fcsr_fr'>
+                    <div style={{width:'30%'}} className='ori_fcsr_fr'>
                       <p>{item.name}</p>
                     </div>
-                    <div className='ori_fcsr_fr'>
+                    <div style={{width:'30%'}} className='ori_fcsr_fr'>
                       <input value={item.quantity} className='ca_input' />
                     </div><div className='ori_fcsr_fr'>
                       <p>{item.price}</p>
@@ -56,8 +57,8 @@ export default function Cart() {
                     <div className='ori_fcsr_fr'>
                       <p>{item.total}</p>
                     </div>
-                    <div className='ori_fcsr_fr'>
-                      <div className='ca_delete'>
+                    <div style={{width:'10%'}} className='ori_fcsr_fr'>
+                      <div style={{marginLeft:'auto',marginRight:20}} className='ca_delete'>
                         <DeleteOutlineIcon className='ca_delete_icon' />
 
                       </div>
@@ -102,7 +103,7 @@ export default function Cart() {
 
           <div className='ori_second_container_first_row' style={{ marginTop: 20, paddingBottom: 10 }}>
             <div className='ca_container'>
-              <input placeholder='Coupon Code' />
+              <input style={{borderTopRightRadius:0,borderBottomRightRadius:0}} placeholder='Coupon Code' />
               <p className='ca_apply'>Apply</p>
             </div>
             <p style={{ marginLeft: 20, marginTop: -10 }}>Order notes</p>
@@ -114,7 +115,7 @@ export default function Cart() {
 
           <div className='ca_btn_container'>
             <NavLink exact to='/checkout' style={{ textDecoration: 'none' }} >
-              <p className='ca_btn_checkout'>Checkout</p>
+              <p style={{marginLeft:15}} className='ca_btn_checkout'>Checkout</p>
             </NavLink>
             <p className='ca_btn_clear'>All Clears</p>
 

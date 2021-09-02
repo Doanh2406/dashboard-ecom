@@ -125,9 +125,9 @@ export default function ShopProductsDetail() {
       </div>
       <div className='spd_sr_container'>
         <div className='spd_sr_fr'>
-          <p className={tab===1?'spd_btn spd_active':'spd_btn'} onClick={()=>setTab(1)}>Descriptions</p>
-          <p className={tab===2?'spd_btn spd_active':'spd_btn'} onClick={()=>setTab(2)}>Review</p>
-          <p className={tab===3?'spd_btn spd_active':'spd_btn'} onClick={()=>setTab(3)}>SSS</p>
+          <p className={tab===1?'spd_active':'spd_btn'} onClick={()=>setTab(1)}>Descriptions</p>
+          <p className={tab===2?'spd_active':'spd_btn'} onClick={()=>setTab(2)}>Review</p>
+          <p className={tab===3?'spd_active':'spd_btn'} onClick={()=>setTab(3)}>SSS</p>
         </div>
         <div style={{width:'100%',backgroundColor:'#dbdbdb',height:1,}} />
             {

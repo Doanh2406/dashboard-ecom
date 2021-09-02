@@ -8,7 +8,7 @@ const cart_data = [
     },
     {
       photo:'https://cdnb.artstation.com/p/assets/images/images/035/383/791/large/serbianhero-uros-milincic-igris.jpg?1614811418',
-      name:'Ygritte',
+      name:'Ygrisadasdasdsadsdasdsatte',
       quantity:'2',
       price:'$3333',
       total:'$6666'

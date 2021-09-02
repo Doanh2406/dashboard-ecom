@@ -182,17 +182,42 @@ input{
     border: 1px solid rgba(160, 160, 160, 0.822);
     border-top: none;
     border-bottom: none;
-    animation: slideUp 1s forwards  ;
-    animation: slideDown 1s forwards  ;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    animation: slide-down 0.3s linear both;
   
   }
-  @keyframes slideDown {
+  @keyframes slide-down {
+    0% {
+      visibility: hidden;
+      height: 0;
+    }
+    55% {
+      visibility: visible;
+      height: 50px;
+    }
+    95% {
+      visibility: visible;
+      height: 100px;
+    }
+  
+    /* Set height to 'auto' after animation for spacing showing form-invalid feedback message */
+    100% {
+      visibility: visible;
+      height: auto;
+    }
+  }
+  
+  @keyframes slide-up {
     from {
-     
-      transform: translateY(-10%);}
+      visibility: visible;
+      height: auto;
+    }
+  
     to {
-     
-    transform: translateY(0);
+      visibility: hidden;
+      height: 0;
     }
   }
 

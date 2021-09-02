@@ -21,13 +21,19 @@ import { signin, signout } from '../redux/actions/userActions';
 
 export default function SideBar() {
   const userSignIn = useSelector(state => state.userSignIn)
-  const dispatch= useDispatch();
+  const dispatch = useDispatch();
   const [show, setShow] = useState(false)
   const [setting, setSetting] = useState(false)
   const history = useHistory();
   const menu = [
+
     {
       link: '/',
+      name: 'Over View',
+      icons: <BarChartIcon className='sb_icons' />
+    },
+    {
+      link: '/shopping',
       name: 'Shopping',
       icons: <HomeIcon className='sb_icons' />
     },
@@ -35,11 +41,6 @@ export default function SideBar() {
       link: '/cart',
       name: 'Cart',
       icons: <ShoppingCartIcon className='sb_icons' />
-    },
-    {
-      link: '/overview',
-      name: 'Over View',
-      icons: <BarChartIcon className='sb_icons' />
     },
     {
       link: '/orders',
@@ -57,90 +58,92 @@ export default function SideBar() {
       icons: <AssignmentIndIcon className='sb_icons' />
     },
     {
-      link: '/incomes',
-      name: 'Incomes',
+      link: '/invoices',
+      name: 'InVoices',
       icons: <ReceiptIcon className='sb_icons' />
     },
 
   ];
- 
+
   const handleClick = () => {
     setShow(!show)
   }
-  const handleSetting = ()=>{
+  const handleSetting = () => {
     setSetting(!setting)
-   
+
   }
-  const handleLogOut = ()=>{
+  const handleLogOut = () => {
     dispatch(signout());
     history.push('/')
   }
   return (
     <>
-    {
-      setting && (
-        <Setting action={handleSetting} />
-      )
-    }
-    <div className='sb_container'>
-      <p className='sb_title'>Ekaf Ekin</p>
-      <div className='sb_info' style={show?{background:'#ededed'}:null}  onClick={handleClick} >
-        <img className='sb_ava' src={ava} alt='avatar' />
-        <div className='sb_info_name_des' >
-          <p className='sb_info_name'>Le Xuan Quoc Cuong</p>
-          <p className='sb_info_des'>Seller</p>
-          {
-            show && (<>
-              <div className='sb_info_menu'>
-                <div style={{display:'flex',flexDirection:'row',alignItems:'center', marginLeft:20, cursor:'pointer'}} onClick={()=>console.log('cc')} >
-                  <PersonIcon style={{fontSize:20}} />
-                  <NavLink to='/profile' style={{textDecoration:'none'}}>
-                  <p style={{fontSize:14,marginLeft:10}}>Profile</p>
-                  </NavLink>
-                </div>
-                <div style={{display:'flex',flexDirection:'row',alignItems:'center', marginLeft:20, marginTop:-5,cursor:'pointer'}} onClick={()=>console.log('ccc')} >
-                  <MailOutlineIcon style={{fontSize:20}} />
-                  <p style={{fontSize:14,marginLeft:10}}>Inbox</p>
-                </div>
-                <div style={{display:'flex',flexDirection:'row',alignItems:'center', marginLeft:20,marginTop:-5,cursor:'pointer'}}  onClick={()=>handleSetting()}>
-                  <SettingsIcon style={{fontSize:20}} />
-                  <p style={{fontSize:14,marginLeft:10}}>Setting</p>
-                </div>
-                <div style={{display:'flex',flexDirection:'row',alignItems:'center', marginLeft:20, marginTop:-5,cursor:'pointer',}} >
-                  <ExitToAppIcon style={{fontSize:20,color:'#ff6e40'}} />
-                  <p style={{fontSize:14,marginLeft:10,color:'#ff6e40'}} onClick={()=>handleLogOut()} >Logout</p>
-                </div>
-              </div>
-              <div style={{zIndex:1, top: 0, left: 0, position: 'absolute', width: '100vw', height: '100vh', cursor: 'context-menu' }} onClick={() => setShow(!show)}>
+      {
+        setting && (
+          <Setting action={handleSetting} />
+        )
+      }
+      <div className='sb_container'>
+        <p className='sb_title'>Ekaf Ekin</p>
+        <div className='sb_info' style={show ? { background: '#ededed' } : null} onClick={handleClick} >
+          <img className='sb_ava' src={ava} alt='avatar' />
+          <div className='sb_info_name_des' >
+            <p className='sb_info_name'>Le Xuan Quoc Cuong</p>
+            <p className='sb_info_des'>Seller</p>
+            {
+              show && (<>
+                <div className='sb_info_menu'>
+                  <NavLink to='/profile' style={{ textDecoration: 'none' }}>
+                    <div className='sb_info_menu_item'>
+                      <PersonIcon style={{ fontSize: 20 }} />
 
+                      <p style={{ fontSize: 14, marginLeft: 10 }}>Profile</p>
+
+                    </div>
+                  </NavLink>
+                  <div className='sb_info_menu_item'>
+                    <MailOutlineIcon style={{ fontSize: 20 }} />
+                    <p style={{ fontSize: 14, marginLeft: 10 }}>Inbox</p>
+                  </div>
+                  <div className='sb_info_menu_item' onClick={()=>handleSetting()}>
+                    <SettingsIcon style={{ fontSize: 20 }} />
+                    <p style={{ fontSize: 14, marginLeft: 10 }}>Setting</p>
+                  </div>
+                  <div className='sb_info_menu_item'>
+                    <ExitToAppIcon style={{ fontSize: 20, color: '#ff6e40' }} />
+                    <p style={{ fontSize: 14, marginLeft: 10, color: '#ff6e40' }} onClick={() => handleLogOut()} >Logout</p>
+                  </div>
+                </div>
+                <div style={{ zIndex: 1, top: 0, left: 0, position: 'absolute', width: '100vw', height: '100vh', cursor: 'context-menu' }} onClick={() => setShow(!show)}>
+
+                </div>
+              </>
+              )
+            }
+          </div>
+        </div>
+
+        <p className='sb_title_lite'>
+          E-Commerce
+        </p>
+
+        <div className='sb_menu'>
+          {
+            menu.map((item, index) => (
+              <div key={index} className='sb_menu_container'>
+                <NavLink className='sb_link' exact to={item.link} activeClassName="sb_selected"  >
+                  <div className='sb_menu_button' >
+                    <div className='sb_icons_container'>
+                      {item.icons}
+                    </div>
+                    <p style={{ marginLeft: 10, fontWeight: 530 }}>{item.name}</p>
+                  </div>
+                </NavLink>
               </div>
-            </>
-            )
+            ))
           }
         </div>
       </div>
-
-      <p className='sb_title_lite'>
-        E-Commerce
-      </p>
-
-      <div className='sb_menu'>
-        {
-          menu.map((item, index) => (
-            <div key={index} className='sb_menu_container'>
-              <NavLink className='sb_link' exact to={item.link} activeClassName="sb_selected"  >
-                <div className='sb_menu_button' >
-                  <div className='sb_icons_container'>
-                    {item.icons}
-                  </div>
-                  <p style={{ marginLeft: 10, fontWeight: 530 }}>{item.name}</p>
-                </div>
-              </NavLink>
-            </div>
-          ))
-        }
-      </div>
-    </div>
     </>
   )
 }

@@ -3,9 +3,11 @@
 .h_container{
   display: flex;
   flex-direction: row;
+  width: 100%;
+  
   .h_cl1{
    
-    width:65%;
+    width:70%;
     .h1_cl1_card_container{
      margin-left: -30px;
       .h1_cl1_row1{
@@ -17,6 +19,8 @@
     }
   }
   .h_cl2{
+    
+    margin-right: 20px;
     margin-left: 20px;
     width: 33%;
     display: flex;

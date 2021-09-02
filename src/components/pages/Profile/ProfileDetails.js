@@ -24,13 +24,13 @@ export default function ProfileDetails() {
               <input style={{ marginLeft: 20 }} className='pro_input' />
               <input style={{ marginLeft: 20 }} className='pro_input' />
             </div>
-            <p className='pro_title'>Date of birth</p>
+            <p className='pro_title'>Sex</p>
             <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-              <input type='radio' name='sex' value='Male' />
+              <input style={{width:20}} type='radio' name='sex' value='Male' />
               <label for='Male'>Male</label>
-              <input style={{ marginLeft: 20 }} type='radio' name='sex' value='Female' />
+              <input style={{ marginLeft: 20,width:20 }} type='radio' name='sex' value='Female' />
               <label for='Female'>Female</label>
-              <input style={{ marginLeft: 20 }} type='radio' name='sex' value='Others' />
+              <input style={{ marginLeft: 20,width:20 }} type='radio' name='sex' value='Others' />
               <label for='Others'>Others</label>
             </div>
           </div>

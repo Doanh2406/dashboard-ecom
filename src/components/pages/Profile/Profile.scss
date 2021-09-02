@@ -91,7 +91,7 @@
 .pro_btn{
   padding: 5px 10px 5px 10px;
   background-color: $primary;
-  opacity: .8;
+  opacity: 0.5;
   color:#fff;
   border-radius: $radius;
   cursor: pointer;
@@ -113,5 +113,125 @@
   cursor: pointer;
   &:hover{
     background-color: $primarystr;
+  }
+}
+.no_container{
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius:$radius;
+  padding: 20px;
+  .no_row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  ///toggle
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 35px;
+    height: 15px;
+    margin-right: 10px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 13px;
+    width: 13px;
+    left: 1px;
+    bottom: 1px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: $primary;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px $primary;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(19px);
+    -ms-transform: translateX(19px);
+    transform: translateX(19px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+}
+.int_container{
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: $radius;
+  padding: 20px;
+  .int_item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    img{
+      width: 50px;
+      height: 50px;
+      margin-right: 20px;
+    }
+    .int_text{
+
+    }
+    .int_btn{
+      border: 1px solid $success;
+      border-radius: $radius;
+      color:$success;
+      width: 150px;
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      &:hover{
+        border: none;
+        background-color: $success;
+        color: #fff;
+      }
+    }
+    .int_btn_danger{
+      @extend .int_btn;
+      color:$danger;
+      border: 1px solid $danger;
+      &:hover{
+        background-color: $danger;
+      }
+    }
   }
 }

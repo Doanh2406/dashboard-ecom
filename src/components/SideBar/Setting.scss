@@ -13,6 +13,8 @@
     width: 20%;
     padding-left: 20px;
     padding-right: 20px;
+    
+    animation: slideLeft ease 1s;
     .st_title{
       display: flex;
       flex-direction: row;
@@ -29,8 +31,15 @@
   .st_overlay{
     width:80%;
     height: 100%;
-    background: $dark;
-    opacity: 0.3;
+  }
+  @keyframes slideLeft {
+    from {
+      opacity: 0;
+      transform: translateX(100%);}
+    to {
+      opacity: 1;
+    transform: translateX(0);
+    }
   }
 }
 

@@ -88,10 +88,8 @@ export default function ProductsTable() {
                 </label>
               </div>
               <div style={{ width: '10%', color: '#ff6e40', cursor: 'pointer' }}  >
-                <NavLink className='tb_link' exact to={{
-                  pathname: '/orders/items',
-                  datas: { data: item }
-                }}  >
+                <NavLink className='tb_link' exact to='/productdetail'
+                  >
                   <p>{item.id}</p>
                 </NavLink>
               </div>

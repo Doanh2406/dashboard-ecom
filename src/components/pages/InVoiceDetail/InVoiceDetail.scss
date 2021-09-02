@@ -1,0 +1,71 @@
+@import '../../styles/value';
+
+.ivd_container{
+  .ivd_btn_container{
+    display: flex;
+    flex-direction: row;
+    
+    .ivd_btnd{
+      width: 150px;
+      height: 40px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin-right: 20px;
+      cursor: pointer;
+      border: 1px solid $primary;
+      padding: 5px 15px 5px 15px;
+      border-radius: $radius;
+      color:$primary;
+      transition: all 0.5s ease-in-out;
+      &:hover{
+        background-color: $primary;
+        color: #fff;
+      }
+    }
+    .ivd_btns{
+      @extend .ivd_btnd;
+      color:$success;
+      border:1px solid $success;
+      &:hover{
+        background-color: $success;
+        color:#fff
+      }
+    } 
+    .ivd_btnp{
+      @extend .ivd_btnd;
+      color: $secondary;
+      border: 1px solid $secondary;
+      &:hover{
+        background-color: $secondary;
+        color: #fff;
+      }
+    }
+  }
+  .ivd_form{
+    display: flex;
+    background-color: #fff;
+    margin-top: 20px;
+    padding:20px;
+    border-radius: $radius;
+    margin-right: 20px;
+    flex-direction: column;
+    .ivd_form_fl{
+      display: flex;
+      flex-direction: row;
+      flex:1
+    }
+    .ivd_form_row{
+      display: flex;
+      flex-direction: row;
+      flex:1;
+      font-size: 14px;
+    }
+  }
+  
+}
+.ivd_foot{
+  margin-left: auto;
+  margin-top: -5px;
+}
