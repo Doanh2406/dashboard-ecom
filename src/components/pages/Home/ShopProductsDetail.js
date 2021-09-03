@@ -18,10 +18,11 @@ export default function ShopProductsDetail() {
   const location = useLocation();
   const data = location.datas.data;
   const [photos, setPhotos] = useState(0);
-
+ 
   const handleArrow = (n) => {
     if (n > data.photo.length - 1) {
       setPhotos(0)
+     
       return;
     }
     if (n < 0) {
@@ -30,10 +31,7 @@ export default function ShopProductsDetail() {
     }
     setPhotos(n)
   }
-  console.log(photos - 2 < 0 ? data.photo.length - 2 : photos - 2)
-  console.log(photos - 1 < 0 ? data.photo.length - 1 : photos - 1)
-  console.log(data.photo.length - photos)
-  console.log(photos + " photos")
+
 
 
   return (
@@ -45,7 +43,7 @@ export default function ShopProductsDetail() {
             <div className='spd_arrow' onClick={() => handleArrow(photos - 1)}>
               <ChevronLeftIcon />
             </div>
-            <img src={data.photo[photos]} alt='photo' />
+            <img src={data.photo[photos]} alt='photos' />
             <div className='spd_arrow' onClick={() => handleArrow(photos + 1)}>
               <ChevronRightIcon />
             </div>
@@ -54,15 +52,12 @@ export default function ShopProductsDetail() {
             <div className='spd_arrow' onClick={() => handleArrow(photos - 1)}>
               <ChevronLeftIcon />
             </div>
-            <div className='spd_half'>
-              <img className='spd_photo' src={data.photo[photos === 0 ? data.photo.length - 2 : photos === 1 ? data.photo.length - photos : photos - 2]} style={{ width: 100, height: 100 }} alt='photo' />
-            </div>
-            <img className='spd_photo' src={data.photo[photos - 1 < 0 ? data.photo.length - photos - 1 : photos - 1]} alt='photo' />
-            <img className='spd_photo_active' style={{ width: 100, height: 100 }} src={data.photo[photos]} alt='photo' />
-            <img className='spd_photo' src={data.photo[photos === data.photo.length - 1 ? 0 : photos + 1]} alt='photo' />
-            <div className='spd_half'>
-              <img src={data.photo[photos === data.photo.length - 2 ? 0 : photos === data.photo.length - 1 ? 2 : photos + 2]} style={{ width: 100, height: 100 }} alt='photo' />
-            </div>
+          
+            <img className='spd_photo_active' src={data.photo[photos]} alt='photos' />
+            <img className='spd_photo' src={data.photo[photos+1]} alt='photos' />
+            <img className='spd_photo' src={data.photo[photos+2]} alt='photos' />
+            <img className='spd_photo' src={photos+3===data.photo.length-1?0:photos+2===data.photo.length-1?1:photos+1===data.photo.length-1?2:data.photo[photos+3]} alt='photos' />
+            
             <div className='spd_arrow' onClick={() => handleArrow(photos + 1)}>
               <ChevronRightIcon />
             </div>
