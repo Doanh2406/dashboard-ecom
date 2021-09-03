@@ -15,6 +15,7 @@ import Review from './Review';
 import SSS from './SSS';
 export default function ShopProductsDetail() {
   const [tab,setTab] = useState(1);
+ 
   const location = useLocation();
   const data = location.datas.data;
   const [photos, setPhotos] = useState(0);
@@ -33,6 +34,7 @@ export default function ShopProductsDetail() {
   }
 
 
+  console.log(photos)
 
   return (
     <div className='spd_container' >
@@ -53,11 +55,11 @@ export default function ShopProductsDetail() {
               <ChevronLeftIcon />
             </div>
           
-            <img className='spd_photo_active' src={data.photo[photos]} alt='photos' />
-            <img className='spd_photo' src={data.photo[photos+1]} alt='photos' />
-            <img className='spd_photo' src={data.photo[photos+2]} alt='photos' />
-            <img className='spd_photo' src={photos+3===data.photo.length-1?0:photos+2===data.photo.length-1?1:photos+1===data.photo.length-1?2:data.photo[photos+3]} alt='photos' />
-            
+            <img className='spd_photo_active' src={data.photo[photos]} alt='' />
+            <img className='spd_photo' src={photos+1===data.photo.length?data.photo[0]:data.photo[photos+1]} alt='' />
+            <img className='spd_photo' src={photos+2===data.photo.length?data.photo[0]:photos+1===data.photo.length?data.photo[1]:data.photo[photos+2]} alt='' />
+            <img className='spd_photo' src={photos+3===data.photo.length?data.photo[0]:photos+2===data.photo.length?data.photo[1]:photos+1===data.photo.length?data.photo[2]:data.photo[photos+3]} alt='' />
+          
             <div className='spd_arrow' onClick={() => handleArrow(photos + 1)}>
               <ChevronRightIcon />
             </div>

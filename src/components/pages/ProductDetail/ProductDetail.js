@@ -45,15 +45,10 @@ export default function ProductDetail() {
             <div className='spd_arrow' onClick={() => handleArrow(photos - 1)}>
               <ChevronLeftIcon />
             </div>
-            <div className='spd_half'>
-              <img  className='spd_photo' src={data.photo[photos === 0 ? data.photo.length - 2 : photos === 1 ? data.photo.length - photos : photos - 2]} style={{ width: 100, height: 100 }} alt='' />
-            </div>
-            <img className='spd_photo' src={data.photo[photos - 1 < 0 ? data.photo.length - photos - 1 : photos - 1]} alt='' />
-            <img className='spd_photo_active' style={{ width: 100, height: 100 }} src={data.photo[photos]} alt='' />
-            <img className='spd_photo' src={data.photo[photos === data.photo.length - 1 ? 0 : photos + 1]} alt='' />
-            <div className='spd_half'>
-              <img src={data.photo[photos === data.photo.length - 2 ? 0 : photos === data.photo.length - 1 ? 2 : photos + 2]} style={{ width: 100, height: 100 }} alt='' />
-            </div>
+            <img className='spd_photo_active' src={data.photo[photos]} alt='' />
+            <img className='spd_photo' src={photos+1===data.photo.length?data.photo[0]:data.photo[photos+1]} alt='' />
+            <img className='spd_photo' src={photos+2===data.photo.length?data.photo[0]:photos+1===data.photo.length?data.photo[1]:data.photo[photos+2]} alt='' />
+            <img className='spd_photo' src={photos+3===data.photo.length?data.photo[0]:photos+2===data.photo.length?data.photo[1]:photos+1===data.photo.length?data.photo[2]:data.photo[photos+3]} alt='' />
             <div className='spd_arrow' onClick={() => handleArrow(photos + 1)}>
               <ChevronRightIcon />
             </div>

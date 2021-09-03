@@ -34,7 +34,7 @@ export default function Setting({ action }) {
 
 
         </div>
-        <div style={{height:'64%'} } />
+        <div style={{height:'62%'} } />
         <div className='st_apply' onClick={action}>
           <p className='st_apply_text'>Apply Setting</p>
         </div>
