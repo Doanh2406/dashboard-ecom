@@ -1,0 +1,42 @@
+.slide-image {
+  display: flex;
+  width: 550px;
+  height: 600px;
+  flex-direction: column;
+}
+.big-image {
+  height: 70%;
+  width: 100%;
+  margin: 2px;
+}
+.big-image__item {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  img {
+    width: 90%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .big-image__icon{
+    width: 5%;
+  }
+  
+}
+
+.small-image {
+    margin-top: 10px;
+    height: 40%;
+    width: 100%;
+    display: flex;
+}
+.small-image__item{
+    width: 1000px;
+    
+  }
+  .small-image__img{
+  margin-left: 7px;    
+    width: 30%;
+    object-fit: cover;
+}
