@@ -32,7 +32,7 @@ function App() {
     <Router>
       <ThemeProvider theme={outerTheme}>
         {
-          true ?
+          userSignin.userInfo ?
             <div className="app">
               <div className="sidebar">
                 <SideBar />
