@@ -1,4 +1,4 @@
-import { ADD_CART_SUCCESS, GET_CART_FAIL, GET_CART_REQUEST, GET_CART_SUCCESS } from "../constants/cartConstants";
+import { ADD_CART_SUCCESS, DELETE_CART_FAIL, DELETE_CART_REQUEST, DELETE_CART_SUCCESS, GET_CART_FAIL, GET_CART_REQUEST, GET_CART_SUCCESS } from "../constants/cartConstants";
 
 export const addCartReducer = (state = { cartItems: [] }, action) => {
     switch (action.type) {
@@ -41,14 +41,14 @@ export const getCartReducer = (state = [], action) => {
 
 export const deleteCartReducer = (state = [], action) => {
     switch (action.type) {
-        case GET_CART_REQUEST:
+        case DELETE_CART_REQUEST:
             return {
                 loading:true, 
             }
-        case GET_CART_SUCCESS:
+        case DELETE_CART_SUCCESS:
             return action.payload
 
-        case GET_CART_FAIL:
+        case DELETE_CART_FAIL:
             return {
                 loading:false
             }
