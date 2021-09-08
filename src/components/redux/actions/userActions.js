@@ -15,6 +15,12 @@ export const signUp = (name, email, password) => async (dispatch) => {
     const { data } = await Axios.post('/api/users/signup', {
       name, email, password
     })
+    console.log(data)
+    
+    const userCart = data._id
+   
+    const {cart} = await Axios.post('/api/carts/new',{userCart})
+    console.log(cart)
     dispatch({
       type: USER_SIGNUP_SUCCESS,
       payload: data
@@ -53,6 +59,7 @@ export const signin = (email, password) => async (dispatch) => {
       type: USER_SIGNIN_SUCCESS,
       payload:data
     })
+    
     localStorage.setItem('userInfo',JSON.stringify(data))
   } catch (error) {
     dispatch({
@@ -71,3 +78,4 @@ export const signout = ()=>dispatch =>{
     type:USER_SIGNOUT
   })
 }
+

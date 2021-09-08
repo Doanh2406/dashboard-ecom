@@ -64,9 +64,14 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+    justify-content: center;
   color:#fff;
-  
+  margin-top: 20px;
+  .add_btn_choose{
+    opacity: 0;
+   position: absolute;
+   z-index: -1;
+  }
   .add_btn{
     cursor: pointer;
     background-color: $primary;

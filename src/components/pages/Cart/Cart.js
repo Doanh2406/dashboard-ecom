@@ -1,13 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Cart.scss'
 import LinkHome from '../../LinkHome/LinkHome'
-import cart_data from './cart_data'
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteCart, getCart } from '../../redux/actions/cartActions';
+
 export default function Cart() {
+  const [qty, setQty] = useState();
+  const carts = useSelector(state => state.getCart.cart)
+  const [ cart ,setCart] = useState(carts)
+ 
+  const cartDelete = useSelector(state=>state.deleteCart)
+  const userSignin = useSelector(state => state.userSignIn)
+  const dispatch = useDispatch()
+  const handleDelete =  (item)=>{
+     dispatch(deleteCart(userSignin.userInfo._id,item))
+     console.log('ss')
+     dispatch(getCart(userSignin.userInfo))
+  }
+  useEffect(()=>{
+     setCart(carts)
+  },[dispatch,cartDelete,cart])
   return (
     <>
-      <LinkHome title='Order Detail' />
+      <LinkHome title='List Cart' />
       <div className='ori_container'>
 
 
@@ -40,25 +57,25 @@ export default function Cart() {
               </div>
             </div>
             {
-              cart_data.map(item => (
-                <div className='ori_fcsr_container'>
+              cart.map(item => (
+                <div key={item._id} className='ori_fcsr_container'>
                   <div className='ori_fcsr_fr_container'>
                     <div style={{width:'20%'}} className='ori_fcsr_fr'>
-                      <img src={item.photo} style={{ marginLeft: 20, borderRadius: 10, width: 50, height: 50 }} alt='photos' />
+                      <img src={'http://localhost:5000/upload/product/' + item.image[0].filename} style={{ marginLeft: 20, borderRadius: 10, width: 50, height: 50 }} alt='photos' />
                     </div>
                     <div style={{width:'30%'}} className='ori_fcsr_fr'>
                       <p>{item.name}</p>
                     </div>
                     <div style={{width:'30%'}} className='ori_fcsr_fr'>
-                      <input value={item.quantity} className='ca_input' />
+                      <input onChange={(e)=>setQty(e.target.value)} value={item.qty} className='ca_input' />
                     </div><div className='ori_fcsr_fr'>
-                      <p>{item.price}</p>
+                      <p>{'$'+item.price}</p>
                     </div>
                     <div className='ori_fcsr_fr'>
-                      <p>{item.total}</p>
+                      <p>{'$'+item.price*item.qty}</p>
                     </div>
                     <div style={{width:'10%'}} className='ori_fcsr_fr'>
-                      <div style={{marginLeft:'auto',marginRight:20}} className='ca_delete'>
+                      <div style={{marginLeft:'auto',marginRight:20}} className='ca_delete'onClick={()=>handleDelete(item._id)}  >
                         <DeleteOutlineIcon className='ca_delete_icon' />
 
                       </div>

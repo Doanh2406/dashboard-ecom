@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom'
 import { signUp } from '../../redux/actions/userActions';
@@ -8,11 +8,11 @@ export default function SignUp() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [cPassword,setCPassword] = useState();
-  const userSignUp = useSelector(state=>state.userSignUp);
   let history = useHistory();
   const dispatch = useDispatch();
+  
+
   const handleSignUp = async()=>{
-    
     if(password!==cPassword){
       alert('Password and confirm password are not match')
     }else{
@@ -20,6 +20,8 @@ export default function SignUp() {
       history.push('/')
     }
   }
+
+
   return (
     <div className='re_container'>
       <div className='re_form'>
