@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import LinkHome from '../../LinkHome/LinkHome'
 import TableHeader from '../../Table/TableHeader'
 import Card from '../../Card/Card'
@@ -8,45 +8,59 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import SearchIcon from '@material-ui/icons/Search';
 import MySlider from './MySlider'
 import TablePages from '../../Table/TablePages'
+import { useDispatch, useSelector } from 'react-redux'
+import { listProducts } from '../../redux/actions/productActions'
+import LoadingPage from '../../LoadingPage/LoadingPage'
+
+
+
 export default function Home() {
   const [keywords, setKeywords] = useState(false)
   const [category, setCategory] = useState(false)
   const [price, setPrice] = useState(false)
   const [color, setColor] = useState(false)
-
-
-
+  const dispatch = useDispatch()
+ 
+  const data = useSelector(state => state.productList)
+  //get data 
+  useEffect(() => {
+    dispatch(listProducts()) 
+  }, [dispatch])
+ 
   return (
-    <div className='h_container'>
+    <>
+    {
+      data.loading ? <LoadingPage />:<div className='h_container'>
       <div className='h_cl1'>
         <LinkHome title='Shop' />
-        <div style={{height:20}} />
+        <div style={{ height: 20 }} />
         <TableHeader title='All products' />
         <div className='h1_cl1_card_container'>
           <div className='h1_cl1_row1'>
             {
-              data_card.slice(0, 3).map((item) => {
+              data.products.slice(0, 3).map((item,index) => {
+                
                 return (
-                  <Card data={item} />
+                  <Card key={index} data={item} />
                 )
               })
             }
           </div>
           <div className='h1_cl1_row1'>
             {
-              data_card.slice(3, 6).map((item) => {
+              data.products.slice(3, 6).map((item,index) => {
                 return (
-                  <Card data={item} />
+                  <Card key={index} data={item} />
                 )
               })
             }
           </div>
         </div>
-        <div style={{ height: 30}} />
+        <div style={{ height: 30 }} />
         <TablePages />
-        
+
       </div>
-            
+
       <div className='h_cl2' >
         <h3>Filter Products</h3>
 
@@ -122,29 +136,29 @@ export default function Home() {
           {
             color && <div className='h_cl2_color_s'>
               <label class="cl_container">
-                <input type="checkbox"  />
-                <span style={{background:'green'}} class="cl_checkmark"></span>
+                <input type="checkbox" />
+                <span style={{ background: 'green' }} class="cl_checkmark"></span>
               </label>
 
               <label class="cl_container">
                 <input type="checkbox" />
-                <span style={{background:'yellow'}} class="cl_checkmark"></span>
+                <span style={{ background: 'yellow' }} class="cl_checkmark"></span>
               </label>
               <label class="cl_container">
                 <input type="checkbox" />
-                <span style={{background:'orange'}} class="cl_checkmark"></span>
+                <span style={{ background: 'orange' }} class="cl_checkmark"></span>
               </label>
               <label class="cl_container">
                 <input type="checkbox" />
-                <span style={{background:'red'}} class="cl_checkmark"></span>
+                <span style={{ background: 'red' }} class="cl_checkmark"></span>
               </label>
               <label class="cl_container">
                 <input type="checkbox" />
-                <span style={{background:'blue'}} class="cl_checkmark"></span>
+                <span style={{ background: 'blue' }} class="cl_checkmark"></span>
               </label>
               <label class="cl_container">
                 <input type="checkbox" />
-                <span  style={{background:'black'}} class="cl_checkmark"></span>
+                <span style={{ background: 'black' }} class="cl_checkmark"></span>
               </label>
             </div>
           }
@@ -153,5 +167,7 @@ export default function Home() {
 
       </div>
     </div>
+    }
+    </>
   )
 }

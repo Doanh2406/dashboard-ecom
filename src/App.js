@@ -1,15 +1,18 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route, withRouter } from "react-router-dom";
 import { Dashboard, Orders, OrdersItems, Home, Cart, Products, Customers, ShopProductsDetail, AddProduct, Profile, Checkout, InVoices, ProductDetail, InVoiceDetail } from "./components/pages";
 import SideBar from "./components/SideBar/SideBar";
 import Header from "./components/Header/Header";
 import "./App.scss";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
-import Footer from "./components/Footer/Footer";
 import SignIn from "./components/pages/SignIn/SignIn";
 import SignUp from "./components/pages/SignUp/SignUp";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import NoMatchPage from "./components/NoMatchPage/NoMatchPage";
+import { getCart } from "./components/redux/actions/cartActions";
+import axios from "axios";
+
+
 const outerTheme = createTheme({
   palette: {
     primary: {
@@ -26,99 +29,104 @@ const outerTheme = createTheme({
     },
   },
 });
+
+
 function App() {
   const userSignin = useSelector(state => state.userSignIn)
+  
+ 
   return (
-    <Router>
-      <ThemeProvider theme={outerTheme}>
-        {
-          true ?
-            <div className="app">
-              <div className="sidebar">
-                <SideBar />
-               
-              </div>
-              <div className="body">
-                <div style={{ height: 80 }} />
-                <Header />
-                
-                <Switch>
-                  <Route exact path="/cart">
-                    <Cart />
-                  </Route>
-                  <Route exact path="/shopping">
-                    <Home />
-                  </Route>
-                  <Route exact path="/orders">
-                    <Orders />
-                  </Route>
-                  <Route exact path="/orders/items">
-                    <OrdersItems />
-                  </Route>
-                  <Route exact path="/products">
-                    <Products />
-                  </Route>
-                  <Route exact path="/customers">
-                    <Customers />
-                  </Route>
-                  <Route exact path="/shop/products">
-                    <ShopProductsDetail />
-                  </Route>
-                  <Route exact path="/addproduct">
-                    <AddProduct />
-                  </Route>
-                  <Route path="/profile">
-                    <Profile />
-                  </Route>
-                  <Route path="/checkout">
-                    <Checkout />
-                  </Route>
-                  <Route path="/invoices">
-                    <InVoices />
-                  </Route>
-                  <Route path="/productdetail">
-                    <ProductDetail />
-                  </Route>
-                  <Route path="/invoicesdetail">
-                    <InVoiceDetail />
-                  </Route>
-                  <Route exact path="/">
-                    <Dashboard />
-                  </Route>
-                  <Route exact path="*">
-                    <NoMatchPage />
-                  </Route>
-                </Switch>
-               
-              </div>
-              
+
+    <ThemeProvider theme={outerTheme}>
+      {
+        userSignin.userInfo ?
+          <div className="app">
+            <div className="sidebar">
+              <SideBar />
+
             </div>
-            :
-            <Switch>
-              <Route exact path="/" >
-                <SignIn />
-              </Route>
-              <Route path="/signup">
-                <SignUp />
-              </Route>
+            <div className="body">
+              <div style={{ height: 80 }} />
+              <Header />
+
+              <Switch>
+                <Route exact path="/cart" key={document.location.href} >
+                  <Cart />
+                </Route>
+                <Route exact path="/shopping" key={document.location.href} >
+                  <Home />
+                </Route>
+                <Route exact path="/shopping/:id" key={document.location.href} >
+                  <ShopProductsDetail />
+                </Route>
+                <Route exact path="/orders" key={document.location.href} >
+                  <Orders />
+                </Route>
+                <Route exact path="/orders/items" key={document.location.href} >
+                  <OrdersItems />
+                </Route>
+                <Route exact path="/products" key={document.location.href} >
+                  <Products />
+                </Route>
+                <Route exact path="/customers" key={document.location.href} >
+                  <Customers />
+                </Route>
+               
+                <Route exact path="/addproduct" key={document.location.href} >
+                  <AddProduct />
+                </Route>
+                <Route path="/profile" key={document.location.href} >
+                  <Profile />
+                </Route>
+                <Route path="/checkout" key={document.location.href} >
+                  <Checkout />
+                </Route>
+                <Route path="/invoices" key={document.location.href} >
+                  <InVoices />
+                </Route>
+                <Route path="/productdetail" key={document.location.href} >
+                  <ProductDetail />
+                </Route>
+                <Route path="/invoicesdetail" key={document.location.href} >
+                  <InVoiceDetail />
+                </Route>
+                <Route exact path="/" key={document.location.href} >
+                  <Dashboard />
+                </Route>
+                <Route exact path="*" key={document.location.href} >
+                  <NoMatchPage />
+                </Route>
+              </Switch>
+
+            </div>
+
+          </div>
+          :
+          <Switch>
+            <Route exact path="/" key={document.location.href} >
+              <SignIn />
+            </Route>
+            <Route path="/signup" key={document.location.href} >
+              <SignUp />
+            </Route>
 
 
 
-              <Route path="*">
-                <NoMatchPage />
-              </Route>
-            </Switch>
-        }
+            <Route path="*" key={document.location.href} >
+              <NoMatchPage />
+            </Route>
+          </Switch>
+      }
 
 
 
 
 
 
-      </ThemeProvider>
-    </Router>
+    </ThemeProvider>
+
 
   );
 }
 
-export default App;
+export default withRouter(App);
