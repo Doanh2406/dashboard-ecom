@@ -12,7 +12,7 @@ export const signUp = (name, email, password) => async (dispatch) => {
     }
   })
   try {
-    const { data } = await Axios.post('/api/users/signup', {
+    const { data } = await Axios.post('/api/users', {
       name, email, password
     })
     dispatch({
@@ -48,7 +48,7 @@ export const signin = (email, password) => async (dispatch) => {
     }
   })
   try {
-    const {data} = await Axios.post('/api/users/signin',{email,password})
+    const {data} = await Axios.post('/api/users/login',{email,password})
     dispatch({
       type: USER_SIGNIN_SUCCESS,
       payload:data
