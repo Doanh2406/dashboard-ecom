@@ -13,29 +13,46 @@ import Description from './Description';
 import Review from './Review';
 import SSS from './SSS';
 import { useDispatch, useSelector } from 'react-redux';
-
-
 import LoadingPage from '../../LoadingPage/LoadingPage';
 import { addToCart } from '../../redux/actions/cartActions';
-
-
-
-
+import { getReview } from '../../redux/actions/reviewActions';
 
 export default function ShopProductsDetail() {
+
+
   const productDetail = useSelector(state => state.productDetail);
   const cart = useSelector(state => state.getCart)
   const { loading, error, product } = productDetail;
   const [tab, setTab] = useState(1);
   const [photos, setPhotos] = useState(0);
   const [addCart, setAddCart] = useState();
+  const [rating, setRating] = useState(0)
+  const [countRating, setCountRating] = useState(0);
   const dispatch = useDispatch()
   const userSignin = useSelector(state => state.userSignIn)
+
+
+  async function ratingRound() {
+    if (productDetail.product) {
+      if (productDetail.product.review) {
+        let count = 0;
+        await productDetail.product.review.map(item => item.rating && count++)
+        setCountRating(count)
+        const sum = await productDetail.product.review.reduce((partial_sum, a) => partial_sum + a.rating, 0)
+        if (Math.round(sum / count) - Math.ceil(sum / count) === 1) {
+          setRating(Math.ceil(sum / count) + 0.5)
+        } else {
+          setRating(Math.ceil(sum / count))
+        }
+      }
+    }
+
+  }
+
 
   const handleArrow = (n) => {
     if (n > product.image.length - 1) {
       setPhotos(0)
-
       return;
     }
     if (n < 0) {
@@ -44,19 +61,24 @@ export default function ShopProductsDetail() {
     }
     setPhotos(n)
   }
+
+
   useEffect(() => {
-   if(cart.cart&&product){
-     cart.cart.find(x=>x.product===product._id?setAddCart(x.qty):null)
-   }
+    if (product) {
+      dispatch(getReview(product._id))
+    }
+    ratingRound();
+    if (cart.cart && product) {
+      cart.cart.find(x => x.product === product._id ? setAddCart(x.qty) : null)
+    }
+  }, [cart, product])
 
-  }, [cart,product])
 
-
-  const handleAdd = async()=>{
-    await dispatch(addToCart(product._id,addCart,userSignin.userInfo._id))
+  const handleAdd = async () => {
+    await dispatch(addToCart(product._id, addCart, userSignin.userInfo._id))
 
   }
-  
+
   return (
     <>
       {
@@ -79,9 +101,18 @@ export default function ShopProductsDetail() {
                 </div>
 
                 <img className='spd_photo_active' src={'http://localhost:5000/upload/product/' + product.image[photos].filename} alt='' />
-                <img className='spd_photo' src={photos + 1 === product.image.length ?'http://localhost:5000/upload/product/' + product.image[0].filename :'http://localhost:5000/upload/product/' + product.image[photos + 1].filename} alt='' />
-                <img className='spd_photo' src={photos + 2 === product.image.length ?'http://localhost:5000/upload/product/' + product.image[0].filename : photos + 1 === product.image.length ?'http://localhost:5000/upload/product/' + product.image[1].filename :'http://localhost:5000/upload/product/'+ product.image[photos + 2].filename} alt='' />
-                <img className='spd_photo' src={photos + 3 === product.image.length ?'http://localhost:5000/upload/product/' + product.image[0].filename : photos + 2 === product.image.length ? 'http://localhost:5000/upload/product/' + product.image[1].filename : photos + 1 === product.image.length ?'http://localhost:5000/upload/product/' + product.image[2].filename :'http://localhost:5000/upload/product/' + product.image[photos + 3].filename} alt='' />
+
+
+                {
+                  product.image.length > 1 && <img className='spd_photo' src={photos + 1 === product.image.length ? 'http://localhost:5000/upload/product/' + product.image[0].filename : 'http://localhost:5000/upload/product/' + product.image[photos + 1].filename} alt='' />
+                }
+                {
+                  product.image.length > 2 && <img className='spd_photo' src={photos + 2 === product.image.length ? 'http://localhost:5000/upload/product/' + product.image[0].filename : photos + 1 === product.image.length ? 'http://localhost:5000/upload/product/' + product.image[1].filename : 'http://localhost:5000/upload/product/' + product.image[photos + 2].filename} alt='' />
+                }
+                {
+                  product.image.length > 3 && <img className='spd_photo' src={photos + 3 === product.image.length ? 'http://localhost:5000/upload/product/' + product.image[0].filename : photos + 2 === product.image.length ? 'http://localhost:5000/upload/product/' + product.image[1].filename : photos + 1 === product.image.length ? 'http://localhost:5000/upload/product/' + product.image[2].filename : 'http://localhost:5000/upload/product/' + product.image[photos + 3].filename} alt='' />
+                }
+
 
                 <div className='spd_arrow' onClick={() => handleArrow(photos + 1)}>
                   <ChevronRightIcon />
@@ -114,7 +145,7 @@ export default function ShopProductsDetail() {
               </div>
               <div className='spd_fr_sc_star'>
                 {
-                  !product.rating && <>
+                  !rating && <>
                     <StarIcon />
                     <StarIcon />
                     <StarIcon />
@@ -124,38 +155,38 @@ export default function ShopProductsDetail() {
                   </>
                 }
                 {
-                  product.rating - 1 > -0.5 && <StarIcon style={{ color: 'yellow' }} />
+                  rating - 1 > -0.5 && <StarIcon style={{ color: '#ffb400' }} />
                 }
                 {
-                  product.rating - 2 > -0.5 && <StarIcon style={{ color: 'yellow' }} />
+                  rating - 2 > -0.5 && <StarIcon style={{ color: '#ffb400' }} />
                 }
                 {
-                  product.rating - 3 > -0.5 && <StarIcon style={{ color: 'yellow' }} />
+                  rating - 3 > -0.5 && <StarIcon style={{ color: '#ffb400' }} />
                 }
                 {
-                  product.rating - 4 > -0.5 && <StarIcon style={{ color: 'yellow' }} />
+                  rating - 4 > -0.5 && <StarIcon style={{ color: '#ffb400' }} />
                 }
                 {
-                  product.rating - 5 > -0.5 && <StarIcon style={{ color: 'yellow' }} />
+                  rating - 5 > -0.5 && <StarIcon style={{ color: '#ffb400' }} />
                 }
                 {
-                  Number(product.rating) === product.rating && product.rating % 1 !== 0 && <StarHalfIcon style={{ color: 'yellow' }} />
+                  Number(rating) === rating && rating % 1 !== 0 && <StarHalfIcon style={{ color: '#ffb400' }} />
                 }
                 {
-                  product.count && <p style={{ marginLeft: 10 }}>({product.count})</p>
+                  countRating && <p style={{ marginLeft: 10 }}>({countRating})</p>
                 }
               </div>
               <p>Feartures:</p>
               <p>{product.fearture}</p>
               <div className='spd_fr_sc_add'>
                 <div className='spd_show'>
-                  <input className='spd_input' value={addCart} onChange={(e)=>setAddCart(e.target.value)} />
+                  <input className='spd_input' value={addCart} onChange={(e) => setAddCart(e.target.value)} />
                   <div className='spd_row' >
                     <ArrowDropUpIcon className='spd_row_up' />
                     <ArrowDropDownIcon className='spd_row_down' />
                   </div>
                 </div>
-                <div className='spd_add' onClick={()=>{handleAdd()}}>
+                <div className='spd_add' onClick={() => { handleAdd() }}>
                   <p>Add to Cart</p>
                 </div>
               </div>
@@ -169,7 +200,7 @@ export default function ShopProductsDetail() {
             </div>
             <div style={{ width: '100%', backgroundColor: '#dbdbdb', height: 1, }} />
             {
-              tab === 1 ? <Description des={product.name} /> : tab === 2 ? <Review /> : <SSS />
+              tab === 1 ? <Description des={product.description} /> : tab === 2 ? <Review productId={product._id} user={userSignin.userInfo} review={product.review} /> : <SSS />
             }
 
 

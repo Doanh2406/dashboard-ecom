@@ -84,7 +84,7 @@ export default function Checkout() {
             }
           </div>
           <div className='ch_fc_btn'>
-           <p style={tab !== 3? {background:'#05b171'}:null} className='ch_btn ' onClick={()=>handleNext()}>Next</p>
+           <p style={tab===3?{background:'#ff6e40'}:{background:'#05b171'}} className='ch_btn ' onClick={()=>handleNext()}>{tab===3? 'Finish':'Next'}</p>
             <p style={tab !== 1? {background:'#05b171'}:null}  className='ch_btn' onClick={()=>handlePre()}>Previous</p>
             
           </div>

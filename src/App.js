@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import NoMatchPage from "./components/NoMatchPage/NoMatchPage";
 import { getCart } from "./components/redux/actions/cartActions";
 import axios from "axios";
+import LoadingPage from "./components/LoadingPage/LoadingPage";
 
 
 const outerTheme = createTheme({
@@ -32,14 +33,17 @@ const outerTheme = createTheme({
 
 
 function App() {
-  const userSignin = useSelector(state => state.userSignIn)
-  
- 
+  const { loading, error, userInfo } = useSelector(state => state.userSignIn)
+
+
   return (
 
     <ThemeProvider theme={outerTheme}>
       {
-        userSignin.userInfo ?
+        loading ? <LoadingPage /> : null
+      }
+      {
+        userInfo ?
           <div className="app">
             <div className="sidebar">
               <SideBar />
@@ -71,7 +75,7 @@ function App() {
                 <Route exact path="/customers" key={document.location.href} >
                   <Customers />
                 </Route>
-               
+
                 <Route exact path="/addproduct" key={document.location.href} >
                   <AddProduct />
                 </Route>
@@ -117,12 +121,6 @@ function App() {
             </Route>
           </Switch>
       }
-
-
-
-
-
-
     </ThemeProvider>
 
 

@@ -7,7 +7,7 @@ export const listProducts = () => async (dispatch) => {
     loading: true
   })
   try {
-    const { data } = await Axios.get('/api/products/list')
+    const { data } = await Axios.post('/api/products/list')
    
     dispatch({
       type: PRODUCT_LIST_SUCCESS,

@@ -21,7 +21,8 @@ export const addToCart = (productId, qty,userCart) => async (dispatch) => {
     type: ADD_CART_SUCCESS,
     payload
   })
-  const {datas} = await Axios.post('/api/carts/cart',{userCart})
+  //create cart firswt time
+  await Axios.post('/api/carts/cart',{userCart})
  
   // localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItem))
 }

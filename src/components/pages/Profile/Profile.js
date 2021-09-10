@@ -1,32 +1,21 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import './Profile.scss'
-import ava from '../../../assets/ava.png'
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import LockIcon from '@material-ui/icons/Lock';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import CachedIcon from '@material-ui/icons/Cached';
-import { useSelector } from 'react-redux';
 import ProfileDetails from './ProfileDetails';
 import PasswordDetails from './PasswordDetails';
 import Notification from './Notification';
 import Integrations from './Integrations';
+
 export default function Profile() {
-  const state = useSelector(state => state.userSignIn.userInfo)
   const [tab,setTab] = useState(1)
   return (
-    <div className='pro_container'>
+    <>
+     <div className='pro_container'>
       <div className='pro_fc' >
-        <div className='pro_fc_row'>
-          
-          <img style={{marginTop:20}} src={ava} alt='photos' />
-          <div style={{ marginLeft: 20,  }}>
-            <p style={{ fontWeight: 530, fontSize: 24 }}>Le Xuan Quoc CUong</p>
-            <div style={{ display: 'flex', flexDirection: 'row', marginTop: -18 }}>
-              <p className='pro_btn'>Change Avatar</p>
-              <p style={{ marginLeft: 10, background: 'red' }} className='pro_btn'>Remove Avatar</p>
-            </div>
-          </div>
-        </div>
+        
       {
         tab===1? <ProfileDetails /> :tab===2 ?<PasswordDetails />:tab===3?<Notification />:<Integrations />
       }
@@ -54,5 +43,7 @@ export default function Profile() {
         </div>
       </div>
     </div>
+    
+    </>
   )
 }

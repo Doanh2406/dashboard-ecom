@@ -21,7 +21,7 @@ export const addCartReducer = (state = { cartItems: [] }, action) => {
             return state;
     }
 }
-export const getCartReducer = (state = [], action) => {
+export const getCartReducer = (state ={} , action) => {
     switch (action.type) {
         case GET_CART_REQUEST:
             return {
@@ -39,7 +39,7 @@ export const getCartReducer = (state = [], action) => {
     }
 }
 
-export const deleteCartReducer = (state = [], action) => {
+export const deleteCartReducer = (state = {} , action) => {
     switch (action.type) {
         case DELETE_CART_REQUEST:
             return {

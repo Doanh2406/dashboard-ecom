@@ -8,30 +8,48 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { detailProduct } from '../redux/actions/productActions';
 import { addToCart } from '../redux/actions/cartActions';
-import { getCartReducer } from '../redux/reducers/cartReducers';
 
 
 
 export default function Card({ data }) {
 
-  const [inCart,setInCart] = useState(0)
+  const [inCart, setInCart] = useState(0)
   const productId = data._id;
   const userSignin = useSelector(state => state.userSignIn)
-
-  const [cart , setCart] = useState(1);
+  const [countRating, setCountRating] = useState(0);
+  const [rating, setRating] = useState(0)
+  const [cart, setCart] = useState(1);
   const dispatch = useDispatch();
   const getCart = useSelector(state => state.getCart)
   const handleOnclick = async () => {
     return await dispatch(detailProduct(productId))
   }
-  const handleCart = ()=>{
-      dispatch(addToCart(productId,cart,userSignin.userInfo._id))
+ 
+  
+  async function ratingRound() {
+    let count = 0;
+    await data.review.map(item => item.rating && count++)
+    setCountRating(count)
+    const sum = await data.review.reduce((partial_sum, a) => partial_sum + a.rating, 0)
+    if (Math.round(sum / count) - Math.ceil(sum / count) === 1) {
+      setRating(Math.ceil(sum / count) + 0.5)
+    } else {
+      setRating(Math.ceil(sum / count))
+    }
   }
-  useEffect(()=>{
-    if(getCart.cart){
-      getCart.cart.find(x=>x.product===productId?setInCart(parseInt(x.qty,10)):null)
-    } 
-  },[inCart,getCart])
+
+  const handleCart = () => {
+    dispatch(addToCart(productId, cart, userSignin.userInfo._id))
+  }
+  useEffect(() => {
+    if(data.review){
+      ratingRound();
+    }
+    
+    if (getCart.cart) {
+      getCart.cart.find(x => x.product === productId ? setInCart(parseInt(x.qty, 10)) : null)
+    }
+  }, [inCart, getCart])
   return (
 
     <div className='card_container'>
@@ -44,13 +62,13 @@ export default function Card({ data }) {
         </NavLink>
         <div style={{ display: 'flex', flexDirection: 'row', }}>
           {
-            data.sale && <p style={{ textDecoration: 'line-through', marginRight: 10 }}>{'$'+data.sale}</p>
+            data.sale && <p style={{ textDecoration: 'line-through', marginRight: 10 }}>{'$' + data.sale}</p>
           }
           <p style={{ fontWeight: 530, fontSize: 16 }}>{'$' + data.price}</p>
         </div>
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: -10 }}>
           {
-            !data.rating && <>
+            !rating && <>
               <StarIcon />
               <StarIcon />
               <StarIcon />
@@ -60,36 +78,41 @@ export default function Card({ data }) {
             </>
           }
           {
-            data.rating - 1 > -0.5 && <StarIcon style={{ color: 'yellow' }} />
+            rating - 1 > -0.5 && <StarIcon style={{ color: '#ffb400' }} />
           }
           {
-            data.rating - 2 > -0.5 && <StarIcon style={{ color: 'yellow' }} />
+            rating - 2 > -0.5 && <StarIcon style={{ color: '#ffb400' }} />
           }
           {
-            data.rating - 3 > -0.5 && <StarIcon style={{ color: 'yellow' }} />
+            rating - 3 > -0.5 && <StarIcon style={{ color: '#ffb400' }} />
           }
           {
-            data.rating - 4 > -0.5 && <StarIcon style={{ color: 'yellow' }} />
+            rating - 4 > -0.5 && <StarIcon style={{ color: '#ffb400' }} />
           }
           {
-            data.rating - 5 > -0.5 && <StarIcon style={{ color: 'yellow' }} />
+            rating - 5 > -0.5 && <StarIcon style={{ color: '#ffb400' }} />
           }
           {
-            Number(data.rating) === data.rating && data.rating % 1 !== 0 && <StarHalfIcon style={{ color: 'yellow' }} />
+            Number(rating) === rating && rating % 1 !== 0 && <StarHalfIcon style={{ color: '#ffb400' }} />
           }
           {
-            data.countRating && <p style={{ marginLeft: 10 }}>({data.countRating})</p>
+            countRating && <p style={{ marginLeft: 10 }}>({countRating})</p>
           }
+
         </div>
+        <div style={{ height: 10 }} />
+        {
+          data.countInStock > 0 ? <p className='spd_stock'> In Stock ({data.countInStock}) </p> : <p style={{background:'red'}} className='spd_stock'>Out of stock</p>
+        }
         <div style={{ display: 'flex', flex: 1, flexDirection: 'row' }}>
           {
-            inCart > 0 ?
+               inCart > 0 ?
               <div className='card_btn_in'>
                 In Cart ({inCart})
               </div> :
-              <div style={{display:'flex',flexDirection:'row',alignItems:'center'}}>
-                <input onChange={(e)=>setCart(e.target.value)} style={{width:'25%',marginRight:20,height:28,marginTop:10,fontSize:13}} placeholder='Quantity' />
-                <div className='card_btn' onClick={()=>handleCart()}>
+              <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                <input disabled={data.countInStock<1?true:false} onChange={(e) => setCart(e.target.value)} style={{ width: '25%', marginRight: 20, height: 28, marginTop: 10, fontSize: 13 }} placeholder='Quantity' />
+                <div style={data.countInStock < 1 ? {pointerEvents:'none',background:'gray'}:null}  className='card_btn' onClick={() => handleCart()}>
                   Add to cart
                 </div>
               </div>
