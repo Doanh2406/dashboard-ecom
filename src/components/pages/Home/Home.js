@@ -20,13 +20,19 @@ export default function Home() {
   const [price, setPrice] = useState(false)
   const [color, setColor] = useState(false)
   const dispatch = useDispatch()
- 
+  const [page, setPage] = useState(1)
   const data = useSelector(state => state.productList)
+  
   //get data 
   useEffect(() => {
     dispatch(listProducts()) 
   }, [dispatch])
- 
+  const handleNextPage = ()=>{
+
+  }
+  const handlePrePage = () =>{
+    
+  }
   return (
     <>
     {
@@ -57,7 +63,7 @@ export default function Home() {
           </div>
         </div>
         <div style={{ height: 30 }} />
-        <TablePages />
+        <TablePages  />
 
       </div>
 

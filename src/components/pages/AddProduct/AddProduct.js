@@ -7,7 +7,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from '../../redux/actions/productActions';
-import { ContactsOutlined } from '@material-ui/icons';
+
 
 export default function AddProduct() {
   const dispatch = useDispatch();
@@ -40,10 +40,8 @@ export default function AddProduct() {
     }
     setPhotos(n)
   }
-  console.log(userCreate)
-  // console.log(image.replace(/^.*\\/, ""));
+  
   const handleSubmit = async ()=>{
-      
     const formData = new FormData();
     formData.append('name',name)
     formData.append('category',category)
@@ -58,9 +56,9 @@ export default function AddProduct() {
     }
     formData.append('userCreate',userCreate);
     await dispatch(addProduct(formData))
+    alert('Add success')
     
   }
-  
   return (
     <div className='spd_container' >
       <LinkHome title='Products Detail' />
@@ -89,7 +87,7 @@ export default function AddProduct() {
           </div>
          <div className='add_btn_container'>
           <label className="add_btn" for="upload-photo">Choose files</label>
-           <input onChange={(e)=>setImage(e.target.files)} id='upload-photo' name='upload-photo' className='add_btn_choose' type='file' accept='image/*' name='uploadedImages' multiple/>
+           <input  onChange={(e)=>setImage(e.target.files)} id='upload-photo' name='upload-photo' className='add_btn_choose' type='file' accept='image/*' name='uploadedImages' multiple/>
          </div>
         </div>
         <div className='spd_fr_sc'>
@@ -108,20 +106,20 @@ export default function AddProduct() {
           
 
           </div>
-          <input onChange={(e)=>setName(e.target.value)} className='add_input'  placeholder='Enter your name of product' />
-          <input onChange={(e)=>setSdescription(e.target.value)} className='add_input'  placeholder='Enter your name of short desciption' />
+          <input value={name} onChange={(e)=>setName(e.target.value)} className='add_input'  placeholder='Enter your name of product' />
+          <input value={sdescription} onChange={(e)=>setSdescription(e.target.value)} className='add_input'  placeholder='Enter your name of short desciption' />
           <div className='spd_fr_sc_price'>
-          <input onChange={(e)=>setSale(e.target.value)} style={{width:'10%'}} className='add_input'  placeholder='Sales?' />
-          <input onChange={(e)=>setPrice(e.target.value)} style={{width:'10%',marginLeft:10}} className='add_input'  placeholder='Price' />
+          <input value={sale} onChange={(e)=>setSale(e.target.value)} style={{width:'10%'}} className='add_input'  placeholder='Sales?' />
+          <input value={price} onChange={(e)=>setPrice(e.target.value)} style={{width:'10%',marginLeft:10}} className='add_input'  placeholder='Price' />
           </div>
           <div className='spd_fr_sc_star'>
             
           </div>
           <p style={{marginTop:50,marginBottom:-10}}>Feartures:</p>
           <p>{data.features}</p>
-          <input onChange={(e)=>setFearture(e.target.value)} className='add_input'  placeholder='Enter your fearture' />
+          <input value={fearture} onChange={(e)=>setFearture(e.target.value)} className='add_input'  placeholder='Enter your fearture' />
           <p  style={{marginTop:30,marginBottom:-0}}>Count in stock:</p>
-          <input onChange={(e)=>setCountInStock(e.target.value)} className='add_input'  placeholder='Count in stock' />
+          <input value={countInStock}  onChange={(e)=>setCountInStock(e.target.value)} className='add_input'  placeholder='Count in stock' />
 
         </div>
       </div>
@@ -131,7 +129,7 @@ export default function AddProduct() {
         
         </div>
         <div style={{width:'100%',backgroundColor:'#dbdbdb',height:1,}} />
-           <textarea onChange={(e)=>setDescription(e.target.value)} placeholder='Enter your detail description' style={{width:'98.5%'}} className='add_text' />
+           <textarea value={description} onChange={(e)=>setDescription(e.target.value)} placeholder='Enter your detail description' style={{width:'98.5%'}} className='add_text' />
           
 
       </div>

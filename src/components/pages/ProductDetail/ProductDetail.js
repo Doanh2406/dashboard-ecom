@@ -1,7 +1,6 @@
 import React, {  useState } from 'react'
 import './ProductDetail.scss'
 import LinkHome from '../../LinkHome/LinkHome'
-
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Review from './Review';

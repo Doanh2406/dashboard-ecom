@@ -1,14 +1,14 @@
-import { createStore, compose, applyMiddleware, combineReducers } from "redux";
+import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import {
   addCartReducer,
   deleteCartReducer,
-  getCartReducer,
+  getCartReducer
 } from "./reducers/cartReducers";
 import {
   productAddReducer,
   productDetailReducer,
-  productListReducer,
+  productListReducer
 } from "./reducers/productReducers";
 import { userSigninReducer, userSignUpReducer } from "./reducers/userReducers";
 

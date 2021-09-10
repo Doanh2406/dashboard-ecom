@@ -20,7 +20,8 @@ import { signin, signout } from '../redux/actions/userActions';
 
 
 export default function SideBar() {
-  const userSignIn = useSelector(state => state.userSignIn)
+  const {loading,error,userInfo} = useSelector(state => state.userSignIn)
+
   const dispatch = useDispatch();
   const [show, setShow] = useState(false)
   const [setting, setSetting] = useState(false)
@@ -86,10 +87,10 @@ export default function SideBar() {
       <div className='sb_container'>
         <p className='sb_title'>Ekaf Ekin</p>
         <div className='sb_info' style={show ? { background: '#ededed' } : null} onClick={handleClick} >
-          <img className='sb_ava' src={ava} alt='avatar' />
+          <img className='sb_ava' src={userInfo.userAva?'http://localhost:5000/'+userInfo.userAva:'http://localhost:5000/upload/constants/ava.png'} alt='avatar' />
           <div className='sb_info_name_des' >
-            <p className='sb_info_name'>Le Xuan Quoc Cuong</p>
-            <p className='sb_info_des'>Seller</p>
+            <p className='sb_info_name'>{userInfo.name}</p>
+            <p className='sb_info_des'>{userInfo.role}</p>
             {
               show && (<>
                 <div className='sb_info_menu'>

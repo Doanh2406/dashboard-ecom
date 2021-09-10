@@ -5,35 +5,29 @@ import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteCart, getCart } from '../../redux/actions/cartActions';
+import LoadingPage from '../../LoadingPage/LoadingPage';
 
 export default function Cart() {
   const [qty, setQty] = useState();
-  const carts = useSelector(state => state.getCart.cart)
-  const [ cart ,setCart] = useState(carts)
- 
-  const cartDelete = useSelector(state=>state.deleteCart)
+  const {loading,error,cart }= useSelector(state => state.getCart)
   const userSignin = useSelector(state => state.userSignIn)
   const dispatch = useDispatch()
-  const handleDelete =  (item)=>{
-     dispatch(deleteCart(userSignin.userInfo._id,item))
-     console.log('ss')
+  const handleDelete = async  (item)=>{
+     await dispatch(deleteCart(userSignin.userInfo._id,item))
      dispatch(getCart(userSignin.userInfo))
   }
   useEffect(()=>{
-     setCart(carts)
-  },[dispatch,cartDelete,cart])
+    
+  },[dispatch,cart,loading,error])
+
   return (
     <>
-      <LinkHome title='List Cart' />
+      {
+        loading ? <LoadingPage />:<>
+        <LinkHome title='List Cart' />
       <div className='ori_container'>
-
-
-        <div className='ori_first_container'>
-
-
+      <div className='ori_first_container'>
           <div className='ori_first_container_second_row'>
-
-
             <div className='ori_fcsr_container'>
               <div className='ori_fcsr_fr_container_ori'>
                 <div style={{width:'20%'}} className='ori_fcsr_fr'>
@@ -52,12 +46,11 @@ export default function Cart() {
                   <p>Total</p>
                 </div>
                 <div style={{width:'10%'}} className='ori_fcsr_fr'>
-
                 </div>
               </div>
             </div>
             {
-              cart.map(item => (
+             cart && cart.map(item => (
                 <div key={item._id} className='ori_fcsr_container'>
                   <div className='ori_fcsr_fr_container'>
                     <div style={{width:'20%'}} className='ori_fcsr_fr'>
@@ -141,6 +134,8 @@ export default function Cart() {
 
         </div>
       </div>
+        </>
+      }
     </>
   )
 }
