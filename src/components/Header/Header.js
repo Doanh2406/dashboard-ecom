@@ -1,29 +1,28 @@
-import React, { useEffect, useState } from "react";
-import "./Header.scss";
-import SearchIcon from "@material-ui/icons/Search";
 import Badge from "@material-ui/core/Badge";
-import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
-import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
-import TabsInfor from "../Tabs/TabsInfor";
-import { NavLink } from 'react-router-dom'
+import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
+import SearchIcon from "@material-ui/icons/Search";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, getCart } from "../redux/actions/cartActions";
-
+import { NavLink } from "react-router-dom";
+import { getCart } from "../redux/actions/cartActions";
+import TabsInfor from "../Tabs/TabsInfor";
+import "./Header.scss";
 
 function Header() {
   const [infor, setInfor] = useState(false);
   function handleBoxClick() {
     setInfor(!infor);
   }
-  const userSignin = useSelector(state => state.userSignIn)
-  const cart = useSelector(state => state.getCart)
-  const cartItems = useSelector(state=>state.cart)
-  const dispatch = useDispatch()
+  const userSignin = useSelector((state) => state.userSignIn);
+  const cart = useSelector((state) => state.getCart);
+  const cartItems = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCart(userSignin.userInfo._id))
-  }, [cartItems])
+    dispatch(getCart(userSignin.userInfo._id));
+  }, [cartItems]);
   return (
     <div className="header">
       <div className="header__name"> OverView</div>
@@ -46,7 +45,10 @@ function Header() {
             <div className="header__infor">
               <div className="header__infor__title">
                 <span>Notifications</span>
-                <ArrowRightAltIcon style={{ color: "gray" }} onClick={handleBoxClick} />
+                <ArrowRightAltIcon
+                  style={{ color: "gray" }}
+                  onClick={handleBoxClick}
+                />
               </div>
               <div className="header__infor__tabs">
                 <TabsInfor />
@@ -54,17 +56,15 @@ function Header() {
             </div>
           </div>
         ) : null}
-        <Badge badgeContent={cart.cart?cart.cart.length:null} color="error">
+        <Badge badgeContent={cart.cart ? cart.cart.length : null} color="error">
           <AddShoppingCartIcon className="header__bage-icon__item" />
         </Badge>
       </div>
-      <NavLink exact to='/addproduct' style={{ textDecoration: 'none' }}>
+      <NavLink exact to="/addproduct" style={{ textDecoration: "none" }}>
         <div className="header__button">
           <AddCircleOutlineIcon className="header__button-icon" />
 
-          <span className="header__button-tittle" >Add Product</span>
-
-
+          <span className="header__button-tittle">Add Product</span>
         </div>
       </NavLink>
     </div>

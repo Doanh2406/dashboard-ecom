@@ -10,7 +10,7 @@ import Slide from "../../Slide/Slide";
 export default function Dashboard() {
   return (
     <div className="dashboard">
-      <Header />
+      {/* <Header /> */}
       <div className="dashboard__top">
         <div className="dashboard__top-left">
           <div className="dashboard__top-left__title">
@@ -78,8 +78,8 @@ export default function Dashboard() {
                 </select>
               </div>
             </div>
-            {/* <LineChart /> */}
-            <Slide/>
+            <LineChart />
+            {/* <Slide/> */}
           </div>
         </div>
         <div className="dashboard__top-right">
