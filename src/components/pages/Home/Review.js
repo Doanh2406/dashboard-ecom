@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import Box from '@material-ui/core/Box';
 import StarIcon from '@material-ui/icons/Star';
 import StarHalfIcon from '@material-ui/icons/StarHalf';
-import './ShopProductsDetail.scss'
-import { addReview, getReview } from '../../redux/actions/reviewActions';
-import { useDispatch, useSelector } from 'react-redux';
 import Rating from '@material-ui/lab/Rating';
-import Box from '@material-ui/core/Box';
-import LoadingPage from '../../LoadingPage/LoadingPage'
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import LoadingPage from '../../LoadingPage/LoadingPage';
+import { addReview, getReview } from '../../redux/actions/reviewActions';
+import './ShopProductsDetail.scss';
 
 const labels = {
   0.5: 'Useless',

@@ -27,8 +27,8 @@ export const listProducts = (userCreate,sort,skip) => async (dispatch) => {
 export const listProductsSearch = (search) => async (dispatch) => {
   dispatch({
     type: PRODUCT_LIST_REQUEST,
-    loading: true
-  })
+    loading: true,
+  });
   try {
     const { data } = await Axios.post('/api/products/list',{search})
    
@@ -76,57 +76,56 @@ export const listProductsPrice = (price) =>async(dispatch) =>{
    
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
-      payload: data
-    })
-    
+      payload: data,
+    });
   } catch (error) {
     dispatch({
       type: PRODUCT_LIST_FAIL,
-      payload: error.message
-    })
+      payload: error.message,
+    });
   }
-}
+};
 export const addProduct = (formData) => async (dispatch) => {
   dispatch({
     type: PRODUCT_ADD_REQUEST,
-    loading: true
-  })
+    loading: true,
+  });
   try {
-    const { data } = await Axios.post('/api/products/add', formData)
+    const { data } = await Axios.post("/api/products/add", formData);
     dispatch({
       type: PRODUCT_ADD_SUCCESS,
-      payload: data
-    })
+      payload: data,
+    });
   } catch (error) {
     dispatch({
       type: PRODUCT_ADD_FAIL,
-      payload: error.response &&
-        error.response.data.message ?
-        error.response.data.message :
-        error.message
-    })
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
   }
-}
+};
 
 export const detailProduct = (productId) => async (dispatch) => {
   dispatch({
     type: PRODUCT_DETAIL_REQUEST,
-    loading: true
-  })
+    loading: true,
+  });
   try {
     const { data } = await Axios.get(`/api/products/${productId}`);
     dispatch({
       type: PRODUCT_DETAIL_SUCCESS,
-      payload: data
-    })
+      payload: data,
+    });
   } catch (error) {
     dispatch({
       type: PRODUCT_DETAIL_FAIL,
-      payload: error.response &&
-        error.response.data.message ?
-        error.response.data.message :
-        error.message
-    })
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
   }
 }
 export const searchProduct = (search) =>async(dispatch)=>{
