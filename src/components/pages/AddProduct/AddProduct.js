@@ -21,10 +21,10 @@ export default function AddProduct() {
   const [countInStock, setCountInStock]= useState();
   const [fearture, setFearture] =  useState();
   const userSignin = useSelector(state => state.userSignIn)
-  const userCreate = userSignin.userInfo._id;
+  const userCreate = userSignin.userInfo.email;
   const [title,setTitle] = useState(true);
-  
-  const data={
+  const [color ,setColor] = useState();
+  const data={  
     photo:''
   }
   const [photos, setPhotos] = useState(0);
@@ -51,6 +51,7 @@ export default function AddProduct() {
     formData.append('fearture',fearture)
     formData.append('sale',sale)
     formData.append('description',description)
+    formData.append('color',color)
     for(let i = 0 ; i < image.length;i++){
       formData.append('image',image[i])
     }
@@ -103,10 +104,12 @@ export default function AddProduct() {
               <option>Headphone</option>
               <option>Others</option>
             </select>
-          
+            
 
           </div>
+          <input value={color} onChange={(e)=>setColor(e.target.value)} className='add_input'  placeholder='Enter your tags color. exp: Red, Blue, White, Black ' />
           <input value={name} onChange={(e)=>setName(e.target.value)} className='add_input'  placeholder='Enter your name of product' />
+          
           <input value={sdescription} onChange={(e)=>setSdescription(e.target.value)} className='add_input'  placeholder='Enter your name of short desciption' />
           <div className='spd_fr_sc_price'>
           <input value={sale} onChange={(e)=>setSale(e.target.value)} style={{width:'10%'}} className='add_input'  placeholder='Sales?' />
@@ -120,7 +123,7 @@ export default function AddProduct() {
           <input value={fearture} onChange={(e)=>setFearture(e.target.value)} className='add_input'  placeholder='Enter your fearture' />
           <p  style={{marginTop:30,marginBottom:-0}}>Count in stock:</p>
           <input value={countInStock}  onChange={(e)=>setCountInStock(e.target.value)} className='add_input'  placeholder='Count in stock' />
-
+          
         </div>
       </div>
       <div className='spd_sr_container'>

@@ -16,13 +16,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoadingPage from '../../LoadingPage/LoadingPage';
 import { addToCart } from '../../redux/actions/cartActions';
 import { getReview } from '../../redux/actions/reviewActions';
+import { detailProduct } from '../../redux/actions/productActions';
+import { useParams } from 'react-router';
 
 export default function ShopProductsDetail() {
-
-
-  const productDetail = useSelector(state => state.productDetail);
+  const { id } = useParams();
+  const { loading, error, product } = useSelector(state => state.productDetail);
   const cart = useSelector(state => state.getCart)
-  const { loading, error, product } = productDetail;
   const [tab, setTab] = useState(1);
   const [photos, setPhotos] = useState(0);
   const [addCart, setAddCart] = useState();
@@ -30,15 +30,14 @@ export default function ShopProductsDetail() {
   const [countRating, setCountRating] = useState(0);
   const dispatch = useDispatch()
   const userSignin = useSelector(state => state.userSignIn)
-
-
   async function ratingRound() {
-    if (productDetail.product) {
-      if (productDetail.product.review) {
+    if (product) {
+      if (product.review) {
+        
         let count = 0;
-        await productDetail.product.review.map(item => item.rating && count++)
+        await product.review.map(item => item.rating && count++)
         setCountRating(count)
-        const sum = await productDetail.product.review.reduce((partial_sum, a) => partial_sum + a.rating, 0)
+        const sum = await product.review.reduce((partial_sum, a) => partial_sum + a.rating, 0)
         if (Math.round(sum / count) - Math.ceil(sum / count) === 1) {
           setRating(Math.ceil(sum / count) + 0.5)
         } else {
@@ -48,8 +47,6 @@ export default function ShopProductsDetail() {
     }
 
   }
-
-
   const handleArrow = (n) => {
     if (n > product.image.length - 1) {
       setPhotos(0)
@@ -61,24 +58,18 @@ export default function ShopProductsDetail() {
     }
     setPhotos(n)
   }
-
-
-  useEffect(() => {
-    if (product) {
-      dispatch(getReview(product._id))
-    }
-    ratingRound();
-    if (cart.cart && product) {
-      cart.cart.find(x => x.product === product._id ? setAddCart(x.qty) : null)
-    }
-  }, [cart, product])
-
-
   const handleAdd = async () => {
-    await dispatch(addToCart(product._id, addCart, userSignin.userInfo._id))
-
+    await dispatch(addToCart(id, addCart, userSignin.userInfo._id))
   }
-
+  ratingRound();
+  useEffect(() => {
+    dispatch(detailProduct(id))
+    dispatch(getReview(id))
+   
+    if (cart.cart && product) {
+      cart.cart.find(x => x.product === id ? setAddCart(x.qty) : null)
+    }
+  }, [cart, dispatch])
   return (
     <>
       {
