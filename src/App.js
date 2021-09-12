@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import "./App.scss";
 import Header from "./components/Header/Header";
+import LoadingPage from "./components/LoadingPage/LoadingPage";
 import NoMatchPage from "./components/NoMatchPage/NoMatchPage";
 import {
   AddProduct, Cart, Checkout, Customers, Dashboard, Home, InVoiceDetail, InVoices, Orders,
@@ -33,11 +34,12 @@ const outerTheme = createTheme({
 });
 
 function App() {
-  const userSignin = useSelector((state) => state.userSignIn);
+  const { loading, error, userInfo } = useSelector((state) => state.userSignIn);
 
   return (
     <ThemeProvider theme={outerTheme}>
-      {userSignin.userInfor ? (
+      {loading ? <LoadingPage /> : null}
+      {userInfo ? (
         <div className="app">
           <div className="sidebar">
             <SideBar />

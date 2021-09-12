@@ -22,7 +22,7 @@ export const signUp = (name, email, password) => async (dispatch) => {
     },
   });
   try {
-    const { data } = await Axios.post("/api/users", {
+    const { data } = await Axios.post("/api/users/signup", {
       name,
       email,
       password,
@@ -58,7 +58,19 @@ export const signin = (email, password) => async (dispatch) => {
     },
   });
   try {
-    const { data } = await Axios.post("/api/users/login", { email, password });
+    const { data } = await Axios.post("/api/users/signin", { email, password });
+    // const conf = JSON.stringify({
+    //   email: `${email}`,
+    //   password: `${password}`,
+    // });
+
+    // const data = await Axios({
+    //   method: "post",
+    //   url: "/api/users/signin",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },conf,
+    // });
     dispatch({
       type: USER_SIGNIN_SUCCESS,
       payload: data,
