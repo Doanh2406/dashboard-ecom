@@ -84,6 +84,25 @@ export const listProductsPrice = (price) =>async(dispatch) =>{
       payload: error.message,
     });
   }
+};//list product Price
+export const listProductsColor = (color) =>async(dispatch) =>{
+  dispatch({
+    type: PRODUCT_LIST_REQUEST,
+    loading: true
+  })
+  try {
+    const { data } = await Axios.post('/api/products/list',{color})
+   
+    dispatch({
+      type: PRODUCT_LIST_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_LIST_FAIL,
+      payload: error.message,
+    });
+  }
 };
 export const addProduct = (formData) => async (dispatch) => {
   dispatch({
