@@ -29,17 +29,16 @@ export default function Review({productId,user}) {
   const [dis,setDis] = useState(false)
   const {loading , error ,review} = useSelector(state=> state.reviewGet)
   const handleSend = async ()=>{
-   
     await dispatch(addReview(productId,user._id,user.name,user.userAva,value,comment))
-    dispatch(getReview(productId))
+    await dispatch(getReview(productId))
     setComment('')
   }
   useEffect(()=>{
     if(review){
       review.find(x=>x.userId===user._id&&setDis(true))
     }
-  })
-  
+  },[review])
+ 
   return (
     <>
     {

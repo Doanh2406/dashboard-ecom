@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
+import { useDispatch } from 'react-redux';
+import { listProductsPrice } from '../../redux/actions/productActions';
 
 const useStyles = makeStyles({
   root: {
@@ -37,19 +39,17 @@ const marks = [
     label: '$100',
   },
 ];
-export default function MySlider() {
+export default function MySlider({value,setValue}) {
   const classes = useStyles();
-  const [value, setValue] = React.useState([200, 300]);
-
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+      setValue(newValue)
+    
   };
-
   return (
     <div className={classes.root}>
       <Slider
         min={0}
-        step={100}
+        step={10}
         max={1000}
         scale={(x) => x }
         value={value}
