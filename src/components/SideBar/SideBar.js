@@ -21,7 +21,6 @@ import { signin, signout } from '../redux/actions/userActions';
 
 export default function SideBar() {
   const {loading,error,userInfo} = useSelector(state => state.userSignIn)
-  console.log(userInfo)
   const dispatch = useDispatch();
   const [show, setShow] = useState(false)
   const [setting, setSetting] = useState(false)

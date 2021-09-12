@@ -58,7 +58,7 @@ export const signin = (email, password) => async (dispatch) => {
     },
   });
   try {
-    const { data } = await Axios.post("/api/users/login", { email, password });
+    const { data } = await Axios.post("/api/users/signin", { email, password });
     dispatch({
       type: USER_SIGNIN_SUCCESS,
       payload: data,

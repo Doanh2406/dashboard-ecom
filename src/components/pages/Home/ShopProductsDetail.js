@@ -64,6 +64,7 @@ export default function ShopProductsDetail() {
   ratingRound();
   useEffect(() => {
     dispatch(detailProduct(id))
+ 
     dispatch(getReview(id))
    
     if (cart.cart && product) {
