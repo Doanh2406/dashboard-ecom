@@ -9,19 +9,33 @@
   flex-direction: row;
 }
 .sidebar{
-  flex: 1;
+  width: 380px;
   // position: fixed;
   // top: 0;
   // left: 0;
 }
-.body{
-
-  flex: 5;
-  margin-left: 50px;
+.body-app{
+  flex: 1;
+  height: 2000px;
+  display: flex;
+  flex-direction: column;
+  .body-header{
+    width: calc(100%-300px);
+  }
+  .body-content{
+    margin-top: 80px;
+    margin-left: 30px;
+  }
  
 }
 .header__class{
   position: sticky;
   top: 0;
   width: 100%;
+}
+
+@media(min-width:740px) and (max-width:1023px){
+  .hide-on-tab-left{
+    display: none;
+  }
 }

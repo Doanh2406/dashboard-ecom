@@ -1,18 +1,17 @@
-import React from "react";
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
+import LocalMallIcon from "@material-ui/icons/LocalMall";
+import React from "react";
 // import BiaxiaChart from '../../charts/BiaxiaChart'
 import LineChart from "../../charts/LineChart";
-import LocalMallIcon from "@material-ui/icons/LocalMall";
-import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import "./Dashboard.scss";
-import Header from "../../Header/Header";
-import Slide from "../../Slide/Slide";
+import '../../styles/_value.scss'
 export default function Dashboard() {
   return (
     <div className="dashboard">
-      {/* <Header /> */}
+      
       <div className="dashboard__top">
-        <div className="dashboard__top-left">
+        <div className="dashboard__top-left l-7 m-12 c-12">
           <div className="dashboard__top-left__title">
             <span className="dashboard__top-left__title-text">Sales Chart</span>
             <HelpOutlineIcon color="primary" />
@@ -82,7 +81,7 @@ export default function Dashboard() {
             {/* <Slide/> */}
           </div>
         </div>
-        <div className="dashboard__top-right">
+        <div className="dashboard__top-right l-4 m-12 c-12 ">
           <div className="dashboard__top-left__title">
             <span className="dashboard__top-left__title-text">Channel</span>
             <HelpOutlineIcon color="primary" />

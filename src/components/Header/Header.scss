@@ -1,32 +1,30 @@
 @import "../styles/value";
 
 .header {
-  flex: 1;
   position: fixed;
   z-index: 10;
 
   top: 0;
-   left: 350px;
-  right:0;
+  left: 380px;
+  right: 0;
   height: 50px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   background-color: #f5f4fe;
 
   align-items: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .header__name {
-  min-width: 200px;
-  width: 10%;
+  width: 15%;
   font-size: 30px;
   font-weight: 600;
   color: $dark;
-  margin-right: 10px;
+  padding-left: 30px;
 }
 .header__search {
-  width: 62%;
+  width: 50%;
   height: 50px;
 
   background: #fff;
@@ -35,29 +33,25 @@
   border-radius: 10px;
 }
 .header__search-icon {
-  margin: 10px;
-  margin-left: 20px;
   color: gray;
   font-size: 24;
   cursor: pointer;
 }
 .header__search-box {
-  margin-left: 0px;
   color: gray;
   font-style: 18px;
   width: 100%;
   border: none;
   height: 46px;
+  outline: none;
 }
 .header__bage-icon {
-  min-width: 120px;
+  width: 7%;
   justify-content: space-between;
   display: flex;
-  margin-right: 30px;
+  margin: 0 12px;
 
   color: white;
-  // padding: 10px;/
-  margin-left: 30px;
 }
 .header__bage-icon__bad {
   color: $primary;
@@ -70,13 +64,15 @@
   }
 }
 .header__button {
-  margin-right: 10px;
+  width: 28%;
+  padding: 0 10px;
   background: $primary;
   border-radius: 10px;
   height: 50px;
   display: flex;
   align-items: center;
-  min-width: 156px;
+  min-width: 150px;
+  margin-right: 40px;
   cursor: pointer;
 
   &:hover {
@@ -85,7 +81,7 @@
 }
 .header__button-icon {
   font-size: 16px;
-  padding: 10px;
+  padding: 5px;
   color: white;
 }
 .header__button-tittle {
@@ -140,4 +136,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+@media(min-width:740px) and (max-width:1023px){
+  .header{
+    left: 0;
+    top:0;
+    right: 0;
+  }
 }

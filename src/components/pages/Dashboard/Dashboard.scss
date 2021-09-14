@@ -1,19 +1,20 @@
 .dashboard {
-  position: absolute;
-  margin-top: 0px;
-  margin-left: 30px;
-  margin-right: 20px;
-  
-  display: flex;
+  // position: absolute;
+
+  // margin-left: 30px;
+  // margin-right: 20px;
+  // display: flex;
+  width: 100%;
 }
 .dashboard__top {
   display: flex;
+  width: 100%;
 }
 .dashboard__top-left {
-  flex: 3;
+  // flex: 3;
 }
 .dashboard__top-right {
-  flex: 2;
+  // flex: 2;
 }
 .dashboard__top-left__title {
   height: 70px;
@@ -31,7 +32,7 @@
 
 .dashboard__top-left__layout {
   background-color: #fff;
-  height: 520px;
+  height: 620px;
   border-radius: 20px;
 }
 .dashboard__top-left__layout-infor {
@@ -85,5 +86,5 @@
 }
 
 .dashboard__top-right {
-  margin-left: 30px;
+  margin-left: 5%;
 }
