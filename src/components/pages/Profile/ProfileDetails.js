@@ -5,7 +5,7 @@ import './Profile.scss'
 import LoadingPage from '../../LoadingPage/LoadingPage'
 export default function ProfileDetails() {
   const dispatch = useDispatch()
-  const {loading,error,userInfo} = useSelector(state => state.userSignIn)
+  const {loading,userInfo} = useSelector(state => state.userSignIn)
   const [userAva,setUserAva] = useState()
   const [name, setName] = useState();
   const [userName,setUserName] = useState();
@@ -76,8 +76,8 @@ export default function ProfileDetails() {
           <p style={{ fontWeight: 530, fontSize: 24 }}>{userInfo.name}</p>
           <div style={{ display: 'flex', flexDirection: 'row', marginTop: -18 }}>
           <div className='add_btn_container'>
-              <label style={{marginTop:-20}} className="pro_btn" for="upload-photo">Change Avatar</label>
-              <input onChange={(e) => setUserAva(e.target.files[0])} id='upload-photo' name='upload-photo' className='add_btn_choose' type='file' accept='image/*' name='uploadedImages'  />
+              <label style={userAva?{background:'gray',marginTop:-20}:{marginTop:-20}}  className="pro_btn" for="upload-photo">Change Avatar</label>
+              <input onChange={(e) => setUserAva(e.target.files[0])} id='upload-photo' name='upload-photo' className='add_btn_choose' type='file' accept='image/*'  />
             </div>
             <p style={{ marginLeft: 10, background: 'red' }} className='pro_btn'>Remove Avatar</p>
           </div>

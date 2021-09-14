@@ -12,7 +12,6 @@ import { addToCart } from '../redux/actions/cartActions';
 
 
 export default function Card({ data }) {
-
   const [inCart, setInCart] = useState(0)
   const productId = data._id;
   const userSignin = useSelector(state => state.userSignIn)

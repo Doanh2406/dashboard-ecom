@@ -3,13 +3,14 @@ import './AddProduct.scss'
 import LinkHome from '../../LinkHome/LinkHome'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from '../../redux/actions/productActions';
+import { useHistory } from 'react-router';
 
 
 export default function AddProduct() {
+  let history = useHistory();
+
   const dispatch = useDispatch();
   const [name, setName] = useState();
   const [image, setImage] = useState();
@@ -22,7 +23,7 @@ export default function AddProduct() {
   const [fearture, setFearture] =  useState();
   const userSignin = useSelector(state => state.userSignIn)
   const userCreate = userSignin.userInfo.email;
-  const [title,setTitle] = useState(true);
+  
   const [color ,setColor] = useState();
   const data={  
     photo:''
@@ -57,8 +58,8 @@ export default function AddProduct() {
     }
     formData.append('userCreate',userCreate);
     await dispatch(addProduct(formData))
-    alert('Add success')
     
+    history.push('/products')
   }
   return (
     <div className='spd_container' >
@@ -87,17 +88,14 @@ export default function AddProduct() {
             </div>
           </div>
          <div className='add_btn_container'>
-          <label className="add_btn" for="upload-photo">Choose files</label>
-           <input  onChange={(e)=>setImage(e.target.files)} id='upload-photo' name='upload-photo' className='add_btn_choose' type='file' accept='image/*' name='uploadedImages' multiple/>
+          <label style={image&&{background:'gray'}} className="add_btn" for="upload-photo">Choose files</label>
+           <input  onChange={(e)=>setImage(e.target.files)} id='upload-photo' name='upload-photo' className='add_btn_choose' type='file' accept='image/*'  multiple/>
          </div>
         </div>
         <div className='spd_fr_sc'>
           <div className='spd_fr_sc_title'>
-            <select onChange={(e)=>setCategory(e.target.value)} className='add_select' onClick={()=>setTitle(false)}>
-              {
-                title&& <option>Select your categories</option>
-
-              }
+            <select onChange={(e)=>setCategory(e.target.value)} className='add_select' >
+     
               <option>Accessories</option>
               <option>Phone</option>
               <option>Camera</option>

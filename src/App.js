@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, withRouter } from "react-router-dom";
+import React from "react";
+import {  Switch, Route, withRouter } from "react-router-dom";
 import { Dashboard, Orders, OrdersItems, Home, Cart, Products, Customers, ShopProductsDetail, AddProduct, Profile, Checkout, InVoices, ProductDetail, InVoiceDetail } from "./components/pages";
 import SideBar from "./components/SideBar/SideBar";
 import Header from "./components/Header/Header";
@@ -7,17 +7,10 @@ import "./App.scss";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import LoadingPage from "./components/LoadingPage/LoadingPage";
 import NoMatchPage from "./components/NoMatchPage/NoMatchPage";
-import {
-  AddProduct, Cart, Checkout, Customers, Dashboard, Home, InVoiceDetail, InVoices, Orders,
-  OrdersItems, ProductDetail, Products, Profile, ShopProductsDetail
-} from "./components/pages";
+
 import SignIn from "./components/pages/SignIn/SignIn";
 import SignUp from "./components/pages/SignUp/SignUp";
-import { useDispatch, useSelector } from "react-redux";
-import NoMatchPage from "./components/NoMatchPage/NoMatchPage";
-import { getCart } from "./components/redux/actions/cartActions";
-import axios from "axios";
-import LoadingPage from "./components/LoadingPage/LoadingPage";
+import {  useSelector } from "react-redux";
 
 
 const outerTheme = createTheme({
@@ -39,17 +32,12 @@ const outerTheme = createTheme({
 
 
 function App() {
-<<<<<<< HEAD
-  const { loading, error, userInfo } = useSelector(state => state.userSignIn)
+  const { loading, userInfo } = useSelector(state => state.userSignIn)
 
-=======
-  const { loading, error, userInfo } = useSelector((state) => state.userSignIn);
->>>>>>> 6578269202f63c363544df77df6859ba4a4567cc
 
   return (
 
     <ThemeProvider theme={outerTheme}>
-<<<<<<< HEAD
       {
         loading ? <LoadingPage /> : null
       }
@@ -99,7 +87,7 @@ function App() {
                 <Route path="/invoices" key={document.location.href} >
                   <InVoices />
                 </Route>
-                <Route path="/productdetail" key={document.location.href} >
+                <Route path="/product/:id/edit" key={document.location.href} >
                   <ProductDetail />
                 </Route>
                 <Route path="/invoicesdetail" key={document.location.href} >
@@ -115,66 +103,6 @@ function App() {
 
             </div>
 
-=======
-      {loading ? <LoadingPage /> : null}
-      {userInfo ? (
-        <div className="app">
-          <div className="sidebar">
-            <SideBar />
-          </div>
-          <div className="body">
-            <div style={{ height: 80 }} />
-            <Header />
-
-            <Switch>
-              <Route exact path="/cart" key={document.location.href}>
-                <Cart />
-              </Route>
-              <Route exact path="/shopping" key={document.location.href}>
-                <Home />
-              </Route>
-              <Route exact path="/shopping/:id" key={document.location.href}>
-                <ShopProductsDetail />
-              </Route>
-              <Route exact path="/orders" key={document.location.href}>
-                <Orders />
-              </Route>
-              <Route exact path="/orders/items" key={document.location.href}>
-                <OrdersItems />
-              </Route>
-              <Route exact path="/products" key={document.location.href}>
-                <Products />
-              </Route>
-              <Route exact path="/customers" key={document.location.href}>
-                <Customers />
-              </Route>
-
-              <Route exact path="/addproduct" key={document.location.href}>
-                <AddProduct />
-              </Route>
-              <Route path="/profile" key={document.location.href}>
-                <Profile />
-              </Route>
-              <Route path="/checkout" key={document.location.href}>
-                <Checkout />
-              </Route>
-              <Route path="/invoices" key={document.location.href}>
-                <InVoices />
-              </Route>
-              <Route path="/productdetail" key={document.location.href}>
-                <ProductDetail />
-              </Route>
-              <Route path="/invoicesdetail" key={document.location.href}>
-                <InVoiceDetail />
-              </Route>
-              <Route exact path="/" key={document.location.href}>
-                <Dashboard />
-              </Route>
-              <Route exact path="*" key={document.location.href}>
-                <NoMatchPage />
-              </Route>
-            </Switch>
->>>>>>> 6578269202f63c363544df77df6859ba4a4567cc
           </div>
           :
           <Switch>

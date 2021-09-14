@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './SideBar.scss'
-import ava from '../../assets/ava.png'
+
 import { NavLink } from 'react-router-dom';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import ListAltIcon from '@material-ui/icons/ListAlt';
@@ -16,11 +16,11 @@ import ReceiptIcon from '@material-ui/icons/Receipt';
 import Setting from './Setting';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { signin, signout } from '../redux/actions/userActions';
+import {  signout } from '../redux/actions/userActions';
 
 
 export default function SideBar() {
-  const {loading,error,userInfo} = useSelector(state => state.userSignIn)
+  const {userInfo} = useSelector(state => state.userSignIn)
   const dispatch = useDispatch();
   const [show, setShow] = useState(false)
   const [setting, setSetting] = useState(false)

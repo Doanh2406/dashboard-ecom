@@ -1,5 +1,11 @@
 import Axios from "axios";
 import {
+  USER_LIST_FAIL,
+  USER_LIST_REQUEST,
+  USER_LIST_SUCCESS,
+  USER_SEARCH_FAIL,
+  USER_SEARCH_REQUEST,
+  USER_SEARCH_SUCCESS,
   USER_SIGNIN_FAIL,
   USER_SIGNIN_REQUEST,
   USER_SIGNIN_SUCCESS,
@@ -28,7 +34,7 @@ export const signUp = (name, email, password) => async (dispatch) => {
       password,
     });
     const userCart = data._id;
-    const { cart } = await Axios.post("/api/carts/new", { userCart });
+     await Axios.post("/api/carts/new", { userCart });
     dispatch({
       type: USER_SIGNUP_SUCCESS,
       payload: data,
@@ -189,3 +195,45 @@ export const updateUserPassword = (userId, password) => async (dispatch) => {
     });
   }
 };
+export const listUser = (page,limit,sort) =>async(dispatch)=>{
+  dispatch({
+    type: USER_LIST_REQUEST,
+    loading: true,
+  });
+  try {
+    const { data } = await Axios.get(`/api/users/list?${page?'page='+page+'&':limit?'litmit='+limit+'&':sort?'sort='+sort:''}`);
+    dispatch({
+      type: USER_LIST_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: USER_LIST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+}
+export const listUserSearch = (search) =>async(dispatch)=>{
+  dispatch({
+    type: USER_SEARCH_REQUEST,
+    loading: true,
+  });
+  try {
+    const { data } = await Axios.get(`/api/users/search?${search?'search='+search:''}`);
+    dispatch({
+      type: USER_SEARCH_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: USER_SEARCH_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+}

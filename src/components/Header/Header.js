@@ -9,7 +9,7 @@ import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import TabsInfor from "../Tabs/TabsInfor";
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, getCart } from "../redux/actions/cartActions";
+import {  getCart } from "../redux/actions/cartActions";
 
 
 function Header() {

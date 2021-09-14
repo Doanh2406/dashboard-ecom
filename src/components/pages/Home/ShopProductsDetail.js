@@ -16,10 +16,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoadingPage from '../../LoadingPage/LoadingPage';
 import { addToCart } from '../../redux/actions/cartActions';
 import { getReview } from '../../redux/actions/reviewActions';
-import { detailProduct } from '../../redux/actions/productActions';
 import { useParams } from 'react-router';
 
 export default function ShopProductsDetail() {
+  const dispatch = useDispatch()
   const { id } = useParams();
   const { loading, error, product } = useSelector(state => state.productDetail);
   const cart = useSelector(state => state.getCart)
@@ -28,12 +28,20 @@ export default function ShopProductsDetail() {
   const [addCart, setAddCart] = useState();
   const [rating, setRating] = useState(0)
   const [countRating, setCountRating] = useState(0);
-  const dispatch = useDispatch()
   const userSignin = useSelector(state => state.userSignIn)
+  console.log('ccc')
+  useEffect(() => {
+   fetchData()
+    if (cart.cart && product) {
+      cart.cart.find(x => x.product === id ? setAddCart(x.qty) : null)
+    }
+  }, [dispatch])
+  async function fetchData() {
+    dispatch(getReview(id))
+ }
   async function ratingRound() {
     if (product) {
       if (product.review) {
-        
         let count = 0;
         await product.review.map(item => item.rating && count++)
         setCountRating(count)
@@ -45,9 +53,10 @@ export default function ShopProductsDetail() {
         }
       }
     }
-
+    console.log('cc')
   }
   const handleArrow = (n) => {
+    console.log('cc')
     if (n > product.image.length - 1) {
       setPhotos(0)
       return;
@@ -59,18 +68,11 @@ export default function ShopProductsDetail() {
     setPhotos(n)
   }
   const handleAdd = async () => {
-    await dispatch(addToCart(id, addCart, userSignin.userInfo._id))
+     dispatch(addToCart(id, addCart, userSignin.userInfo._id))
   }
   ratingRound();
-  useEffect(() => {
-    dispatch(detailProduct(id))
- 
-    dispatch(getReview(id))
-   
-    if (cart.cart && product) {
-      cart.cart.find(x => x.product === id ? setAddCart(x.qty) : null)
-    }
-  }, [cart, dispatch])
+  
+  
   return (
     <>
       {

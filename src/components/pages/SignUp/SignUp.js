@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState} from 'react'
+import { useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom'
 import { signUp } from '../../redux/actions/userActions';
 import '../SignIn/SignIn.scss'

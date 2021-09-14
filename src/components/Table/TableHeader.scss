@@ -130,13 +130,13 @@
   display: flex;
   position: absolute;
   flex-direction: column;
-  padding:20px;
+  
   margin-left: -10px;
-  background-color: $backgroundColor;
+  
   width: 15%;
   z-index: 3;
   border-radius: $radius;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 .search_container_item{
   display: flex;
@@ -144,10 +144,13 @@
   margin-top: 10px;
   cursor: pointer;
   font-size: 12px;
-  opacity: 0.85;
+  margin-top: -10px;
   transition: all 0.4s ease-in-out;
+  background-color: $backgroundColor; 
+  padding:20px;
+  border-radius: 10px;
   &:hover{
-    opacity: 1;
+    
     color: $primary;
   }
   .search_text{

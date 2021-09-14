@@ -1,92 +1,130 @@
-import React from 'react'
 import StarIcon from '@material-ui/icons/Star';
 import StarHalfIcon from '@material-ui/icons/StarHalf';
-import './ProductDetail.scss'
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
+import LoadingPage from '../../LoadingPage/LoadingPage';
+import {  getReview } from '../../redux/actions/reviewActions';
+import './ProductDetail.scss';
+
+
 
 export default function Review() {
-  const data = {
-    stars: 4.5,
+  let { id } = useParams();
+  const [rating, setRating] = useState(0)
+  const [countRating, setCountRating] = useState(0);
+  const dispatch = useDispatch()
+  
+
+
+  const { loading, review } = useSelector(state => state.reviewGet)
+ 
+  async function ratingRound() {
+    if (review) {
+      if (review) {
+
+        let count = 0;
+        await review.map(item => item.rating && count++)
+        setCountRating(count)
+        const sum = await review.reduce((partial_sum, a) => partial_sum + a.rating, 0)
+        if (Math.round(sum / count) - Math.ceil(sum / count) === 1) {
+          setRating(Math.ceil(sum / count) + 0.5)
+        } else {
+          setRating(Math.ceil(sum / count))
+        }
+      }
+    }
 
   }
-  const ao = [
-    {
-      name: 'nhat',
-      stars: 5,
-      comment: 'nhat oc ga',
-      img: 'https://huyhoanhotel.com/wp-content/uploads/2016/05/765-default-avatar.png',
+  async function getData(){
+    await dispatch(getReview(id))
 
-    },
-    {
-      name: 'doanh',
-      stars: 1,
-      comment: 'nhat oc ba',
-      img: 'https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png',
+  }
+  useEffect(() => {
+    getData()
+    ratingRound()
+   
+  }, [dispatch])
 
-    }
-  ]
   return (
-    <div className='rv_container'>
-      <h1>4.0</h1>
-      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', fontSize: 24, marginTop: -30 }}>
-        {
-          data.stars - 1 > -0.5 && <StarIcon style={{ color: 'yellow' }} />
-        }
-        {
-          data.stars - 2 > -0.5 && <StarIcon style={{ color: 'yellow' }} />
-        }
-        {
-          data.stars - 3 > -0.5 && <StarIcon style={{ color: 'yellow' }} />
-        }
-        {
-          data.stars - 4 > -0.5 && <StarIcon style={{ color: 'yellow' }} />
-        }
-        {
-          data.stars - 5 > -0.5 && <StarIcon style={{ color: 'yellow' }} />
-        }
-        {
-          Number(data.stars) === data.stars && data.stars % 1 !== 0 && <StarHalfIcon style={{ color: 'yellow' }} />
-        }
-        <p>(3)</p>
-      </div>
-      <div style={{ height: 50 }} />
+    <>
       {
-        ao.map(item =>
-          <>
-            <div className='rv_comment'>
-              <img src={item.img} alt='ava' />
-              <div className='rv_cm'>
-                <h3>{item.name}</h3>
-                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: -10 }}>
-                  {
-                    item.stars - 1 > -0.5 && <StarIcon style={{ color: 'yellow' }} />
-                  }
-                  {
-                    item.stars - 2 > -0.5 && <StarIcon style={{ color: 'yellow' }} />
-                  }
-                  {
-                    item.stars - 3 > -0.5 && <StarIcon style={{ color: 'yellow' }} />
-                  }
-                  {
-                    item.stars - 4 > -0.5 && <StarIcon style={{ color: 'yellow' }} />
-                  }
-                  {
-                    item.stars - 5 > -0.5 && <StarIcon style={{ color: 'yellow' }} />
-                  }
-                  {
-                    Number(item.stars) === item.stars && item.stars % 1 !== 0 && <StarHalfIcon style={{ color: 'yellow' }} />
-                  }
+        loading ? <LoadingPage /> : <div className='rv_container'>
+          <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', fontSize: 22, marginTop: -30 }}>
+            <p style={{ marginRight: 10 }}>Your rate:</p>
+            {
+              !rating && <>
+                <StarIcon />
+                <StarIcon />
+                <StarIcon />
+                <StarIcon />
+                <StarIcon />
+                <p style={{ marginLeft: 10 }}>(Not rated yet)</p>
+              </>
+            }
+            {
+              rating - 1 > -0.5 && <StarIcon style={{ color: '#ffb400' }} />
+            }
+            {
+              rating - 2 > -0.5 && <StarIcon style={{ color: '#ffb400' }} />
+            }
+            {
+              rating - 3 > -0.5 && <StarIcon style={{ color: '#ffb400' }} />
+            }
+            {
+              rating - 4 > -0.5 && <StarIcon style={{ color: '#ffb400' }} />
+            }
+            {
+              rating - 5 > -0.5 && <StarIcon style={{ color: '#ffb400' }} />
+            }
+            {
+              Number(rating) === rating && rating % 1 !== 0 && <StarHalfIcon style={{ color: '#ffb400' }} />
+            }
+            {
+              countRating && <p style={{ marginLeft: 10 }}>({countRating})</p>
+            }
+          </div>
+          <div style={{ height: 20 }} />
+          {
+            review && review.map(item =>
+              <div key={item._id} >
+                <div className='rv_comment'>
+                  <img src={item.userAva ? 'http://localhost:5000/' + item.userAva : 'http://localhost:5000/upload/constants/ava.png'} alt='' />
+                  <div className='rv_cm'>
+                    <p style={{ fontWeight: 650 }}>{item.userName}</p>
+                    <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: -10, }}>
+                      {
+                        item.rating - 1 > -0.5 && <StarIcon style={{ fontSize: 14, color: '#ffb400' }} />
+                      }
+                      {
+                        item.rating - 2 > -0.5 && <StarIcon style={{ fontSize: 14, color: '#ffb400' }} />
+                      }
+                      {
+                        item.rating - 3 > -0.5 && <StarIcon style={{ fontSize: 14, color: '#ffb400' }} />
+                      }
+                      {
+                        item.rating - 4 > -0.5 && <StarIcon style={{ fontSize: 14, color: '#ffb400' }} />
+                      }
+                      {
+                        item.rating - 5 > -0.5 && <StarIcon style={{ fontSize: 14, color: '#ffb400' }} />
+                      }
+                      {
+                        Number(item.rating) === item.rating && item.rating % 1 !== 0 && <StarHalfIcon style={{ fontSize: 14, color: '#ffb400' }} />
+                      }
+
+                    </div>
+                    <p style={{ fontSize: 14 }}>{item.userComment}</p>
+                  </div>
 
                 </div>
-                <p>{item.comment}</p> <p className='prd_delete'>Delete this comment</p>
+                <p style={{color:'red',cursor:'pointer'}}>Delete this comment</p>
+                <div style={{ width: '100%', height: 1, backgroundColor: '#dbdbdb', marginBottom: 20 }} />
               </div>
-
-            </div>
-            <div style={{ width: '100%', height: 1, backgroundColor: '#dbdbdb',marginBottom:20 }} />
-          </>
-        )
+            )
+          }
+         
+        </div>
       }
-      
-      <p style={{background:'red'}} className='prd_delete'>Disable Review</p>
-    </div>
+    </>
   )
 }

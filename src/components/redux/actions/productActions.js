@@ -1,5 +1,5 @@
 import Axios from "axios"
-import { PRODUCT_ADD_FAIL, PRODUCT_ADD_REQUEST, PRODUCT_ADD_SUCCESS, PRODUCT_DETAIL_FAIL, PRODUCT_DETAIL_REQUEST, PRODUCT_DETAIL_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_SEARCH_FAIL, PRODUCT_SEARCH_REQUEST, PRODUCT_SEARCH_SUCCESS } from "../constants/productConstants"
+import { PRODUCT_ADD_FAIL, PRODUCT_ADD_REQUEST, PRODUCT_ADD_SUCCESS, PRODUCT_DELETE_FAIL, PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_SUCCESS, PRODUCT_DETAIL_FAIL, PRODUCT_DETAIL_REQUEST, PRODUCT_DETAIL_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_SEARCH_FAIL, PRODUCT_SEARCH_REQUEST, PRODUCT_SEARCH_SUCCESS } from "../constants/productConstants"
 
 
 //list all product
@@ -24,14 +24,14 @@ export const listProducts = (userCreate,sort,skip) => async (dispatch) => {
   }
 }
 //list product  search 
-export const listProductsSearch = (search) => async (dispatch) => {
+export const listProductsSearch = (userCreate,search) => async (dispatch) => {
   dispatch({
     type: PRODUCT_LIST_REQUEST,
     loading: true,
   });
   try {
-    const { data } = await Axios.post('/api/products/list',{search})
-   
+    
+    const { data } = await Axios.post('/api/products/list',{userCreate,search})
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
       payload: data
@@ -45,13 +45,13 @@ export const listProductsSearch = (search) => async (dispatch) => {
   }
 }
 //list product category
-export const listProductsCategory = (category) =>async(dispatch) =>{
+export const listProductsCategory = (userCreate,category) =>async(dispatch) =>{
   dispatch({
     type: PRODUCT_LIST_REQUEST,
     loading: true
   })
   try {
-    const { data } = await Axios.post('/api/products/list',{category})
+    const { data } = await Axios.post('/api/products/list',{userCreate,category})
    
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
@@ -66,13 +66,13 @@ export const listProductsCategory = (category) =>async(dispatch) =>{
   }
 }
 //list product Price
-export const listProductsPrice = (price) =>async(dispatch) =>{
+export const listProductsPrice = (userCreate,price) =>async(dispatch) =>{
   dispatch({
     type: PRODUCT_LIST_REQUEST,
     loading: true
   })
   try {
-    const { data } = await Axios.post('/api/products/list',{price})
+    const { data } = await Axios.post('/api/products/list',{userCreate,price})
    
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
@@ -85,13 +85,13 @@ export const listProductsPrice = (price) =>async(dispatch) =>{
     });
   }
 };//list product Price
-export const listProductsColor = (color) =>async(dispatch) =>{
+export const listProductsColor = (userCreate,color) =>async(dispatch) =>{
   dispatch({
     type: PRODUCT_LIST_REQUEST,
     loading: true
   })
   try {
-    const { data } = await Axios.post('/api/products/list',{color})
+    const { data } = await Axios.post('/api/products/list',{userCreate,color})
    
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
@@ -147,13 +147,15 @@ export const detailProduct = (productId) => async (dispatch) => {
     });
   }
 }
-export const searchProduct = (search) =>async(dispatch)=>{
+export const searchProduct = (search,userCreate) =>async(dispatch)=>{
   dispatch({
     type: PRODUCT_SEARCH_REQUEST,
     loading: true
   })
   try {
-    const { data } = await Axios.post(`/api/products/search`,{search});
+    console.log(search)
+    const { data } = await Axios.post(`/api/products/search`,{search,userCreate});
+    
     dispatch({
       type: PRODUCT_SEARCH_SUCCESS,
       payload: data
@@ -161,6 +163,72 @@ export const searchProduct = (search) =>async(dispatch)=>{
   } catch (error) {
     dispatch({
       type: PRODUCT_SEARCH_FAIL,
+      payload: error.response &&
+        error.response.data.message ?
+        error.response.data.message :
+        error.message
+    })
+  }
+}
+
+
+export const editProduct = (id,name,category,sdescription,price,countInStock,fearture,sale,description,color) =>async(dispatch)=>{
+  dispatch({
+    type: PRODUCT_SEARCH_REQUEST,
+    loading: true
+  })
+  try {
+    const { data } = await Axios.put(`/api/products/${id}/edit`,{name,category,sdescription,price,countInStock,fearture,sale,description,color});
+    dispatch({
+      type: PRODUCT_SEARCH_SUCCESS,
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_SEARCH_FAIL,
+      payload: error.response &&
+        error.response.data.message ?
+        error.response.data.message :
+        error.message
+    })
+  }
+}
+export const editProductImage = (id,image) =>async(dispatch)=>{
+  dispatch({
+    type: PRODUCT_SEARCH_REQUEST,
+    loading: true
+  })
+  try {
+    const { data } = await Axios.put(`/api/products/${id}/edit`,image);
+    dispatch({
+      type: PRODUCT_SEARCH_SUCCESS,
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_SEARCH_FAIL,
+      payload: error.response &&
+        error.response.data.message ?
+        error.response.data.message :
+        error.message
+    })
+  }
+}
+export const deleteProduct = (id)=>async(dispatch)=>{
+  dispatch({
+    type: PRODUCT_DELETE_REQUEST,
+    loading: true
+  })
+  try {
+    const { data } = await Axios.delete(`/api/products/${id}`);
+    console.log(data)
+    dispatch({
+      type: PRODUCT_DELETE_SUCCESS,
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_DELETE_FAIL,
       payload: error.response &&
         error.response.data.message ?
         error.response.data.message :
