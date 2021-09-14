@@ -77,14 +77,14 @@ function App() {
                 <Route exact path="/orders/items" key={document.location.href}>
                   <OrdersItems />
                 </Route>
-                <Route exact path="/products" key={document.location.href}>
+                <Route exact path="/products/manager" key={document.location.href}>
                   <Products />
                 </Route>
-                <Route exact path="/customers" key={document.location.href}>
+                <Route exact path="/customer" key={document.location.href}>
                   <Customers />
                 </Route>
 
-                <Route exact path="/addproduct" key={document.location.href}>
+                <Route exact path="/products/add"key={document.location.href}>
                   <AddProduct />
                 </Route>
                 <Route path="/profile" key={document.location.href}>

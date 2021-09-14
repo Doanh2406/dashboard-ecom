@@ -8,11 +8,17 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getCart } from "../redux/actions/cartActions";
+import { detailProduct, listProductsSearch } from "../redux/actions/productActions";
+import { listUserSearch } from "../redux/actions/userActions";
 import TabsInfor from "../Tabs/TabsInfor";
 import "./Header.scss";
 
 function Header() {
+  const { userInfo } = useSelector(state => state.userSignIn)
   const [infor, setInfor] = useState(false);
+  const { product } = useSelector(state => state.productSearch)
+  const { list } = useSelector(state => state.userListSearch)
+  const [search, setSearch] = useState()
   function handleBoxClick() {
     setInfor(!infor);
   }
@@ -23,16 +29,28 @@ function Header() {
   useEffect(() => {
     dispatch(getCart(userSignin.userInfo._id));
   }, [cartItems]);
+  console.log(list, product)
+  useEffect(() => {
+    
+  }, [search])
   return (
     <div className="header">
       <div className="header__name"> OverView</div>
       <div className="header__search">
         <SearchIcon className="header__search-icon" />
         <input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
           type="text"
           placeholder="Search ..."
           className="header__search-box"
         />
+       {
+         list  &&
+         <div className='header_search_form'>
+           cc
+          </div>
+       }
       </div>
       <div className="header__bage-icon">
         <Badge badgeContent={4} color="error" onClick={handleBoxClick}>

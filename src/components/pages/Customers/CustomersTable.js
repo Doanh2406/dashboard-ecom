@@ -141,8 +141,8 @@ const handleActions = (index) => {
                       <div >
                         <div className='tb_th_row_actions_active'>
                           <p className='tb_th_row_actions_active_item item1' style={{ marginTop: 0 }}>Show Detail</p>
-                          <p className='tb_th_row_actions_active_item ' >Edit  </p>
-                          <p className='tb_th_row_actions_active_item item3' >Delete</p>
+                          <p className='tb_th_row_actions_active_item ' >Inbox  </p>
+                          <p className='tb_th_row_actions_active_item item3' >Block/Active</p>
                         </div>
                       </div>
                     </>
