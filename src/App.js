@@ -5,12 +5,13 @@ import SideBar from "./components/SideBar/SideBar";
 import Header from "./components/Header/Header";
 import "./App.scss";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+import { useSelector } from "react-redux";
+import "./App.scss";
+import './components/styles/_value.scss'
 import LoadingPage from "./components/LoadingPage/LoadingPage";
 import NoMatchPage from "./components/NoMatchPage/NoMatchPage";
-
 import SignIn from "./components/pages/SignIn/SignIn";
 import SignUp from "./components/pages/SignUp/SignUp";
-import {  useSelector } from "react-redux";
 
 
 const outerTheme = createTheme({
@@ -30,13 +31,11 @@ const outerTheme = createTheme({
   },
 });
 
-
 function App() {
   const { loading, userInfo } = useSelector(state => state.userSignIn)
 
 
   return (
-
     <ThemeProvider theme={outerTheme}>
       {
         loading ? <LoadingPage /> : null
@@ -51,56 +50,56 @@ function App() {
             <div className="body">
               <div style={{ height: 80 }} />
               <Header />
-
+            </div>
+            <div className="body-content">
               <Switch>
-                <Route exact path="/cart" key={document.location.href} >
+                <Route exact path="/cart" key={document.location.href}>
                   <Cart />
                 </Route>
-                <Route exact path="/shopping" key={document.location.href} >
+                <Route exact path="/shopping" key={document.location.href}>
                   <Home />
                 </Route>
-                <Route exact path="/shopping/:id" key={document.location.href} >
+                <Route exact path="/shopping/:id" key={document.location.href}>
                   <ShopProductsDetail />
                 </Route>
-                <Route exact path="/orders" key={document.location.href} >
+                <Route exact path="/orders" key={document.location.href}>
                   <Orders />
                 </Route>
-                <Route exact path="/orders/items" key={document.location.href} >
+                <Route exact path="/orders/items" key={document.location.href}>
                   <OrdersItems />
                 </Route>
-                <Route exact path="/products" key={document.location.href} >
+                <Route exact path="/products" key={document.location.href}>
                   <Products />
                 </Route>
-                <Route exact path="/customers" key={document.location.href} >
+                <Route exact path="/customers" key={document.location.href}>
                   <Customers />
                 </Route>
 
-                <Route exact path="/addproduct" key={document.location.href} >
+                <Route exact path="/addproduct" key={document.location.href}>
                   <AddProduct />
                 </Route>
-                <Route path="/profile" key={document.location.href} >
+                <Route path="/profile" key={document.location.href}>
                   <Profile />
                 </Route>
-                <Route path="/checkout" key={document.location.href} >
+                <Route path="/checkout" key={document.location.href}>
                   <Checkout />
                 </Route>
-                <Route path="/invoices" key={document.location.href} >
+                <Route path="/invoices" key={document.location.href}>
                   <InVoices />
                 </Route>
                 <Route path="/product/:id/edit" key={document.location.href} >
                   <ProductDetail />
                 </Route>
-                <Route path="/invoicesdetail" key={document.location.href} >
+                <Route path="/invoicesdetail" key={document.location.href}>
                   <InVoiceDetail />
                 </Route>
-                <Route exact path="/" key={document.location.href} >
+                <Route exact path="/" key={document.location.href}>
                   <Dashboard />
                 </Route>
-                <Route exact path="*" key={document.location.href} >
+                <Route exact path="*" key={document.location.href}>
                   <NoMatchPage />
                 </Route>
               </Switch>
-
             </div>
 
           </div>
@@ -121,8 +120,6 @@ function App() {
           </Switch>
       }
     </ThemeProvider>
-
-
   );
 }
 
