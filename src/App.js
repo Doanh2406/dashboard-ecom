@@ -3,6 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Route, Switch, withRouter } from "react-router-dom";
 import "./App.scss";
+import "./components/styles/_value.scss";
 import Header from "./components/Header/Header";
 import LoadingPage from "./components/LoadingPage/LoadingPage";
 import NoMatchPage from "./components/NoMatchPage/NoMatchPage";
@@ -22,10 +23,10 @@ import {
   Profile,
   ShopProductsDetail,
 } from "./components/pages";
+
 import SignIn from "./components/pages/SignIn/SignIn";
 import SignUp from "./components/pages/SignUp/SignUp";
 import SideBar from "./components/SideBar/SideBar";
-import "./components/styles/_value.scss";
 
 const outerTheme = createTheme({
   palette: {
@@ -45,21 +46,20 @@ const outerTheme = createTheme({
 });
 
 function App() {
-  const { loading, userInfo } = useSelector((state) => state.userSignIn);
+  const { loading, error, userInfo } = useSelector((state) => state.userSignIn);
 
   return (
     <ThemeProvider theme={outerTheme}>
       {loading ? <LoadingPage /> : null}
       {userInfo ? (
-        <div className="app">
-          <div className="sidebar">
+        <div className="app ">
+          <div className="sidebar hide-on-tab-left">
             <SideBar />
           </div>
-          <div className="body-app">
+          <div className="body-app grid ">
             <div className="body-header">
               <Header />
             </div>
-
             <div className="body-content">
               <Switch>
                 <Route exact path="/cart" key={document.location.href}>
@@ -96,7 +96,7 @@ function App() {
                 <Route path="/invoices" key={document.location.href}>
                   <InVoices />
                 </Route>
-                <Route path="/product/:id/edit" key={document.location.href}>
+                <Route path="/productdetail" key={document.location.href}>
                   <ProductDetail />
                 </Route>
                 <Route path="/invoicesdetail" key={document.location.href}>

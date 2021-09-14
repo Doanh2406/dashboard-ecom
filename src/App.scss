@@ -10,13 +10,10 @@
 }
 .sidebar {
   width: 380px;
-  // position: fixed;
-  // top: 0;
-  // left: 0;
+  // display: node;
 }
 .body-app {
   flex: 1;
-  height: 2000px;
   display: flex;
   flex-direction: column;
   .body-header {
@@ -33,7 +30,7 @@
   width: 100%;
 }
 
-@media (min-width: 740px) and (max-width: 1023px) {
+@media (min-width: 480px) and (max-width: 1023px) {
   .hide-on-tab-left {
     display: none;
   }

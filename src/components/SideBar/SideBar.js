@@ -42,6 +42,7 @@ export default function SideBar() {
       icons: <BarChartOutlinedIcon className="sb_icons" />,
       children: [
         { link: "/shopping", name: "OVerview" },
+        { link: "/shopping/:id", name: "OVerview" },
         // { link: "/shop/add", name: "Add Product" },
       ],
     },
@@ -51,7 +52,8 @@ export default function SideBar() {
       icons: <CategoryOutlinedIcon className="sb_icons" />,
       children: [
         { link: "/products/manager", name: "All Product" },
-        { link: "/products/add", name: "Add Product" },
+        { link: "/productdetail", name: "Productdetail Product" },
+        { link: "/addproduct", name: "Add Product" },
       ],
     },
     {
@@ -82,6 +84,24 @@ export default function SideBar() {
         { link: "/dilivery/mass", name: "Mass Diliverys" },
         { link: "/dilivery/setting", name: "Dilivery Setting" },
       ],
+    },
+    {
+      // link: "/dilivery",
+      name: "Checkout",
+      icons: <LocalShippingOutlinedIcon className="sb_icons" />,
+      children: [
+        { link: "/checkout", name: "Check Out" },
+        { link: "/checkout/as", name: "Mass Diliverys" },
+       ],
+    },
+    {
+      // link: "/dilivery",
+      name: "Invoices",
+      icons: <LocalShippingOutlinedIcon className="sb_icons" />,
+      children: [
+        { link: "/invoices", name: "Invoices" },
+        { link: "/invoicesdetail", name: "Print Invoice" },
+       ],
     },
     {
       // link: "/customers",

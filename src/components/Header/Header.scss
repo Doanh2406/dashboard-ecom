@@ -21,6 +21,8 @@
   font-size: 30px;
   font-weight: 600;
   color: $dark;
+
+  min-width: 150px;
   padding-left: 30px;
 }
 .header__search {
@@ -50,7 +52,7 @@
   justify-content: space-between;
   display: flex;
   margin: 0 12px;
-
+min-width: 100px;
   color: white;
 }
 .header__bage-icon__bad {
@@ -137,10 +139,13 @@
   justify-content: space-between;
   align-items: center;
 }
-@media(min-width:740px) and (max-width:1023px){
+@media(min-width:10px) and (max-width:1023px){
   .header{
     left: 0;
     top:0;
     right: 0;
+  }
+  .header__button{
+    display: none;
   }
 }
