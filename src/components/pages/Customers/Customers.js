@@ -66,8 +66,6 @@ export default function Customers() {
   const [page, setPage] = useState(1);
   const [search,setSearch] = useState();
   useEffect(() => {
-    console.log('cc')
-    
     dispatch(listUser((page-1)*6, count, sort))
   }, [page,sort,count])
   useEffect(() => {

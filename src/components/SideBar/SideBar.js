@@ -41,7 +41,7 @@ export default function SideBar() {
       name: "Overview",
       icons: <BarChartOutlinedIcon className="sb_icons" />,
       children: [
-        { link: "/shopping", name: "OVerview" },
+        { link: "/shopping", name: "Overview" },
         // { link: "/shop/add", name: "Add Product" },
       ],
     },
@@ -60,7 +60,7 @@ export default function SideBar() {
       icons: <ListAltOutlinedIcon className="sb_icons" />,
       children: [
         { link: "/orders", name: "All Order" },
-        { link: "/orders/cancle", name: "Canceled Order" },
+        { link: "/orders/cancele", name: "Canceled Order" },
         { link: "/orders/refund", name: "Refund Order" },
       ],
     },
