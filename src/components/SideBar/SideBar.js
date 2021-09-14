@@ -3,7 +3,7 @@ import BarChartOutlinedIcon from "@material-ui/icons/BarChartOutlined";
 import CategoryOutlinedIcon from "@material-ui/icons/CategoryOutlined";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
-import LanguageOutlinedIcon from '@material-ui/icons/LanguageOutlined';
+import LanguageOutlinedIcon from "@material-ui/icons/LanguageOutlined";
 import ListAltOutlinedIcon from "@material-ui/icons/ListAltOutlined";
 import LocalShippingOutlinedIcon from "@material-ui/icons/LocalShippingOutlined";
 import MailOutlineOutlinedIcon from "@material-ui/icons/MailOutline";
@@ -117,7 +117,6 @@ export default function SideBar() {
     setShow(!show);
   };
 
-  
   const handleSetting = () => {
     setSetting(!setting);
   };

@@ -1,18 +1,31 @@
-import React from "react";
-import {  Switch, Route, withRouter } from "react-router-dom";
-import { Dashboard, Orders, OrdersItems, Home, Cart, Products, Customers, ShopProductsDetail, AddProduct, Profile, Checkout, InVoices, ProductDetail, InVoiceDetail } from "./components/pages";
-import SideBar from "./components/SideBar/SideBar";
-import Header from "./components/Header/Header";
-import "./App.scss";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+import React from "react";
 import { useSelector } from "react-redux";
+import { Route, Switch, withRouter } from "react-router-dom";
 import "./App.scss";
-import './components/styles/_value.scss'
+import Header from "./components/Header/Header";
 import LoadingPage from "./components/LoadingPage/LoadingPage";
 import NoMatchPage from "./components/NoMatchPage/NoMatchPage";
+import {
+  AddProduct,
+  Cart,
+  Checkout,
+  Customers,
+  Dashboard,
+  Home,
+  InVoiceDetail,
+  InVoices,
+  Orders,
+  OrdersItems,
+  ProductDetail,
+  Products,
+  Profile,
+  ShopProductsDetail,
+} from "./components/pages";
 import SignIn from "./components/pages/SignIn/SignIn";
 import SignUp from "./components/pages/SignUp/SignUp";
-
+import SideBar from "./components/SideBar/SideBar";
+import "./components/styles/_value.scss";
 
 const outerTheme = createTheme({
   palette: {
@@ -32,25 +45,21 @@ const outerTheme = createTheme({
 });
 
 function App() {
-  const { loading, userInfo } = useSelector(state => state.userSignIn)
-
+  const { loading, userInfo } = useSelector((state) => state.userSignIn);
 
   return (
     <ThemeProvider theme={outerTheme}>
-      {
-        loading ? <LoadingPage /> : null
-      }
-      {
-        userInfo ?
-          <div className="app">
-            <div className="sidebar">
-              <SideBar />
-
-            </div>
-            <div className="body">
-              <div style={{ height: 80 }} />
+      {loading ? <LoadingPage /> : null}
+      {userInfo ? (
+        <div className="app">
+          <div className="sidebar">
+            <SideBar />
+          </div>
+          <div className="body-app">
+            <div className="body-header">
               <Header />
             </div>
+
             <div className="body-content">
               <Switch>
                 <Route exact path="/cart" key={document.location.href}>
@@ -87,7 +96,7 @@ function App() {
                 <Route path="/invoices" key={document.location.href}>
                   <InVoices />
                 </Route>
-                <Route path="/product/:id/edit" key={document.location.href} >
+                <Route path="/product/:id/edit" key={document.location.href}>
                   <ProductDetail />
                 </Route>
                 <Route path="/invoicesdetail" key={document.location.href}>
@@ -101,24 +110,22 @@ function App() {
                 </Route>
               </Switch>
             </div>
-
           </div>
-          :
-          <Switch>
-            <Route exact path="/" key={document.location.href} >
-              <SignIn />
-            </Route>
-            <Route path="/signup" key={document.location.href} >
-              <SignUp />
-            </Route>
+        </div>
+      ) : (
+        <Switch>
+          <Route exact path="/" key={document.location.href}>
+            <SignIn />
+          </Route>
+          <Route path="/signup" key={document.location.href}>
+            <SignUp />
+          </Route>
 
-
-
-            <Route path="*" key={document.location.href} >
-              <NoMatchPage />
-            </Route>
-          </Switch>
-      }
+          <Route path="*" key={document.location.href}>
+            <NoMatchPage />
+          </Route>
+        </Switch>
+      )}
     </ThemeProvider>
   );
 }

@@ -1,41 +1,40 @@
-@import './components/styles/value';
+@import "./components/styles/value";
 @import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap" rel="stylesheet');
 
-:root{
-  background-color: $backgroundColor ;
+:root {
+  background-color: $backgroundColor;
 }
-.app{
+.app {
   display: flex;
   flex-direction: row;
 }
-.sidebar{
+.sidebar {
   width: 380px;
   // position: fixed;
   // top: 0;
   // left: 0;
 }
-.body-app{
+.body-app {
   flex: 1;
   height: 2000px;
   display: flex;
   flex-direction: column;
-  .body-header{
+  .body-header {
     width: calc(100%-300px);
   }
-  .body-content{
+  .body-content {
     margin-top: 80px;
     margin-left: 30px;
   }
- 
 }
-.header__class{
+.header__class {
   position: sticky;
   top: 0;
   width: 100%;
 }
 
-@media(min-width:740px) and (max-width:1023px){
-  .hide-on-tab-left{
+@media (min-width: 740px) and (max-width: 1023px) {
+  .hide-on-tab-left {
     display: none;
   }
 }
