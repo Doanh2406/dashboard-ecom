@@ -8,10 +8,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { listProducts, listProductsCategory, listProductsColor, listProductsPrice, listProductsSearch } from '../../redux/actions/productActions';
 import { useLocation } from 'react-router';
 import LoadingPage from '../../LoadingPage/LoadingPage';
-export default function Products() {
+
+
+export default function Products({lite}) {
   let location = useLocation();
   const { message} = useSelector(state => state.productDelete)
-
+  console.log(lite)
   const dispatch = useDispatch()
   const [value, setValue] = useState([0, 1000]);
   const [keywords, setKeywords] = useState(false)
@@ -44,6 +46,7 @@ export default function Products() {
     await dispatch(listProducts(userInfo.email, sort, (page - 1) * count))
 
   }
+  console.log(products)
   useEffect(() => {
     
     fetchData();
@@ -79,11 +82,12 @@ export default function Products() {
 
   return (
     <>
+    
     {
-      loading ? <LoadingPage />: <div className='h_container'>
+        loading ?  <LoadingPage />:   <div className='h_container'>
       <div className='h_cl1'>
         <LinkHome title='Products' />
-        <ProductsTable products={products} page={page}  handleNextPage={handleNextPage} handlePrePage={handlePrePage} count={count} setCount={setCount} sort={sort} setSort={setSort}/>
+         <ProductsTable products={products} page={page}  handleNextPage={handleNextPage} handlePrePage={handlePrePage} count={count} setCount={setCount} sort={sort} setSort={setSort}/>
         <div style={{ height: 100 }} />
       </div>
 

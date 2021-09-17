@@ -96,7 +96,7 @@ function App() {
                 <Route path="/invoices" key={document.location.href}>
                   <InVoices />
                 </Route>
-                <Route path="/productdetail" key={document.location.href}>
+                <Route path="/product/:id/edit" key={document.location.href}>
                   <ProductDetail />
                 </Route>
                 <Route path="/invoicesdetail" key={document.location.href}>

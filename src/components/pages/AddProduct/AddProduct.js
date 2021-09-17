@@ -59,7 +59,7 @@ export default function AddProduct() {
     formData.append('userCreate',userCreate);
     await dispatch(addProduct(formData))
     
-    history.push('/products')
+    history.push('/products/manager')
   }
   return (
     <div className='spd_container' >

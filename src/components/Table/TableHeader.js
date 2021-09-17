@@ -10,8 +10,8 @@ export default function TableHeader({search,setSearch, home, count, setCount, so
   
   const dispatch = useDispatch()
   const { product } = useSelector(state => state.productSearch)
-  const { list } = useSelector(state =>state.userListSearch)
-  console.log(list)
+  const {  list } = useSelector(state =>state.userListSearch)
+  
    return (
     <>
       <div className='tb_header'>
@@ -39,9 +39,9 @@ export default function TableHeader({search,setSearch, home, count, setCount, so
             <input value={search} onChange={e => setSearch(e.target.value)} type="text" id="search-bar" placeholder="Search..." />
             <img class="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png" alt='' />
             {
-              product ? <div style={product===undefined?{display:'none',}:null} className='search_container_form'>
+              product !== undefined && product.length > 0 ?  <div  className='search_container_form'>
                 {
-                  product && product.map(item => {
+                  product.map(item => {
                     return (
                       <NavLink onClick={()=>dispatch(detailProduct(item._id))} to={`/shopping/${item._id}`} style={{ textDecoration: 'none' }}>
                         <div className='search_container_item' >
@@ -59,10 +59,10 @@ export default function TableHeader({search,setSearch, home, count, setCount, so
                   })
 
                 }
-              </div> : null
+              </div> :null
             }
               {
-              list ? <div style={{width:'17%'}}  className='search_container_form'>
+               list !== undefined && list.length > 0  ? <div style={{width:'17%'}}  className='search_container_form'>
                 {
                   list && list.map(item => {
                     return (

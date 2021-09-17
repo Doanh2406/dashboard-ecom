@@ -1,16 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react'
-import './ProductsTable.scss'
+import './Dashboard.scss'
 import { NavLink } from 'react-router-dom';
-import TableHeader from '../../Table/TableHeader';
 import TablePages from '../../Table/TablePages';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteProduct, detailProduct, searchProduct } from '../../redux/actions/productActions';
-export default function ProductsTable({lite, products, page, handleNextPage, handlePrePage, count, setCount, sort, setSort }) {
+import { deleteProduct, detailProduct, listProducts, searchProduct } from '../../redux/actions/productActions';
+export default function TableDashboard() {
 
   const [actions, setActions] = useState(null)
-  const [checkAll, setCheckAll] = useState(false)
-  const actionRef = useRef();
-  const [search, setSearch] = useState('')
+  const { loading, products } = useSelector(state => state.productList)
+
   const dispatch = useDispatch()
   const { userInfo } = useSelector(state => state.userSignIn)
   const { message } = useSelector(state => state.productDelete)
@@ -22,37 +20,26 @@ export default function ProductsTable({lite, products, page, handleNextPage, han
     }
     setActions(index)
   }
-  const handleCheck = () => {
-    if (actionRef.current.checked) {
-      setCheckAll(!checkAll)
-    }
-    else {
-      setCheckAll(null)
-    }
-  }
-  async function fetchData() {
-    await dispatch(searchProduct(search, userInfo.email))
+  
+  async function fetchData(){
+    await dispatch(listProducts(userInfo.email, 0, 0))
+
   }
   useEffect(() => {
     fetchData()
-
-  }, [search, dispatch])
+    console.log('cc')
+  }, [])
   return (
     <>
       {
         products && 
         <div className='tb_container'>
-         <TableHeader search={search} setSearch={setSearch} count={count} setCount={setCount} sort={sort} handleSort={setSort} title='All Products' />
+         
           
 
 
           <div className='tb_first_row'>
-            <div className='st_check' style={{ marginBottom: 40, width: '10%', marginLeft: 20 }}>
-              <label class="container">
-                <input type="checkbox" ref={actionRef} onChange={() => handleCheck()} />
-                <span class="checkmark"></span>
-              </label>
-            </div>
+           
             <div style={{ width: '10%' }} >
               <p>Id</p>
             </div>
@@ -76,11 +63,11 @@ export default function ProductsTable({lite, products, page, handleNextPage, han
             <div style={{ width: '10%', display: 'flex', flexDirection: 'row-reverse', marginRight: 30 }} >
               <p>Actions</p>
             </div>
-            
+
           </div>
           
           {
-            products && products.slice(0, count).map((item, index) => {
+            products && products.slice(0, 3).map((item, index) => {
               let stock;
               item.countInStock > 0 ?
                 stock = <p style={{ color: '#05b171' }}>In Stock</p> :
@@ -88,12 +75,7 @@ export default function ProductsTable({lite, products, page, handleNextPage, han
                 stock = <p style={{ color: '#ea4444' }}>Out of Stock</p>
               return (
                 <div className='tb_th_row' key={index} >
-                  <div className='st_check' style={{ marginBottom: 40, width: '10%', marginLeft: 20 }}>
-                    <label class="container">
-                      <input type="checkbox" checked={checkAll ? true : null} />
-                      <span class="checkmark"></span>
-                    </label>
-                  </div>
+                  
                   <div style={{ width: '10%', color: '#ff6e40', cursor: 'pointer' }}  >
                     <NavLink onClick={() => dispatch(detailProduct(item._id))} className='tb_link' exact to={`/product/${item._id}/edit`}
                     >
@@ -142,8 +124,6 @@ export default function ProductsTable({lite, products, page, handleNextPage, han
               )
             })
           }
-         <TablePages page={page} handleNextPage={handleNextPage} handlePrePage={handlePrePage} />
-         
         </div>
       }
     </>

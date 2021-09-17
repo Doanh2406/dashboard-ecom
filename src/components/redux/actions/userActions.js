@@ -28,7 +28,7 @@ export const signUp = (name, email, password) => async (dispatch) => {
     },
   });
   try {
-    const { data } = await Axios.post("/api/users", {
+    const { data } = await Axios.post("/api/users/signup", {
       name,
       email,
       password,

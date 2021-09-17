@@ -53,7 +53,7 @@ export default function SideBar() {
       children: [
         { link: "/products/manager", name: "All Product" },
         { link: "/productdetail", name: "Productdetail Product" },
-        { link: "/addproduct", name: "Add Product" },
+        { link: "/products/add", name: "Add Product" },
       ],
     },
     {

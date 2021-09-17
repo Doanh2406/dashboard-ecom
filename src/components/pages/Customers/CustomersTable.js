@@ -110,7 +110,7 @@ const handleActions = (index) => {
                   pathname: '/orders/items',
                   datas: { data: item }
                 }}  >
-                  <p>{item._id.slice(0,5)}</p>
+                  <p>{item._id.slice(19,25)}</p>
                 </NavLink>
               </div>
               <div style={{ width: '10%' }} >

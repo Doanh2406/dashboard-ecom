@@ -5,14 +5,15 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Review from './Review';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import { editProduct,} from '../../redux/actions/productActions';
 import LoadingPage from '../../LoadingPage/LoadingPage';
 
 
 export default function ProductDetail() {
   let { id } = useParams();
- 
+  const history = useHistory()
+
   const dispatch = useDispatch()
   const [tab, setTab] = useState(1);
   const [photos, setPhotos] = useState(0);
@@ -43,7 +44,7 @@ export default function ProductDetail() {
     
     await dispatch(editProduct(id,name,category,sdescription,price,countInStock,fearture,sale,description,color))
     alert('success')
-    
+    history.goBack();
     // await dispatch(editProductImage(id,))
   }
   useEffect(() => {
