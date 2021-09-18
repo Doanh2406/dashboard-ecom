@@ -31,6 +31,7 @@ import {
 import Products from "../Products/Products";
 import "./Dashboard.scss";
 import TableDashboard from "./TableDashboard";
+import RecentReview from "./RecentReview";
 const data = [
   {
     name: "22/9",
@@ -68,37 +69,9 @@ const data = [
 
   }
 ];
-const reviews = [
-  {
-    name: 'Nhat',
-    rating: 5,
-    comment: 'Useful',
-    image: 'http://localhost:5000/upload/user/1F102150910-1.jpg'
-  },
-  {
-    name: 'Doanh',
-    rating: 1,
-    comment: 'So bad, this product is useless',
-    image: 'http://localhost:5000/upload/user/5a1b7375b6f8b.jpg'
-  },
-  {
-    name: 'Cay',
-    rating: 1,
-    comment: 'I am from Viet Nam, so I like a star',
-    image: 'http://localhost:5000/upload/user/5a2f6b267df66.jpg'
-  }
-]
+
 export default function Dashboard() {
-  const [review, setReview] = useState(0)
-  function reviewUpdate() {
 
-    // setInterval(function(){
-
-    // }, 2000);
-  }
-  useEffect(() => {
-    reviewUpdate();
-  }, [])
   return (
     <div className="dashboard">
 
@@ -266,40 +239,10 @@ export default function Dashboard() {
             <p style={{ marginTop: 0, fontWeight: 600 }}>Recent Review</p>
             <p style={{ marginLeft: 'auto', marginTop: 0, fontSize: 14, color: '#ff6e40' }}>View all</p>
           </div>
-          <div className='dashboard_review'>
-            <div style={{ display: 'flex', flexDirection: 'row' }}>
-              <img src={reviews[review].image} alt='' />
-              <div>
-                <p style={{ fontWeight: 600, marginTop: 0 }}>{reviews[review].name}</p>
-                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: -10, }}>
-                  {
-                    reviews[review].rating - 1 > -0.5 && <StarIcon style={{ fontSize: 24, color: '#ffb400' }} />
-                  }
-                  {
-                    reviews[review].rating - 2 > -0.5 && <StarIcon style={{ fontSize: 24, color: '#ffb400' }} />
-                  }
-                  {
-                    reviews[review].rating - 3 > -0.5 && <StarIcon style={{ fontSize: 24, color: '#ffb400' }} />
-                  }
-                  {
-                    reviews[review].rating - 4 > -0.5 && <StarIcon style={{ fontSize: 24, color: '#ffb400' }} />
-                  }
-                  {
-                    reviews[review].rating - 5 > -0.5 && <StarIcon style={{ fontSize: 24, color: '#ffb400' }} />
-                  }
-                  {
-                    Number(reviews[review].rating) === reviews[review].rating && reviews[review].rating % 1 !== 0 && <StarHalfIcon style={{ fontSize: 14, color: '#ffb400' }} />
-                  }
 
-                </div>
-              </div>
+          <RecentReview />
 
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'row' }}>
-              <p style={{ fontWeight: 600 }}>Comment: </p>
-              <p style={{ marginLeft: 20 }}>{reviews[review].comment}</p>
-            </div>
-          </div>
+
         </div>
       </div>
 
@@ -427,7 +370,7 @@ export default function Dashboard() {
 
       <div className='dashboard_row'>
         <div style={{ width: '37%' }}>
-          <h3>Activity</h3>
+          <h3 style={{ marginTop: -5 }}>Activity</h3>
           <div className='dashboard_row'>
             <div className='dashboard_card_but'>
               <LocalShippingOutlinedIcon style={{ color: '#9932e7' }} className='db_card_icon' />
@@ -441,7 +384,7 @@ export default function Dashboard() {
             </div>
             <div className='dashboard_card_but'>
               <ListAltOutlinedIcon style={{ color: '#ff6e40' }} className='db_card_icon' />
-              <h3>Ordered</h3>
+              <h3 >Ordered</h3>
               <p style={{ marginTop: -10, opacity: 0.7 }}>72 New Items</p>
               <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
                 <div style={{ height: 5, backgroundColor: '#ff6e40', width: '30%', borderTopLeftRadius: 3, borderBottomLeftRadius: 3 }} />
@@ -468,29 +411,15 @@ export default function Dashboard() {
               <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
                 <div style={{ height: 5, backgroundColor: '#05b171', width: '60%', borderTopLeftRadius: 3, borderBottomLeftRadius: 3 }} />
                 <div style={{ height: 5, backgroundColor: '#6c757d', opacity: 0.4, width: '40%', borderTopRightRadius: 3, borderBottomRightRadius: 3 }} />
-{/* {
-  
-
-
- dủ 500 dòng
-
-
-
-
-
-
-
-
-} */}
               </div>
             </div>
           </div>
         </div>
 
-        <div style={{width:'61.7%'}}>
-          <h3>Recent Prodouct</h3>
+        <div style={{ width: '61.7%' }}>
+          <h3 style={{ marginTop: -5 }}>Recent Prodouct</h3>
           <div className='dashboard_table'>
-                <TableDashboard />
+            <TableDashboard />
           </div>
         </div>
       </div>

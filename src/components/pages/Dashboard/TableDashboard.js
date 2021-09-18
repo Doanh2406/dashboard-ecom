@@ -13,6 +13,7 @@ export default function TableDashboard() {
   const { userInfo } = useSelector(state => state.userSignIn)
   const { message } = useSelector(state => state.productDelete)
   console.log(message)
+ 
   const handleActions = (index) => {
     if (index === actions) {
       setActions(null)
