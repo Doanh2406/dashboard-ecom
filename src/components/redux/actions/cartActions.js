@@ -12,7 +12,7 @@ export const addToCart = (productId, qty,userCart) => async (dispatch) => {
     product: data._id,
     qty
   }
-   await Axios.put('/api/carts/',{
+   await Axios.post('/api/carts/',{
     userCart:userCart,
     cart:payload
   })
@@ -54,13 +54,13 @@ export const getCart = (userCart) =>async (dispatch)=>{
 }
 
 export const deleteCart = (userCart,id)=>async(dispatch)=>{
-  const {data} = await Axios.put('/api/carts/delete',{userCart,id})
   dispatch({
     type:DELETE_CART_REQUEST,
     loading:true,
   });
   
   try {
+    const {data} = await Axios.delete('/api/carts/delete',{userCart,id})
     dispatch({
       type:DELETE_CART_SUCCESS,
       payload:data

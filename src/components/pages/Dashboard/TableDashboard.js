@@ -12,7 +12,7 @@ export default function TableDashboard() {
   const dispatch = useDispatch()
   const { userInfo } = useSelector(state => state.userSignIn)
   const { message } = useSelector(state => state.productDelete)
-  console.log(message)
+
  
   const handleActions = (index) => {
     if (index === actions) {
@@ -28,7 +28,7 @@ export default function TableDashboard() {
   }
   useEffect(() => {
     fetchData()
-    console.log('cc')
+   
   }, [])
   return (
     <>

@@ -1,10 +1,11 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import { addCartReducer, deleteCartReducer, getCartReducer } from "./reducers/cartReducers";
+import { orderListReducer } from "./reducers/orderReducers";
 import { productAddReducer, productDeleteReducer, productDetailReducer, productEditReducer, productListReducer, productSearchReducer } from "./reducers/productReducers";
-import { addReviewReducer, getReviewReducer } from "./reducers/reviewReducers";
+import { addResponseReducer, addReviewReducer, deleteCommentReducer, getReviewReducer } from "./reducers/reviewReducers";
 import { searchReducer } from "./reducers/searchReducers";
-import { userListReducer, userListSearchReducer, userSigninReducer, userSignUpReducer, userUpdateReducer } from "./reducers/userReducers";
+import { userDetailReducer, userListReducer, userListSearchReducer, userSigninReducer, userSignUpReducer, userUpdateReducer } from "./reducers/userReducers";
 
 const initialState = {
   userSignIn: {
@@ -15,23 +16,38 @@ const initialState = {
 };
 
 const reducer = combineReducers({
-  productAdd: productAddReducer,
-  productList: productListReducer,
+  
   userSignUp: userSignUpReducer,
   userSignIn:userSigninReducer,
+  userUpdate:userUpdateReducer,
+  userList:userListReducer,
+  userListSearch:userListSearchReducer,
+  userDetail:userDetailReducer,
+  
   productDetail:productDetailReducer,
+  productSearch:productSearchReducer,
+  productEdit:productEditReducer,
+  productAdd: productAddReducer,
+  productList: productListReducer,
+  productDelete:productDeleteReducer,
+
   cart:addCartReducer,
   getCart:getCartReducer,
   deleteCart:deleteCartReducer,
+
+
   reviewAdd:addReviewReducer,
   reviewGet:getReviewReducer,
-  userUpdate:userUpdateReducer,
-  productSearch:productSearchReducer,
-  productEdit:productEditReducer,
-  userList:userListReducer,
-  userListSearch:userListSearchReducer,
-  productDelete:productDeleteReducer,
-  search:searchReducer
+  responseAdd:addResponseReducer,
+  deleteComment:deleteCommentReducer,
+
+
+  search:searchReducer,
+
+  orderList:orderListReducer,
+
+  
+
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
