@@ -38,12 +38,12 @@ export default function SideBar() {
     },
     {
       // link: "/shopping",
-      name: "Overview",
+      name: "Analytics",
       icons: <BarChartOutlinedIcon className="sb_icons" />,
       children: [
-        { link: "/shopping", name: "OVerview" },
-        { link: "/shopping/:id", name: "OVerview" },
-        // { link: "/shop/add", name: "Add Product" },
+        { link: "/", name: "Dashboards" },
+        { link: "/shopping/:id", name: "Report" },
+        { link: "/shop/add", name: "Live View" },
       ],
     },
     {
@@ -52,7 +52,7 @@ export default function SideBar() {
       icons: <CategoryOutlinedIcon className="sb_icons" />,
       children: [
         { link: "/products/manager", name: "All Product" },
-        { link: "/productdetail", name: "Productdetail Product" },
+        { link: "/productdetail", name: "Inventory" },
         { link: "/products/add", name: "Add Product" },
       ],
     },
@@ -75,51 +75,34 @@ export default function SideBar() {
         { link: "/finance/add", name: "Sales Statistics" },
       ],
     },
-    {
-      // link: "/dilivery",
-      name: "Dilivery",
-      icons: <LocalShippingOutlinedIcon className="sb_icons" />,
-      children: [
-        { link: "/dilivery", name: "Dilivery Management" },
-        { link: "/dilivery/mass", name: "Mass Diliverys" },
-        { link: "/dilivery/setting", name: "Dilivery Setting" },
-      ],
-    },
-    {
-      // link: "/dilivery",
-      name: "Checkout",
-      icons: <LocalShippingOutlinedIcon className="sb_icons" />,
-      children: [
-        { link: "/checkout", name: "Check Out" },
-        { link: "/checkout/as", name: "Mass Diliverys" },
-       ],
-    },
-    {
-      // link: "/dilivery",
-      name: "Invoices",
-      icons: <LocalShippingOutlinedIcon className="sb_icons" />,
-      children: [
-        { link: "/invoices", name: "Invoices" },
-        { link: "/invoicesdetail", name: "Print Invoice" },
-       ],
-    },
+    // {
+    //   // link: "/dilivery",
+    //   name: "Dilivery",
+    //   icons: <LocalShippingOutlinedIcon className="sb_icons" />,
+    //   children: [
+    //     { link: "/dilivery", name: "Dilivery Management" },
+    //     { link: "/dilivery/mass", name: "Mass Diliverys" },
+    //     { link: "/dilivery/setting", name: "Dilivery Setting" },
+    //   ],
+    // },
+   
     {
       // link: "/customers",
       name: "Customer",
       icons: <AssignmentIndOutlinedIcon className="sb_icons" />,
       children: [
         { link: "/customer", name: "All Customer" },
-        { link: "/customer/manager", name: "Product Managerment" },
-        { link: "/customer/care", name: "Customer Managerment" },
+        { link: "/customer/add", name: "Add Customer" },
+        { link: "/customer/import", name: "Import Customer" },
       ],
     },
     {
       // link: "/cart",
-      name: "Cart",
+      name: "Discount",
       icons: <ShoppingCartOutlinedIcon className="sb_icons" />,
       children: [
-        { link: "/cart", name: "Cart" },
-        { link: "/cart/manager", name: "Cart Managerment" },
+        { link: "/discount", name: "Cart" },
+        { link: "/discount/manager", name: "Cart Managerment" },
       ],
     },
     {
@@ -127,8 +110,23 @@ export default function SideBar() {
       name: "Marketing",
       icons: <LanguageOutlinedIcon className="sb_icons" />,
       children: [
-        { link: "/marketing", name: "Marketing" },
-        { link: "/marketing/manager", name: "Marketing Managerment" },
+        { link: "/marketing", name: "Overview" },
+        { link: "/marketing/manager", name: "Campaigns" },
+        { link: "/marketing/manager", name: "Automations" },
+      ],
+    },
+    {
+      // link: "/cart",
+      name: "MY STORE",
+      icons: <LanguageOutlinedIcon className="sb_icons" />,
+      children: [
+        { link: "/store", name: "General" },
+        { link: "/store/payment", name: "Campaigns" },
+        { link: "/store/dilivery", name: "Dilivery" },
+        { link: "/store/checkout", name: "Checkout" },
+        { link: "/store/gift", name: "Gift cards" },
+        { link: "/store/sales", name: "Sales Channels" },
+        { link: "/store/files", name: "Files" },
       ],
     },
   ];
