@@ -1,0 +1,67 @@
+@import '../../styles/value';
+
+.cd_container{
+    display: flex;
+    flex-direction: row;
+    
+ 
+    .cd_fr{ 
+        background-color: #fff;
+        width: 20%;
+        border-radius: $radius;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: fit-content;
+        img{
+            width: 200px;
+            height: 200px;
+            border-radius: 200px;
+        }
+        a{
+            margin-right: 20px;
+        }
+        span{
+            font-weight: 600;
+        }
+    }
+    .cd_sr{
+      
+        width: 76%;
+        margin-left: 20px;
+        
+        .cd_sr_fr{
+            border-radius: $radius;
+            background-color: #fff;
+            padding: 0px 20px 0px 20px
+        }
+        .cd_sr_sr{
+            @extend .cd_sr_fr;
+            margin-top: 20px;
+        }
+    }
+}
+.cd_title{
+    font-weight: 600;
+}
+.cd_subs{
+    opacity: 0.7;
+    margin-top: -10px;
+    font-size: 14px;
+}
+.cd_tb_container{
+    
+    .cd_tb_row{
+        
+        display: flex;
+        flex-direction: row;
+    }
+}
+.cd_status{
+    width: fit-content;
+    color: #fff;
+    padding: 3px 10px 3px 10px;
+    border-radius: $radius;
+}
