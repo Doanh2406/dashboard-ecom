@@ -60,7 +60,7 @@ export default function ProductDetail() {
     }
 
   }, [dispatch,product])
-  console.log(loading, error, product)
+
   return (
     <>
       {

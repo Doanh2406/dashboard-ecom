@@ -1,5 +1,8 @@
 import Axios from "axios";
 import {
+  USER_DETAIL_FAIL,
+  USER_DETAIL_REQUEST,
+  USER_DETAIL_SUCCESS,
   USER_LIST_FAIL,
   USER_LIST_REQUEST,
   USER_LIST_SUCCESS,
@@ -230,6 +233,28 @@ export const listUserSearch = (search) =>async(dispatch)=>{
   } catch (error) {
     dispatch({
       type: USER_SEARCH_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+}
+
+export const userDetail = (id) =>async(dispatch)=>{
+  dispatch({
+    type: USER_DETAIL_REQUEST,
+    loading: true,
+  });
+  try {
+    const { data } = await Axios.get(`/api/users/${id}`);
+    dispatch({
+      type: USER_DETAIL_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: USER_DETAIL_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

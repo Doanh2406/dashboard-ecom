@@ -11,7 +11,8 @@ import Profile from "./Profile/Profile";
 import Checkout from "./Checkout/Checkout";
 import InVoices from "./Incomes/InVoices";
 import ProductDetail from "./ProductDetail/ProductDetail";
-import InVoiceDetail from './InVoiceDetail/InVoiceDetail'
+import InVoiceDetail from './InVoiceDetail/InVoiceDetail';
+import CustomerDetail from "./CustomerDetail/CustomerDetail";
 export{
   Dashboard,
   Orders,
@@ -26,5 +27,6 @@ export{
   Checkout,
   InVoices,
   ProductDetail,
-  InVoiceDetail
+  InVoiceDetail,
+  CustomerDetail
 }

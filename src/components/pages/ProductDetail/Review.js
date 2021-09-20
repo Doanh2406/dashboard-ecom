@@ -4,7 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import LoadingPage from '../../LoadingPage/LoadingPage';
-import {  getReview } from '../../redux/actions/reviewActions';
+import {  deleteComment, getReview } from '../../redux/actions/reviewActions';
+import { deleteCommentReducer } from '../../redux/reducers/reviewReducers';
 import './ProductDetail.scss';
 
 
@@ -35,6 +36,11 @@ export default function Review() {
       }
     }
 
+  }
+  const handleDelete = async(idR)=>{
+    
+    await dispatch(deleteComment(id,idR))
+    await dispatch(getReview(id))
   }
   async function getData(){
     await dispatch(getReview(id))
@@ -117,7 +123,24 @@ export default function Review() {
                   </div>
 
                 </div>
-                <p style={{color:'red',cursor:'pointer'}}>Delete this comment</p>
+                {
+                  item.response && item.response.length > 0 && item.response.map(itemm =>
+                    <div style={{ marginLeft: 70, marginTop: 20 }} key={itemm._id} >
+                      <div className='rv_comment'>
+                        <img src={itemm.userAva ? 'http://localhost:5000/' + itemm.userAva : 'http://localhost:5000/upload/constants/ava.png'} alt='' />
+                        <div className='rv_cm'>
+                          <p style={{ fontWeight: 650 }}>{itemm.userName}</p>
+
+                          <p style={{ fontSize: 14, marginTop: -10 }}>{itemm.userComment}</p>
+                        </div>
+
+                      </div>
+
+
+                    </div>
+                  )
+                }
+                <p className='rv_delete' onClick={()=>handleDelete(item._id)} >Delete Comment</p>
                 <div style={{ width: '100%', height: 1, backgroundColor: '#dbdbdb', marginBottom: 20 }} />
               </div>
             )

@@ -139,11 +139,11 @@
     }
     .dashboard_review{
       position: relative;
-      animation: slide 0.5s forwards;
+      animation: slide2 0.5s forwards;
       animation-delay: 0s;
       right: -40px;
       opacity: 0;
-      @keyframes slide {
+      @keyframes slide2 {
         100% { right: 0;opacity: 1; }
        }
       img{

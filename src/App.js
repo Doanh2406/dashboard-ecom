@@ -22,6 +22,7 @@ import {
   Products,
   Profile,
   ShopProductsDetail,
+  CustomerDetail
 } from "./components/pages";
 
 import SignIn from "./components/pages/SignIn/SignIn";
@@ -101,6 +102,9 @@ function App() {
                 </Route>
                 <Route path="/invoicesdetail" key={document.location.href}>
                   <InVoiceDetail />
+                </Route>
+                <Route path="/customers/:id" key={document.location.href}>
+                  <CustomerDetail />
                 </Route>
                 <Route exact path="/" key={document.location.href}>
                   <Dashboard />

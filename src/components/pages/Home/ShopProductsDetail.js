@@ -29,7 +29,7 @@ export default function ShopProductsDetail() {
   const [rating, setRating] = useState(0)
   const [countRating, setCountRating] = useState(0);
   const userSignin = useSelector(state => state.userSignIn)
-  console.log('ccc')
+  
   useEffect(() => {
    fetchData()
     if (cart.cart && product) {
@@ -53,10 +53,10 @@ export default function ShopProductsDetail() {
         }
       }
     }
-    console.log('cc')
+    
   }
   const handleArrow = (n) => {
-    console.log('cc')
+    
     if (n > product.image.length - 1) {
       setPhotos(0)
       return;
@@ -172,18 +172,7 @@ export default function ShopProductsDetail() {
               </div>
               <p>Feartures:</p>
               <p>{product.fearture}</p>
-              <div className='spd_fr_sc_add'>
-                <div className='spd_show'>
-                  <input className='spd_input' value={addCart} onChange={(e) => setAddCart(e.target.value)} />
-                  <div className='spd_row' >
-                    <ArrowDropUpIcon className='spd_row_up' />
-                    <ArrowDropDownIcon className='spd_row_down' />
-                  </div>
-                </div>
-                <div className='spd_add' onClick={() => { handleAdd() }}>
-                  <p>Add to Cart</p>
-                </div>
-              </div>
+             
             </div>
           </div>
           <div className='spd_sr_container'>

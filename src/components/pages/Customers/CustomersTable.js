@@ -107,7 +107,7 @@ const handleActions = (index) => {
               </div>
               <div style={{ width: '10%', color: '#ff6e40', cursor: 'pointer' }}  >
                 <NavLink className='tb_link' exact to={{
-                  pathname: '/orders/items',
+                  pathname: `/customers/${item._id}`,
                   datas: { data: item }
                 }}  >
                   <p>{item._id.slice(19,25)}</p>
@@ -127,7 +127,7 @@ const handleActions = (index) => {
                 <p>{item.country?item.country:'Not Set Yet'}</p>
               </div>
               <div style={{ width: '20%' }} >
-                <p>{item.createdAt}</p>
+                <p>{item.createdAt.slice(0,10)}</p>
               </div>
               <div style={{ width: '20%' }} >
                 {status}
