@@ -13,10 +13,10 @@
   display: flex;
   width: 100%;
   .dashboard__top-left{
-    width: 60%;
+    width: 66.3%;
   }
   .dashboard__top-right{
-    width: 35%;
+    width: 31%;
   }
 }
 
@@ -43,7 +43,7 @@
 
 .dashboard__top-left__layout {
   background-color: #fff;
-  height: 520px;
+  height: 560px;
   border-radius: 10px;
   padding:20px;
 }
@@ -106,7 +106,7 @@
     display: flex;
     flex-direction: column;
     padding:20px;
-    height: 520px;
+    height: 560px;
     background-color: #fff;
     border-radius: 20px;
     .db_do_row{
@@ -119,7 +119,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        margin-left: 30px;
+        margin-left: 20px;
         width: 50%;
         span{
           width: 30px;
