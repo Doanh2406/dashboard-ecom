@@ -13,7 +13,6 @@ import LoadingPage from '../../LoadingPage/LoadingPage';
 export default function Products({lite}) {
   let location = useLocation();
   const { message} = useSelector(state => state.productDelete)
-  console.log(lite)
   const dispatch = useDispatch()
   const [value, setValue] = useState([0, 1000]);
   const [keywords, setKeywords] = useState(false)
@@ -46,12 +45,11 @@ export default function Products({lite}) {
     await dispatch(listProducts(userInfo.email, sort, (page - 1) * count))
 
   }
-  console.log(products)
   useEffect(() => {
     
-    fetchData();
+   fetchData()
     
-  }, [dispatch, page, sort, count, colors, price,location,categories,message])
+  }, [page, sort, count, colors, price,categories,message])
 
   useEffect(() => {
     if (categories === false) {

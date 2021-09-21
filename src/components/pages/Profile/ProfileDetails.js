@@ -149,12 +149,12 @@ export default function ProfileDetails() {
           </p>
           <input  value={website} onChange={e=>setWebsite(e.target.value)} className='pro_input' />
           <p className='pro_title'>
-            Addres line 1
+            Addressline 1
           </p>
           <input value={addressline1} onChange={e=>setAddressline1(e.target.value)} className='pro_input' />
           
           <p className='pro_title'>
-            Addres line 2
+            Addressline 2
           </p>
           <input value={addressline2}  onChange={e=>setAddressline2(e.target.value)} className='pro_input' />
           

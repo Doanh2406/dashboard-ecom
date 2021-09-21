@@ -38,17 +38,19 @@
   // margin-right: 10px;
   font-weight: 600;
   line-height: 20px;
+  margin-right: 10px;
 }
 
 .dashboard__top-left__layout {
   background-color: #fff;
-  height: 620px;
-  border-radius: 20px;
+  height: 520px;
+  border-radius: 10px;
+  padding:20px;
 }
 .dashboard__top-left__layout-infor {
   display: flex;
   justify-content: space-between;
-  padding-top: 20px;
+
   // margin-left: 10px;
 }
 
@@ -64,30 +66,33 @@
   }
 }
 .dashboard__layout-selects {
-  height: 50px;
+  padding: 10px;
   width: 170px;
   border-radius: 10px;
-  margin-right: 20px;
-  border: solid 1px gray;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-right: -30px;
+  
+
+
   .dashboard__layout-select {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    background-color: #fff;
+    padding:10px;
+    width: 130px;
+    height: 40px;
+    font-size: 16px;
+    margin-left: 20px;
     outline: none;
-    option {
-      width: 110%;
-      position: absolute;
-      top: 12px;
+    border: 0.1px solid #D0CFCE;
+    border-radius: $radius;
+    transition: all 0.5s ease-in;
+    &:hover{
+      border: 0.1px solid $primary;
+
+    }
+    &:focus{
+      border: 0.1px solid $primary;
+
     }
   }
-  &:hover {
-    border: solid 1px #ff6e40;
-    cursor: pointer;
-  }
+  
 }
 .dashboard__layout-select__item {
   width: 170px;
@@ -98,9 +103,34 @@
 .dashboard__top-right {
   margin-left: 20px;
   .content-rights{
-    height: 600px;
+    display: flex;
+    flex-direction: column;
+    padding:20px;
+    height: 520px;
     background-color: #fff;
     border-radius: 20px;
+    .db_do_row{
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+
+      margin-top: 20px;
+      .db_do_row_item{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-left: 30px;
+        width: 50%;
+        span{
+          width: 30px;
+          height: 10px;
+          border-radius: $radius;
+          background-color: #0088FE;
+          margin-right: 5px;
+        }
+      }
+      
+    }
   }
 }
 
@@ -189,4 +219,22 @@
   padding-top: 20px;
   padding-left: 80px;
   height: 350px;
+}
+.dashboard_btn_down{
+      
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: $radius;
+  padding:0px 10px 0px 10px;
+  color: $primary;
+  border:1px solid $primary;
+  transition: all 0.5s ease;
+  
+  &:hover{
+    background-color: $primary;
+    color:#fff;
+  }
 }

@@ -153,7 +153,7 @@ export const searchProduct = (search,userCreate) =>async(dispatch)=>{
     loading: true
   })
   try {
-    console.log(search)
+
     const { data } = await Axios.post(`/api/products/search`,{search,userCreate});
     
     dispatch({
@@ -221,7 +221,7 @@ export const deleteProduct = (id)=>async(dispatch)=>{
   })
   try {
     const { data } = await Axios.delete(`/api/products/${id}`);
-    console.log(data)
+  
     dispatch({
       type: PRODUCT_DELETE_SUCCESS,
       payload: data

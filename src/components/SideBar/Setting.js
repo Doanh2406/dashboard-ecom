@@ -1,7 +1,7 @@
 import SettingsIcon from '@material-ui/icons/Settings';
 import React from 'react'
 import './Setting.scss'
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 export default function Setting({ action }) {
   
   return (
@@ -11,7 +11,7 @@ export default function Setting({ action }) {
         <div className='st_title' >
           < SettingsIcon style={{ fontSize: 30 }} />
           <p className='st_setting'>Settings</p>
-          <ArrowBackIcon style={{ marginLeft: 'auto', cursor: 'pointer' }} onClick={action} />
+          <ArrowRightAltIcon style={{ marginLeft: 'auto', cursor: 'pointer',marginRight:10 }} onClick={action} />
         </div>
         <hr style={{ opacity: 0.3 }} ></hr>
         <div className='st_check'>

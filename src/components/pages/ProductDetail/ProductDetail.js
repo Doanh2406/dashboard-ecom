@@ -6,7 +6,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Review from './Review';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router';
-import { editProduct,} from '../../redux/actions/productActions';
+import { detailProduct, editProduct,} from '../../redux/actions/productActions';
 import LoadingPage from '../../LoadingPage/LoadingPage';
 
 
@@ -47,6 +47,18 @@ export default function ProductDetail() {
     history.goBack();
     // await dispatch(editProductImage(id,))
   }
+  async function fetchData(){
+    
+    if(product){
+      if(product.length===0){
+        return await dispatch(detailProduct(id))
+      }
+    }
+    if(product){
+      return
+    }
+    
+  }
   useEffect(() => {
     if (product) {
       setName(product.name)
@@ -58,6 +70,7 @@ export default function ProductDetail() {
       setFearture(product.fearture)
       setCountInStock(product.countInStock)
     }
+    fetchData()
 
   }, [dispatch,product])
 
@@ -65,7 +78,7 @@ export default function ProductDetail() {
     <>
       {
         loading ? <LoadingPage /> :
-          <div className='spd_container' >
+          product.length!==0 && <div className='spd_container' >
             <LinkHome title='Products Detail' />
             <div className='spd_fr_container'>
               <div className='spd_fr_fc'>
@@ -99,8 +112,8 @@ export default function ProductDetail() {
                   </div>
                 </div>
                 <div className='add_btn_container'>
-                  <label style={image&&{background:'gray'}} className="add_btn" for="upload-photo">Add new photos for your product</label>
-                  <input onChange={(e) => setImage(e.target.files)} id='upload-photo' name='upload-photo' className='add_btn_choose' type='file' accept='image/*' multiple />
+                  <label style={image&&{background:'gray'}} className="add_btn" htmlFor="upload-photo">Add new photos for your product</label>
+                  <input value={image} onChange={(e) => setImage(e.target.files)} id='upload-photo' name='upload-photo' className='add_btn_choose' type='file' accept='image/*' multiple />
                 </div>
               </div>
               <div className='spd_fr_sc'>
