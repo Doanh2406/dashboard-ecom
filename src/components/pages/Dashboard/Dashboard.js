@@ -11,7 +11,8 @@ import NearMeOutlinedIcon from "@material-ui/icons/NearMeOutlined";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import StarIcon from "@material-ui/icons/Star";
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import React from "react";
+import React, { useState } from "react";
+import PieChart from './PieChart';
 import {
   Bar, BarChart, LabelList, Line, LineChart as LineChart2, XAxis
 } from "recharts";
@@ -52,17 +53,38 @@ const data = [
 ];
 
 export default function Dashboard() {
+  const [action,setAction] = useState()
+  const handleOnAction = (n) =>{
+    if(n===action){
+      return setAction()
+    }
+    setAction(n)
+  }
   return (
     <div className="dashboard">
       <div className="dashboard__top">
         <div className="dashboard__top-left ">
           <div className="dashboard__top-left__title">
-            <div className="dashboard__top-left__title-group">
+            <div style={{cursor:'pointer'}} className="dashboard__top-left__title-group">
               <span className="dashboard__top-left__title-text">Sales Chart</span>
               <HelpOutlineIcon color="primary" />
+              <div className='db_ques'>
+                <p>Daily orders and sales </p>
+              </div>
             </div>
             <div>
-              <MoreHorizIcon />
+              <MoreHorizIcon style={{cursor:"pointer"}} onClick={()=>handleOnAction(1)} />
+              {
+                action===1 && 
+                <div className='db_action_btn'>
+                <p>
+                  View Detail
+                </p>
+                <p>
+                  Download
+                </p>
+              </div>
+              }
             </div>
           </div>
           <div className="dashboard__top-left__layout">
@@ -76,15 +98,17 @@ export default function Dashboard() {
                   }}
                 />
                 <span>$10.552,40</span>
-                <div className="layout-text__recent">
+                <div style={{ alignItems: 'center' }} className="layout-text__recent">
                   <ArrowUpwardIcon
                     style={{
-                      fontSize: "30px",
+                      fontSize: "20px",
                       marginLeft: "10px",
                       color: "#05B171",
+                      marginTop: 5,
+                      marginLeft: 10
                     }}
                   />
-                  <span>8.3%</span>
+                  <span style={{ fontSize: 18, marginTop: -5 }}>8.3%</span>
                 </div>
               </div>
               <div className="dashboard__layout-selects">
@@ -132,16 +156,72 @@ export default function Dashboard() {
           </div>
         </div>
         <div className="dashboard__top-right">
-        <div className="dashboard__top-left__title">
-            <div className="dashboard__top-left__title-group">
+          <div className="dashboard__top-left__title">
+            <div style={{cursor:'pointer'}} className="dashboard__top-left__title-group">
               <span className="dashboard__top-left__title-text">Channel</span>
               <HelpOutlineIcon color="primary" />
+              <div className='db_ques'>
+                <p>Chanel where product are sold </p>
+              </div>
             </div>
             <div>
-              <MoreHorizIcon />
+            <MoreHorizIcon style={{cursor:"pointer"}} onClick={()=>handleOnAction(2)} />
+              {
+                action===2 && 
+                <div className='db_action_btn'>
+                <p>
+                  View Detail
+                </p>
+                <p>
+                  Download
+                </p>
+              </div>
+              }
+            
             </div></div>
           <div className="content-rights">
 
+            <PieChart />
+            <div className='db_do_row'>
+              <div className='db_do_row_item'>
+                <span />
+                <p style={{ fontWeight: 600 }}>Social Media:</p>
+                <ArrowUpwardIcon style={{ color: '#05b171', fontSize: 18, marginLeft: 5 }} />
+                <p style={{ color: '#05b171' }}>3.5%</p>
+              </div>
+              <div className='db_do_row_item'>
+                <span style={{ background: '#FF8042' }} />
+                <p style={{ fontWeight: 600 }}>Google:</p>
+                <ArrowUpwardIcon style={{ color: '#05b171', fontSize: 18, marginLeft: 5 }} />
+                <p style={{ color: '#05b171' }}>19.5%</p>
+              </div>
+
+
+            </div>
+            <div className='db_do_row'>
+              <div className='db_do_row_item'>
+                <span style={{ background: '#00C49F ' }} />
+                <p style={{ fontWeight: 600 }}>Email:</p>
+                <ArrowUpwardIcon style={{ color: '#05b171', fontSize: 18, marginLeft: 5 }} />
+                <p style={{ color: '#05b171' }}>8.5%</p>
+              </div>
+              <div className='db_do_row_item'>
+                <span style={{ background: '#FFBB28' }} />
+                <p style={{ fontWeight: 600 }}>Maketing:</p>
+                <ArrowUpwardIcon style={{ color: '#05b171', fontSize: 18, marginLeft: 5 }} />
+                <p style={{ color: '#05b171' }}>50.5%</p>
+
+              </div>
+
+            </div>
+            <div style={{ display: 'flex', width: '100%', justifyContent: 'center', marginTop: 50 }}>
+              <div style={{ alignItems: 'center', justifyContent: 'center', width: '60%' }} className="dashboard_btn_down">
+                <GetAppIcon
+                  style={{ fontWeight: 400, marginTop: 3, marginRight: 10 }}
+                />
+                <p>Download Report</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -153,7 +233,18 @@ export default function Dashboard() {
         <div className="dashboard_card">
           <div className="dashboard_card_title">
             <ShoppingBasketIcon style={{ fontSize: 50, color: "#ff6e40" }} />
-            <p style={{ marginLeft: "auto", marginTop: -10 }}>...</p>
+            <p style={{ marginLeft: "auto", marginTop: -10,cursor:'pointer',zIndex:10 } } onClick={()=>handleOnAction(3)} >...</p>
+              {
+                action===3 && 
+                <div style={{marginLeft:'18.5%',fontSize:14,marginTop:70,zIndex:20}} className='db_action_btn'>
+                <p>
+                  View Detail
+                </p>
+                <p>
+                  Download
+                </p>
+              </div>
+              }
           </div>
           <div className="dashboard_card_title">
             <div>
@@ -194,7 +285,18 @@ export default function Dashboard() {
         <div className="dashboard_card">
           <div className="dashboard_card_title">
             <LoyaltyIcon style={{ fontSize: 50, color: "#ff6e40" }} />
-            <p style={{ marginLeft: "auto", marginTop: -10 }}>...</p>
+            <p style={{ marginLeft: "auto", marginTop: -10,cursor:'pointer',zIndex:10 } } onClick={()=>handleOnAction(4)} >...</p>
+              {
+                action===4 && 
+                <div style={{marginLeft:'18.5%',fontSize:14,marginTop:70,zIndex:20}} className='db_action_btn'>
+                <p>
+                  View Detail
+                </p>
+                <p>
+                  Download
+                </p>
+              </div>
+              }
           </div>
           <div className="dashboard_card_title">
             <div>
@@ -258,7 +360,18 @@ export default function Dashboard() {
               Customer Rating
             </p>
 
-            <p style={{ marginLeft: "auto", marginTop: -10 }}>...</p>
+            <p style={{ marginLeft: "auto", marginTop: -10,cursor:'pointer',zIndex:10 } } onClick={()=>handleOnAction(5)} >...</p>
+              {
+                action===5 && 
+                <div style={{marginLeft:'18.5%',fontSize:14,marginTop:70,zIndex:20}} className='db_action_btn'>
+                <p>
+                  View Detail
+                </p>
+                <p>
+                  Download
+                </p>
+              </div>
+              }
           </div>
           <div className="dashboard_card_center">
             <p style={{ marginTop: -10, fontSize: 30, fontWeight: 600 }}>3.0</p>

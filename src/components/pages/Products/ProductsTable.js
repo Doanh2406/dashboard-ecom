@@ -14,7 +14,7 @@ export default function ProductsTable({lite, products, page, handleNextPage, han
   const dispatch = useDispatch()
   const { userInfo } = useSelector(state => state.userSignIn)
   const { message } = useSelector(state => state.productDelete)
-  console.log(message)
+
   const handleActions = (index) => {
     if (index === actions) {
       setActions(null)
