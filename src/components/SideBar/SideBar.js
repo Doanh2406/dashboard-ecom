@@ -101,7 +101,11 @@ export default function SideBar() {
       name: "Discount",
       icons: <ShoppingCartOutlinedIcon className="sb_icons" />,
       children: [
+<<<<<<< HEAD
         { link: "/cart", name: "Cart" },
+=======
+        { link: "/discount", name: "Cart" },
+>>>>>>> 80b1d743bba691c678969bb96b30e8a83c633088
         { link: "/discount/manager", name: "Cart Managerment" },
       ],
     },
@@ -110,9 +114,15 @@ export default function SideBar() {
       name: "Marketing",
       icons: <LanguageOutlinedIcon className="sb_icons" />,
       children: [
+<<<<<<< HEAD
         { link: "/coupon", name: "Coupon" },
         { link: "/couponslist", name: "Coupons List" },
       
+=======
+        { link: "/marketing", name: "Overview" },
+        { link: "/marketing/manager", name: "Campaigns" },
+        { link: "/marketing/manager", name: "Automations" },
+>>>>>>> 80b1d743bba691c678969bb96b30e8a83c633088
       ],
     },
     {

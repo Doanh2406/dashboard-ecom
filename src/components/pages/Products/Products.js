@@ -79,14 +79,22 @@ export default function Products({lite}) {
   
 
   return (
+<<<<<<< HEAD
     <div>
+=======
+    <>
+>>>>>>> 80b1d743bba691c678969bb96b30e8a83c633088
     
     {
         loading ?  <LoadingPage />:   <div className='h_container'>
       <div className='h_cl1'>
         <LinkHome title='Products' />
          <ProductsTable products={products} page={page}  handleNextPage={handleNextPage} handlePrePage={handlePrePage} count={count} setCount={setCount} sort={sort} setSort={setSort}/>
+<<<<<<< HEAD
       
+=======
+        <div style={{ height: 100 }} />
+>>>>>>> 80b1d743bba691c678969bb96b30e8a83c633088
       </div>
 
       <div className='h_cl2' >
@@ -196,6 +204,10 @@ export default function Products({lite}) {
       </div>
     </div>
     }
+<<<<<<< HEAD
     </div>
+=======
+    </>
+>>>>>>> 80b1d743bba691c678969bb96b30e8a83c633088
   )
 }

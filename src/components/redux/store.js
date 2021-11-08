@@ -1,8 +1,11 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import { addCartReducer, deleteCartReducer, getCartReducer } from "./reducers/cartReducers";
+<<<<<<< HEAD
 import { getConversationReducer, newConversationReducer } from "./reducers/conversationReducers";
 import { getMessageReducer, newMessageReducer } from "./reducers/messageReducers";
+=======
+>>>>>>> 80b1d743bba691c678969bb96b30e8a83c633088
 import { orderDetailReducer, orderListReducer } from "./reducers/orderReducers";
 import { productAddReducer, productDeleteReducer, productDetailReducer, productEditReducer, productListReducer, productSearchReducer } from "./reducers/productReducers";
 import { addResponseReducer, addReviewReducer, deleteCommentReducer, getReviewReducer } from "./reducers/reviewReducers";
@@ -50,11 +53,14 @@ const reducer = combineReducers({
   orderDetail:orderDetailReducer,
   
 
+<<<<<<< HEAD
   getConversation:getConversationReducer,
   newConversation:newConversationReducer,
   getMessage:getMessageReducer,
   newMessage:newMessageReducer
 
+=======
+>>>>>>> 80b1d743bba691c678969bb96b30e8a83c633088
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
