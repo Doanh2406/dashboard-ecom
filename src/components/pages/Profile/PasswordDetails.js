@@ -6,7 +6,7 @@ export default function PasswordDetails() {
   const [cp,setCp] = useState()
   const [np,setNp] = useState()
   const [cnp, setCnp] = useState()
-  const {loading,error,userInfo} = useSelector(state => state.userSignIn)
+  const {userInfo} = useSelector(state => state.userSignIn)
 
   const dispatch = useDispatch()
   const handleClick = async ()=>{

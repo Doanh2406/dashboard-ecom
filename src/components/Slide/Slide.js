@@ -64,7 +64,7 @@ function Slide() {
           >
             <ArrowBackIosIcon />
           </div>
-          <img className="big-image__img" src={selectImg}></img>
+          <img alt='' className="big-image__img" src={selectImg}></img>
           <div
             className="big-image__icon"
             onClick={() => handleForward(selectImg)}
@@ -80,6 +80,7 @@ function Slide() {
         <div className="small-image__item">
           {data.slice(currentIndex - 1, currentIndex + 2).map((img, index) => (
             <img
+              alt=''
               key={index}
               style={{ border: selectImg === img ? "4px solid purple" : "" }}
               className="small-image__img"

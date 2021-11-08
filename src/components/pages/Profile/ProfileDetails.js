@@ -5,7 +5,7 @@ import './Profile.scss'
 import LoadingPage from '../../LoadingPage/LoadingPage'
 export default function ProfileDetails() {
   const dispatch = useDispatch()
-  const {loading,error,userInfo} = useSelector(state => state.userSignIn)
+  const {loading,userInfo} = useSelector(state => state.userSignIn)
   const [userAva,setUserAva] = useState()
   const [name, setName] = useState();
   const [userName,setUserName] = useState();
@@ -27,7 +27,7 @@ export default function ProfileDetails() {
   const [facebook,setFacebook] = useState();
   const [instagram, setInstagram] = useState();
   const [zalo,setZalo] = useState();
- 
+  
   useEffect(() => {
   
     if(userInfo){
@@ -53,7 +53,6 @@ export default function ProfileDetails() {
       setZalo(userInfo.zalo)
     }
   }, [dispatch,userInfo])
-  
   const handleSubmit =async () =>{
     const formData = new FormData();
     formData.append('userAva',userAva)
@@ -71,13 +70,13 @@ export default function ProfileDetails() {
         loading?<LoadingPage />:<>
         <div className='pro_fc_row'>
           
-        <img style={{marginTop:20,borderRadius:50}} src={userInfo.userAva?userInfo.userAva:'http://localhost:5000/upload/constants/ava.png'} alt='photos' />
+        <img style={{marginTop:20,borderRadius:50}} src={userAva ? window.URL.createObjectURL(userAva) : userInfo.userAva?userInfo.userAva:'http://localhost:5000/upload/constants/ava.png'} alt='photos' />
         <div style={{ marginLeft: 20,  }}>
           <p style={{ fontWeight: 530, fontSize: 24 }}>{userInfo.name}</p>
           <div style={{ display: 'flex', flexDirection: 'row', marginTop: -18 }}>
           <div className='add_btn_container'>
-              <label style={{marginTop:-20}} className="pro_btn" for="upload-photo">Change Avatar</label>
-              <input onChange={(e) => setUserAva(e.target.files[0])} id='upload-photo' name='upload-photo' className='add_btn_choose' type='file' accept='image/*' name='uploadedImages'  />
+              <label style={userAva?{background:'gray',marginTop:-20}:{marginTop:-20}}  className="pro_btn" for="upload-photo">Change Avatar</label>
+              <input onChange={(e) => setUserAva(e.target.files[0])} id='upload-photo' name='upload-photo' className='add_btn_choose' type='file' accept='image/*'  />
             </div>
             <p style={{ marginLeft: 10, background: 'red' }} className='pro_btn'>Remove Avatar</p>
           </div>
@@ -149,12 +148,12 @@ export default function ProfileDetails() {
           </p>
           <input  value={website} onChange={e=>setWebsite(e.target.value)} className='pro_input' />
           <p className='pro_title'>
-            Addres line 1
+            Addressline 1
           </p>
           <input value={addressline1} onChange={e=>setAddressline1(e.target.value)} className='pro_input' />
           
           <p className='pro_title'>
-            Addres line 2
+            Addressline 2
           </p>
           <input value={addressline2}  onChange={e=>setAddressline2(e.target.value)} className='pro_input' />
           

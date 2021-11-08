@@ -1,1 +1,23 @@
-@import '../styles/value'
+@import '../styles/value';
+
+.footer{
+  padding-bottom: 40px;
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+   &__left{
+    margin-left: 40px;
+  }
+  &__right{
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: 20px;
+    width: fit-content;
+    
+    p{
+      margin-right: 10px;
+      cursor: pointer;
+    }
+  }
+}

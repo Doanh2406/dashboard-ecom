@@ -1,18 +1,31 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import './CustomersTable.scss'
 import customers_data from './customers_data';
-
 import { NavLink } from 'react-router-dom';
 import TableHeader from '../../Table/TableHeader';
 import TablePages from '../../Table/TablePages'
-export default function CustomersTable({ row }) {
-
+import { useDispatch } from 'react-redux';
+import { listUser } from '../../redux/actions/userActions';
+export default function CustomersTable({search, setSearch, list,page, setPage ,sort, setSort, count, setCount }) {
+  const dispatch = useDispatch()
+  const actionRef = useRef();
+  
   const [actions, setActions] = useState(null)
   const [checkAll, setCheckAll] = useState(false)
-  const actionRef = useRef();
+//skip=>page, count=>limit,sort
 
-
-  const handleActions = (index) => {
+console.log(list)
+console.log(count,sort,page)
+const handleNextPage = (n) => {
+  setPage(n ? page + n : page + 1)
+}
+const handlePrePage = () => {
+  if (page === 0) {
+    return
+  }
+  setPage(page - 1)
+}
+const handleActions = (index) => {
     if (index === actions) {
       setActions(null)
       return;
@@ -29,8 +42,10 @@ export default function CustomersTable({ row }) {
   }
 
   return (
-    <div className='tb_container'>
-      <TableHeader title='All customers' />
+    <>
+    {
+      list && <div className='tb_container'>
+      <TableHeader search={search} setSearch={setSearch} count={count} setCount={setCount} sort={sort} handleSort={setSort} title='All customers' />
 
 
       <div className='tb_first_row'>
@@ -69,7 +84,7 @@ export default function CustomersTable({ row }) {
       </div>
 
       {
-        customers_data.map((item, index) => {
+        list.map((item, index) => {
           let status;
           switch (item.status) {
             case 'active':
@@ -77,7 +92,7 @@ export default function CustomersTable({ row }) {
               break;
         
             default:
-              status = <p className='tb_status' style={{ backgroundColor: '#ea4444' }}>Passive</p>
+              status = <p className='tb_status' style={{ backgroundColor: '#ea4444' }}>Blocked</p>
               break;
           }
 
@@ -92,42 +107,42 @@ export default function CustomersTable({ row }) {
               </div>
               <div style={{ width: '10%', color: '#ff6e40', cursor: 'pointer' }}  >
                 <NavLink className='tb_link' exact to={{
-                  pathname: '/orders/items',
+                  pathname: `/customers/${item._id}`,
                   datas: { data: item }
                 }}  >
-                  <p>{item.id}</p>
+                  <p>{item._id.slice(19,25)}</p>
                 </NavLink>
               </div>
               <div style={{ width: '10%' }} >
-                <img src={item.photo} style={{ width: 50, height: 50, borderRadius: 10, }} />
+                <img src={item.userAva?'http://localhost:5000/'+item.userAva:'http://localhost:5000/upload/constants/ava.png'} style={{ width: 50, height: 50, borderRadius: 10, }} alt='' />
               </div>
               <div style={{ width: '20%' }} >
                 <p>{item.name}</p>
               </div>
               
               <div style={{ width: '20%' }} >
-                <p>{item.Email}</p>
+                <p>{item.email}</p>
               </div>
               <div style={{ width: '20%' }} >
-                <p>{item.country}</p>
+                <p>{item.country?item.country:'Not Set Yet'}</p>
               </div>
               <div style={{ width: '20%' }} >
-                <p>{item.date}</p>
+                <p>{item.createdAt.slice(0,10)}</p>
               </div>
               <div style={{ width: '20%' }} >
                 {status}
               </div>
 
               <div style={{ width: '10%', display: 'flex', flexDirection: 'row-reverse', marginRight: 30 }} >
-                <p className={actions == index ? 'tb_th_row_actions_clicked' : 'tb_th_row_actions'} onClick={() => { handleActions(index) }}>...</p>
+                <p className={actions === index ? 'tb_th_row_actions_clicked' : 'tb_th_row_actions'} onClick={() => { handleActions(index) }}>...</p>
                 {
-                  actions == null ? null : actions == index ? (
+                  actions == null ? null : actions === index ? (
                     <>
                       <div >
                         <div className='tb_th_row_actions_active'>
                           <p className='tb_th_row_actions_active_item item1' style={{ marginTop: 0 }}>Show Detail</p>
-                          <p className='tb_th_row_actions_active_item ' >Edit  </p>
-                          <p className='tb_th_row_actions_active_item item3' >Delete</p>
+                          <p className='tb_th_row_actions_active_item ' >Inbox  </p>
+                          <p className='tb_th_row_actions_active_item item3' >Block/Active</p>
                         </div>
                       </div>
                     </>
@@ -138,7 +153,9 @@ export default function CustomersTable({ row }) {
           )
         })
       }
-      <TablePages />
+      <TablePages page={page} handleNextPage={handleNextPage} handlePrePage={handlePrePage} />
     </div>
+    }
+    </>
   )
 }

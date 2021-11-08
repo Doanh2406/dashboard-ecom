@@ -3,13 +3,14 @@ import './AddProduct.scss'
 import LinkHome from '../../LinkHome/LinkHome'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from '../../redux/actions/productActions';
+import { useHistory } from 'react-router';
 
 
 export default function AddProduct() {
+  let history = useHistory();
+
   const dispatch = useDispatch();
   const [name, setName] = useState();
   const [image, setImage] = useState();
@@ -20,22 +21,23 @@ export default function AddProduct() {
   const [sale,setSale] = useState();
   const [countInStock, setCountInStock]= useState();
   const [fearture, setFearture] =  useState();
+  const [photos, setPhotos] = useState(0);
   const userSignin = useSelector(state => state.userSignIn)
   const userCreate = userSignin.userInfo.email;
-  const [title,setTitle] = useState(true);
+  
   const [color ,setColor] = useState();
   const data={  
     photo:''
   }
-  const [photos, setPhotos] = useState(0);
+  
 
   const handleArrow = (n) => {
-    if (n > data.photo.length - 1) {
+    if (n > image.length - 1) {
       setPhotos(0)
       return;
     }
     if (n < 0) {
-      setPhotos(data.photo.length - 1)
+      setPhotos(image.length - 1)
       return;
     }
     setPhotos(n)
@@ -57,8 +59,8 @@ export default function AddProduct() {
     }
     formData.append('userCreate',userCreate);
     await dispatch(addProduct(formData))
-    alert('Add success')
     
+    history.push('/products/manager')
   }
   return (
     <div className='spd_container' >
@@ -69,7 +71,7 @@ export default function AddProduct() {
             <div className='spd_arrow' onClick={() => handleArrow(photos - 1)}>
               <ChevronLeftIcon />
             </div>
-            <img src={data.photo[photos]} alt='' />
+            <img src={image && window.URL.createObjectURL(image[photos])} alt='' />
             <div className='spd_arrow' onClick={() => handleArrow(photos + 1)}>
               <ChevronRightIcon />
             </div>
@@ -78,26 +80,23 @@ export default function AddProduct() {
             <div className='spd_arrow' onClick={() => handleArrow(photos - 1)}>
               <ChevronLeftIcon />
             </div>
-            <img className='spd_photo_active' src={data.photo[photos]} alt='' />
-            <img className='spd_photo' src={photos+1===data.photo.length?data.photo[0]:data.photo[photos+1]} alt='' />
-            <img className='spd_photo' src={photos+2===data.photo.length?data.photo[0]:photos+1===data.photo.length?data.photo[1]:data.photo[photos+2]} alt='' />
-            <img className='spd_photo' src={photos+3===data.photo.length?data.photo[0]:photos+2===data.photo.length?data.photo[1]:photos+1===data.photo.length?data.photo[2]:data.photo[photos+3]} alt='' />
+            <img className='spd_photo_active' src={image && window.URL.createObjectURL(image[photos])} alt='' />
+            <img className='spd_photo' src={!image  ? null: photos+1===image.length?window.URL.createObjectURL(image[0]):window.URL.createObjectURL(image[photos+1])} alt='' />
+            <img className='spd_photo' src={!image  ? null:photos+2===image.length?window.URL.createObjectURL(image[0]):photos+1===image.length?window.URL.createObjectURL(image[1]):window.URL.createObjectURL(image[photos+2])} alt='' />
+            <img className='spd_photo' src={!image  ? null:photos+3===image.length?window.URL.createObjectURL(image[0]):photos+2===image.length?window.URL.createObjectURL(image[1]):photos+1===image.length?window.URL.createObjectURL(image[2]):window.URL.createObjectURL(image[photos+3])} alt='' />
             <div className='spd_arrow' onClick={() => handleArrow(photos + 1)}>
               <ChevronRightIcon />
             </div>
           </div>
          <div className='add_btn_container'>
-          <label className="add_btn" for="upload-photo">Choose files</label>
-           <input  onChange={(e)=>setImage(e.target.files)} id='upload-photo' name='upload-photo' className='add_btn_choose' type='file' accept='image/*' name='uploadedImages' multiple/>
+          <label style={image&&{background:'gray'}} className="add_btn" for="upload-photo">Choose files</label>
+           <input  onChange={(e)=>setImage(e.target.files)} id='upload-photo' name='upload-photo' className='add_btn_choose' type='file' accept='image/*'  multiple/>
          </div>
         </div>
         <div className='spd_fr_sc'>
           <div className='spd_fr_sc_title'>
-            <select onChange={(e)=>setCategory(e.target.value)} className='add_select' onClick={()=>setTitle(false)}>
-              {
-                title&& <option>Select your categories</option>
-
-              }
+            <select onChange={(e)=>setCategory(e.target.value)} className='add_select' >
+     
               <option>Accessories</option>
               <option>Phone</option>
               <option>Camera</option>

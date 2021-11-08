@@ -12,7 +12,6 @@ import { addToCart } from '../redux/actions/cartActions';
 
 
 export default function Card({ data }) {
-
   const [inCart, setInCart] = useState(0)
   const productId = data._id;
   const userSignin = useSelector(state => state.userSignIn)
@@ -98,32 +97,12 @@ export default function Card({ data }) {
           {
             countRating && <p style={{ marginLeft: 10 }}>({countRating})</p>
           }
-
         </div>
         <div style={{ height: 10 }} />
         {
           data.countInStock > 0 ? <p className='spd_stock'> In Stock ({data.countInStock}) </p> : <p style={{background:'red'}} className='spd_stock'>Out of stock</p>
         }
         <div style={{ display: 'flex', flex: 1, flexDirection: 'row' }}>
-          {
-               inCart > 0 ?
-              <div className='card_btn_in'>
-                In Cart ({inCart})
-              </div> :
-              <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                <input disabled={data.countInStock<1?true:false} onChange={(e) => setCart(e.target.value)} style={{ width: '25%', marginRight: 20, height: 28, marginTop: 10, fontSize: 13 }} placeholder='Quantity' />
-                <div style={data.countInStock < 1 ? {pointerEvents:'none',background:'gray'}:null}  className='card_btn' onClick={() => handleCart()}>
-                  Add to cart
-                </div>
-              </div>
-          }
-          {
-            data.favorite ? <div className='card_heart' >
-              <FavoriteIcon style={{ color: 'red', fontSize: 18 }} />
-            </div> : <div className='card_heart'>
-              <FavoriteBorderIcon style={{ color: 'red', fontSize: 18 }} />
-            </div>
-          }
         </div>
       </div>
     </div>

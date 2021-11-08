@@ -116,9 +116,9 @@ export default function InVoices() {
                 </div>
 
                 <div style={{ width: '10%', display: 'flex', flexDirection: 'row-reverse', marginRight: 30 }} >
-                  <p className={actions == index ? 'tb_th_row_actions_clicked' : 'tb_th_row_actions'} onClick={() => { handleActions(index) }}>...</p>
+                  <p className={actions === index ? 'tb_th_row_actions_clicked' : 'tb_th_row_actions'} onClick={() => { handleActions(index) }}>...</p>
                   {
-                    actions == null ? null : actions == index ? (
+                    actions == null ? null : actions === index ? (
                       <>
                         <div >
                           <div className='tb_th_row_actions_active'>
