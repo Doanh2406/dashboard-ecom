@@ -36,9 +36,7 @@ export default function TableDashboard() {
         products && 
         <div className='tb_container'>
          
-          
-
-
+         
           <div className='tb_first_row'>
            
             <div style={{ width: '10%' }} >

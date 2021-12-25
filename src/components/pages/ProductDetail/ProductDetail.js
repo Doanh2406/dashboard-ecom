@@ -42,7 +42,8 @@ export default function ProductDetail() {
   }
   const handleOnSubmit = async () =>{
     
-    await dispatch(editProduct(id,name,category,sdescription,price,countInStock,fearture,sale,description,color))
+    await dispatch(editProduct(id,name,category,sdescription,price,
+      countInStock,fearture,sale,description,color))
     alert('success')
     history.goBack();
     // await dispatch(editProductImage(id,))
