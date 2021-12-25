@@ -35,9 +35,14 @@ export default function TableHeader({search,setSearch, home, count, setCount, so
           </select>
         }
         <div>
+<<<<<<< HEAD
+          <form className="search-container">
+            <input value={search} onChange={e => setSearch(e.target.value)} type="text" id="search-bar" placeholder="Search..." />
+=======
           <form class="search-container">
             <input value={search} onChange={e => setSearch(e.target.value)} type="text" id="search-bar" placeholder="Search..." />
             <img class="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png" alt='' />
+>>>>>>> 80b1d743bba691c678969bb96b30e8a83c633088
             {
               product !== undefined && product.length > 0 ?  <div  className='search_container_form'>
                 {

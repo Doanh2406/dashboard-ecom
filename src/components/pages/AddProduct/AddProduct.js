@@ -21,6 +21,7 @@ export default function AddProduct() {
   const [sale,setSale] = useState();
   const [countInStock, setCountInStock]= useState();
   const [fearture, setFearture] =  useState();
+  const [photos, setPhotos] = useState(0);
   const userSignin = useSelector(state => state.userSignIn)
   const userCreate = userSignin.userInfo.email;
   
@@ -28,15 +29,15 @@ export default function AddProduct() {
   const data={  
     photo:''
   }
-  const [photos, setPhotos] = useState(0);
+  
 
   const handleArrow = (n) => {
-    if (n > data.photo.length - 1) {
+    if (n > image.length - 1) {
       setPhotos(0)
       return;
     }
     if (n < 0) {
-      setPhotos(data.photo.length - 1)
+      setPhotos(image.length - 1)
       return;
     }
     setPhotos(n)
@@ -70,7 +71,7 @@ export default function AddProduct() {
             <div className='spd_arrow' onClick={() => handleArrow(photos - 1)}>
               <ChevronLeftIcon />
             </div>
-            <img src={data.photo[photos]} alt='' />
+            <img src={image && window.URL.createObjectURL(image[photos])} alt='' />
             <div className='spd_arrow' onClick={() => handleArrow(photos + 1)}>
               <ChevronRightIcon />
             </div>
@@ -79,10 +80,10 @@ export default function AddProduct() {
             <div className='spd_arrow' onClick={() => handleArrow(photos - 1)}>
               <ChevronLeftIcon />
             </div>
-            <img className='spd_photo_active' src={data.photo[photos]} alt='' />
-            <img className='spd_photo' src={photos+1===data.photo.length?data.photo[0]:data.photo[photos+1]} alt='' />
-            <img className='spd_photo' src={photos+2===data.photo.length?data.photo[0]:photos+1===data.photo.length?data.photo[1]:data.photo[photos+2]} alt='' />
-            <img className='spd_photo' src={photos+3===data.photo.length?data.photo[0]:photos+2===data.photo.length?data.photo[1]:photos+1===data.photo.length?data.photo[2]:data.photo[photos+3]} alt='' />
+            <img className='spd_photo_active' src={image && window.URL.createObjectURL(image[photos])} alt='' />
+            <img className='spd_photo' src={!image  ? null: photos+1===image.length?window.URL.createObjectURL(image[0]):window.URL.createObjectURL(image[photos+1])} alt='' />
+            <img className='spd_photo' src={!image  ? null:photos+2===image.length?window.URL.createObjectURL(image[0]):photos+1===image.length?window.URL.createObjectURL(image[1]):window.URL.createObjectURL(image[photos+2])} alt='' />
+            <img className='spd_photo' src={!image  ? null:photos+3===image.length?window.URL.createObjectURL(image[0]):photos+2===image.length?window.URL.createObjectURL(image[1]):photos+1===image.length?window.URL.createObjectURL(image[2]):window.URL.createObjectURL(image[photos+3])} alt='' />
             <div className='spd_arrow' onClick={() => handleArrow(photos + 1)}>
               <ChevronRightIcon />
             </div>

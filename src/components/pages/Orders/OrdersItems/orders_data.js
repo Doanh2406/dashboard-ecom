@@ -1,12 +1,5 @@
 const orders_data = [ 
     {
-      photo:'https://lh3.googleusercontent.com/proxy/gpauS1tJ5ED2mkDeEU4RobNJd5Hi1jiu54umW-mcemdV0KdUOncNhySbVKJCkj1Cg2-Wjc81xZ_mrxWa_fjAHnQZjrlVIeY6crkBQeDv-_BbplVDOX9dvzq3gF_4GtPPkBE',
-      name:'Ber',
-      quantity:'1',
-      price:'$3333',
-      total:'$3333'
-    },
-    {
       photo:'https://cdnb.artstation.com/p/assets/images/images/035/383/791/large/serbianhero-uros-milincic-igris.jpg?1614811418',
       name:'Ygritte',
       quantity:'2',

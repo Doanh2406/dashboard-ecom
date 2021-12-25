@@ -5,6 +5,9 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import PhoneIcon from '@material-ui/icons/Phone';
 import './OrdersItems.scss'
 import orders_data from './orders_data';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+
 export default function OrdersItems() {
   const location = useLocation();
   const data = location.datas.data;
@@ -29,10 +32,24 @@ export default function OrdersItems() {
         break;
     }
   }, [])
+  const generatePDF = () => {
+ 
+    console.log(window.innerWidth-800,window.innerHeight )
+    html2canvas(document.querySelector('#content')).then(function (canvas) {
+      var img = canvas.toDataURL("image/jpeg");
+      var doc = new jsPDF({
+        orientation:'landscape',
+        unit: "px",
+        format: [window.innerWidth/2-400, window.innerHeight-145]
+      });
+      doc.addImage(img, 'PNG', 10, 10);
+      doc.save('test.pdf');
+    });
+  }
   return (
     <>
       <LinkHome title='Order Detail' />
-      <div className='ori_container'>
+      <div style={{background:'#f5f4fe',padding:10}} id='content' className='ori_container'>
         <div className='ori_first_container'>
           <div className='ori_first_container_first_row'>
             <div className='ori_fcfr_title'>
@@ -166,7 +183,7 @@ export default function OrdersItems() {
 
 
           <div className='ori_second_container_second_row'>
-          <p style={{ fontWeight: 520, fontSize: 24, marginLeft: 20 }}>Price</p>
+            <p style={{ fontWeight: 520, fontSize: 24, marginLeft: 20 }}>Price</p>
             <div className='or_scfr_container'>
               <div className='ori_scfr_price'>
                 <p style={{ marginLeft: 'auto' }}>Invoice No:</p>
@@ -175,17 +192,17 @@ export default function OrdersItems() {
 
               </div>
               <div className='ori_scfr_price'>
-                <p style={{ marginLeft: 20, color:'#ff6e40' }}>{data.id}</p>
+                <p style={{ marginLeft: 20, color: '#ff6e40' }}>{data.id}</p>
                 <p style={{ marginLeft: 20 }}> 12HY87072641Z0</p>
                 <p style={{ marginLeft: 20 }} >22HG9838964Z1 </p>
 
               </div>
 
             </div>
-          <div className='ori_scfr_btn_container'>
-            <div className='ori_scfr_btn'>
-              <p>Download PDF</p>
-            </div>
+            <div className='ori_scfr_btn_container'>
+              <div className='ori_scfr_btn' onClick={() => generatePDF()}>
+                <p>Download PDF</p>
+              </div>
             </div>
           </div>
         </div>

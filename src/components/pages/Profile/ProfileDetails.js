@@ -27,7 +27,7 @@ export default function ProfileDetails() {
   const [facebook,setFacebook] = useState();
   const [instagram, setInstagram] = useState();
   const [zalo,setZalo] = useState();
- 
+  
   useEffect(() => {
   
     if(userInfo){
@@ -53,7 +53,6 @@ export default function ProfileDetails() {
       setZalo(userInfo.zalo)
     }
   }, [dispatch,userInfo])
-  
   const handleSubmit =async () =>{
     const formData = new FormData();
     formData.append('userAva',userAva)
@@ -71,7 +70,7 @@ export default function ProfileDetails() {
         loading?<LoadingPage />:<>
         <div className='pro_fc_row'>
           
-        <img style={{marginTop:20,borderRadius:50}} src={userInfo.userAva?userInfo.userAva:'http://localhost:5000/upload/constants/ava.png'} alt='photos' />
+        <img style={{marginTop:20,borderRadius:50}} src={userAva ? window.URL.createObjectURL(userAva) : userInfo.userAva?userInfo.userAva:'http://localhost:5000/upload/constants/ava.png'} alt='photos' />
         <div style={{ marginLeft: 20,  }}>
           <p style={{ fontWeight: 530, fontSize: 24 }}>{userInfo.name}</p>
           <div style={{ display: 'flex', flexDirection: 'row', marginTop: -18 }}>

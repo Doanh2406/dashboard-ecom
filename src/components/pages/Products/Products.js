@@ -79,7 +79,11 @@ export default function Products({ lite }) {
 
 
   return (
+<<<<<<< HEAD
+    <div>
+=======
     <>
+<<<<<<< HEAD
 
       {
         loading ? <LoadingPage /> : <div className='h_container'>
@@ -87,6 +91,30 @@ export default function Products({ lite }) {
             <LinkHome title='Products' />
             <ProductsTable products={products} page={page} handleNextPage={handleNextPage} handlePrePage={handlePrePage} count={count} setCount={setCount} sort={sort} setSort={setSort} />
             <div style={{ height: 100 }} />
+=======
+>>>>>>> 80b1d743bba691c678969bb96b30e8a83c633088
+    
+    {
+        loading ?  <LoadingPage />:   <div className='h_container'>
+      <div className='h_cl1'>
+        <LinkHome title='Products' />
+         <ProductsTable products={products} page={page}  handleNextPage={handleNextPage} handlePrePage={handlePrePage} count={count} setCount={setCount} sort={sort} setSort={setSort}/>
+<<<<<<< HEAD
+      
+=======
+        <div style={{ height: 100 }} />
+>>>>>>> 80b1d743bba691c678969bb96b30e8a83c633088
+      </div>
+
+      <div className='h_cl2' >
+        <h3>Filter Products</h3>
+
+
+        <div className='h_cl2_key'>
+          <div className='h_cl2_key_f' onClick={() => setKeywords(!keywords)}>
+            <p>Keywords</p>
+            <ExpandMoreIcon style={{ marginLeft: 'auto' }} />
+>>>>>>> 08e02664a0a1785a579d9964bf9fd2f3efd7ac82
           </div>
 
           <div className='h_cl2' >
@@ -193,9 +221,19 @@ export default function Products({ lite }) {
             </div>
 
 
+<<<<<<< HEAD
           </div>
         </div>
       }
+=======
+      </div>
+    </div>
+    }
+<<<<<<< HEAD
+    </div>
+=======
+>>>>>>> 08e02664a0a1785a579d9964bf9fd2f3efd7ac82
     </>
+>>>>>>> 80b1d743bba691c678969bb96b30e8a83c633088
   )
 }

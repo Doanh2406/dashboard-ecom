@@ -3,12 +3,20 @@
 .sb_container {
     margin-left: 10px;
   position: fixed;
+<<<<<<< HEAD
+  
+  top: 0;
+  left: 0;
+ 
+  
+=======
   // width: 100%;
   // height: 2000px;
   top: 0;
   left: 0;
   overflow: hidden;
 
+>>>>>>> 80b1d743bba691c678969bb96b30e8a83c633088
   .sb_title {
     margin-top: 30px;
     font-size: 24px;
@@ -53,6 +61,17 @@
       width: 200px;
       height: 170px;
       background: #fff;
+<<<<<<< HEAD
+      box-shadow:
+        0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+        0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+        0 12.5px 10px rgba(0, 0, 0, 0.06),
+        0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+        0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+        0 100px 80px rgba(0, 0, 0, 0.12)
+      ;
+=======
+>>>>>>> 80b1d743bba691c678969bb96b30e8a83c633088
       position: absolute;
       border-radius: 10px;
       margin-top: -5px;
@@ -105,6 +124,35 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+<<<<<<< HEAD
+  width: 375px;
+  overflow: auto;
+  max-height: 73vh;
+/* width */
+  &::-webkit-scrollbar {
+    width:5px;
+    
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0px grey; 
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    
+    opacity: 0;
+    border-radius: 3px;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: $primary; 
+}
+
+=======
   // justify-content: start;
   // align-items: start;
   // margin-left: 10px;
@@ -140,6 +188,7 @@
         }
         
     }
+>>>>>>> 80b1d743bba691c678969bb96b30e8a83c633088
   .sb_menu_button {
     cursor: pointer;
     display: flex;

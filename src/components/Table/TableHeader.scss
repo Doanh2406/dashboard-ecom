@@ -2,6 +2,7 @@
 
 .tb_header{
   display: flex;
+  
   flex:1;
   flex-direction: row;
   align-items: center;
@@ -127,10 +128,12 @@
     }
   }}
 .search_container_form{
-  display: flex;
   position: absolute;
   flex-direction: column;
+<<<<<<< HEAD
+=======
   
+>>>>>>> 80b1d743bba691c678969bb96b30e8a83c633088
   margin-left: -10px;
   box-shadow:
   0 2.8px 2.2px rgba(0, 0, 0, 0.034),
@@ -143,7 +146,11 @@
   width: 15%;
   z-index: 3;
   border-radius: $radius;
+<<<<<<< HEAD
+  margin-top: 570px;
+=======
   margin-top: 20px;
+>>>>>>> 80b1d743bba691c678969bb96b30e8a83c633088
 }
 .search_container_item{
   display: flex;

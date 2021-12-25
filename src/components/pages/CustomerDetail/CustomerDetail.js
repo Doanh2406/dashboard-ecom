@@ -57,8 +57,14 @@ export default function CustomerDetail() {
                 <div className='cd_sr_fr'>
                   <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', cursor: 'pointer' }} onClick={() => setShow(!show)}  >
                     <p style={{ fontSize: 18, }} className='cd_title'>
+<<<<<<< HEAD
+                      Addresses
+                    </p>
+
+=======
                       Adresses
                     </p>
+>>>>>>> 80b1d743bba691c678969bb96b30e8a83c633088
                     {
                       !show && <KeyboardArrowDownIcon style={{ marginLeft: 'auto' }} />
                     }
@@ -83,7 +89,12 @@ export default function CustomerDetail() {
 
                           <p style={{ paddingBottom: 20 }}>{user.addressline2}</p></>
                       }
+<<<<<<< HEAD
+
+                    </> 
+=======
                     </>
+>>>>>>> 80b1d743bba691c678969bb96b30e8a83c633088
                   }
                 </div>
                 <div className='cd_sr_sr'>
@@ -95,8 +106,13 @@ export default function CustomerDetail() {
                       </p>
 
                     </div>
+<<<<<<< HEAD
+                    <div style={{ height: 1, width: '100%', background: 'gray', opacity: 0.3, marginTop: 0, }} />
+                    <TableCustomerDetail />
+=======
                     <div style={{ height: 1, width: '100%', background: 'gray', opacity: 0.3,  marginTop: 0, }} />
                     <TableCustomerDetail   />
+>>>>>>> 80b1d743bba691c678969bb96b30e8a83c633088
                   </div>
                 </div>
               </div>
