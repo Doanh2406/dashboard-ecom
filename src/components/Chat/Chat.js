@@ -42,7 +42,11 @@ export default function Chat({ userId }) {
     });
   }, [userId]);
 
-  const handleConversation = async (conversationId, avar, receiverId) => {
+  const handleConversation = async (conversationId, avar, receiverId,bot) => {
+    if(bot){
+      return setConversation('bot')
+    }
+    
     setReceiverId(receiverId);
     setFriendAvar(avar);
     await dispatch(getMessage(conversationId));
@@ -73,6 +77,7 @@ export default function Chat({ userId }) {
     setSearch(null)
     await dispatch(listUserSearch())
   }
+  console.log(data)
   return (
     <div className="chat">
       {popup ? (
@@ -118,7 +123,17 @@ export default function Chat({ userId }) {
                 <KeyboardArrowDownIcon style={{ cursor: 'pointer' }} /> */}
             </div>
             <div className="chat-popup__content-body">
-              {conversation ? null : data && data.length > 0 ? (
+              {
+                conversation ? null: <ChatList
+                onlineFriends={onlineFriends}
+                userId={userId}
+                dataCon={false}
+                handleConversation={handleConversation}
+                bot
+              />
+              }
+             
+              {conversation ? null:data && data.length >0 && (
                 data.map((item) => (
                   <ChatList
                     onlineFriends={onlineFriends}
@@ -127,19 +142,14 @@ export default function Chat({ userId }) {
                     handleConversation={handleConversation}
                   />
                 ))
-              ) : (
-                <div className="background">
-                  <img
-                    src="http://localhost:5000/upload/constants/background-mess.png"
-                    alt=""
-                  />
-                  <p className="background">
-                    Không tìm thấy cuộc hội thoại nào.
-                  </p>
-                </div>
-              )}
+              ) }
 
-              {conversation && (
+              {conversation==='bot'?
+              <Conversation
+                bot
+                userId={userId}
+              />
+              :conversation && (
                 <Conversation
                   receiverId={receiverId}
                   socket={socket}

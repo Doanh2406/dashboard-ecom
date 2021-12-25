@@ -2,10 +2,14 @@ import React, { useEffect, useState } from 'react'
 import './ChatList.scss'
 import axios from 'axios'
 
-export default function ChatList({onlineFriends,userId, handleConversation, dataCon }) {
+export default function ChatList({onlineFriends,userId, handleConversation, dataCon,bot }) {
   const [online, setOnline] = useState(false);
   const [friend, setFriend]  = useState();
+  console.log(bot)
   const fetchData =async ()=>{
+    if(bot){
+      return
+    }
     const friendId = await dataCon.members.find(m=>  m !== userId)
     const {data} = await axios.get(`/api/users/${friendId}`)
      let check = false ;
@@ -21,21 +25,20 @@ export default function ChatList({onlineFriends,userId, handleConversation, data
   useEffect(()=>{
     fetchData()
   },[onlineFriends])
- 
+  console.log(friend)
   
   return (
     <div className='list'>
-      
-          <div className='list__item' onClick={() => handleConversation(dataCon._id,friend.userAva,friend._id)}>
+          <div className='list__item' onClick={() => handleConversation(dataCon._id, bot?'http://localhost:5000/upload/constants/bot.png':friend.userAva,bot?null:friend._id, bot&&bot)}>
             {
               online && <div className='list__item__badge' />
             }
-            <img src={friend?.userAva?`http://localhost:5000/${friend.userAva}`:'http://localhost:5000/upload/constants/ava.png'} alt='' />
+            <img src={bot?'http://localhost:5000/upload/constants/bot.png':friend?.userAva?`http://localhost:5000/${friend.userAva}`:'http://localhost:5000/upload/constants/ava.png'} alt='' />
 
             <div className='list__item__text'>
               <p className='list__item__text-name'>
                {
-                 friend && friend.name
+                bot? <p>Bot</p>: friend && friend.name
                }
               </p>
               

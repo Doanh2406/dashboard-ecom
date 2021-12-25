@@ -1,9 +1,5 @@
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
-<<<<<<< HEAD
 import React, {useEffect} from "react";
-=======
-import React from "react";
->>>>>>> 80b1d743bba691c678969bb96b30e8a83c633088
 import { useSelector } from "react-redux";
 import { Route, Switch, withRouter } from "react-router-dom";
 import "./App.scss";
@@ -26,7 +22,6 @@ import {
   Products,
   Profile,
   ShopProductsDetail,
-<<<<<<< HEAD
   CustomerDetail,
   Coupon,
   CouponsList,
@@ -37,14 +32,6 @@ import SignIn from "./components/pages/SignIn/SignIn";
 import SignUp from "./components/pages/SignUp/SignUp";
 import SideBar from "./components/SideBar/SideBar";
 import Chat from "./components/Chat/Chat";
-=======
-  CustomerDetail
-} from "./components/pages";
-
-import SignIn from "./components/pages/SignIn/SignIn";
-import SignUp from "./components/pages/SignUp/SignUp";
-import SideBar from "./components/SideBar/SideBar";
->>>>>>> 80b1d743bba691c678969bb96b30e8a83c633088
 
 const outerTheme = createTheme({
   palette: {
@@ -79,13 +66,9 @@ function App() {
               <Header />
             </div>
             <div className="body-content">
-<<<<<<< HEAD
               <Chat userId={userInfo._id} />
               <Switch>
 
-=======
-              <Switch>
->>>>>>> 80b1d743bba691c678969bb96b30e8a83c633088
                 <Route exact path="/cart" key={document.location.href}>
                   <Cart />
                 </Route>
@@ -108,11 +91,7 @@ function App() {
                   <Customers />
                 </Route>
 
-<<<<<<< HEAD
                 <Route exact path="/products/add" key={document.location.href}>
-=======
-                <Route exact path="/products/add"key={document.location.href}>
->>>>>>> 80b1d743bba691c678969bb96b30e8a83c633088
                   <AddProduct />
                 </Route>
                 <Route path="/profile" key={document.location.href}>
@@ -133,7 +112,6 @@ function App() {
                 <Route path="/customers/:id" key={document.location.href}>
                   <CustomerDetail />
                 </Route>
-<<<<<<< HEAD
                 <Route path="/coupon" key={document.location.href}>
                   <Coupon />
                 </Route>
@@ -143,8 +121,6 @@ function App() {
                 <Route path="/coupon/:id" key={document.location.href}>
                   <CouponDetail />
                 </Route>
-=======
->>>>>>> 80b1d743bba691c678969bb96b30e8a83c633088
                 <Route exact path="/" key={document.location.href}>
                   <Dashboard />
                 </Route>
@@ -153,12 +129,9 @@ function App() {
                 </Route>
               </Switch>
             </div>
-<<<<<<< HEAD
             <div className='footer-main'>
               <Footer />
             </div>
-=======
->>>>>>> 80b1d743bba691c678969bb96b30e8a83c633088
           </div>
         </div>
       ) : (
