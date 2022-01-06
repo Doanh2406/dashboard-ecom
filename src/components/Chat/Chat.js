@@ -77,7 +77,7 @@ export default function Chat({ userId }) {
     setSearch(null)
     await dispatch(listUserSearch())
   }
-  console.log(data)
+ 
   return (
     <div className="chat">
       {popup ? (
