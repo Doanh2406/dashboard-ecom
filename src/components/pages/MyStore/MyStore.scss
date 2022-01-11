@@ -1,0 +1,31 @@
+@import "../../styles/value";
+
+.ms {
+  ul {
+    display: flex;
+    width: 96%;
+    background-color: #fff;
+    height: 60px;
+    align-items: center;
+    border-radius: $radius;
+    font-size: 20px;
+    font-weight: 350;
+    justify-content: space-between;
+    li {
+      list-style: none;
+      padding: 15px;
+      cursor: pointer;
+      &:last-child{
+        margin-right: 50px;
+      }
+      
+    }
+
+    .ms__active {
+      color: $primary;
+      border-bottom: solid 2px $primary;
+
+      font-weight: 400;
+    }
+  }
+}

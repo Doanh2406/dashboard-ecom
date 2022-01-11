@@ -16,6 +16,8 @@ import CustomerDetail from "./CustomerDetail/CustomerDetail";
 import Coupon from "./Marketing/Coupon";
 import CouponsList from "./Marketing/CouponsList";
 import CouponDetail from "./Marketing/CouponDetail";
+import Revenue from "./Revenue/Revenue";
+import MyStore from "./MyStore/MyStore";
 export{
   Dashboard,
   Orders,
@@ -34,5 +36,7 @@ export{
   CustomerDetail,
   Coupon,
   CouponsList,
-  CouponDetail
+  CouponDetail,
+  Revenue,
+  MyStore
 }

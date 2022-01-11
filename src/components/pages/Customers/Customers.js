@@ -18,6 +18,7 @@ import CustomersTable from './CustomersTable';
 import LoadingPage from '../../LoadingPage/LoadingPage';
 import { useDispatch, useSelector } from 'react-redux';
 import { listUser, listUserSearch } from '../../redux/actions/userActions';
+import { getCustomersAction } from '../../redux/actions/customerActions';
 const data = [
   {
     name: "22/6",
@@ -57,8 +58,9 @@ const data = [
 ];
 
 
+
 export default function Customers() {
-  const { loading, error, list } = useSelector(state => state.userList)
+  const { loading, error, list } = useSelector(state => state.getCustomers)
   const dispatch = useDispatch()
   const [three, setThree] = useState(false)
   const [count, setCount] = useState();
@@ -66,17 +68,7 @@ export default function Customers() {
   const [page, setPage] = useState(1);
   const [search,setSearch] = useState();
   useEffect(() => {
-    dispatch(listUser((page-1)*6, count, sort))
-  }, [page,sort,count])
-  useEffect(() => {
-   if(!search){
-    dispatch(listUserSearch(search))
-   }
-    if(search){
-      dispatch(listUserSearch(search))
-    }else{
-      return
-    }
+    dispatch(getCustomersAction())
    
   }, [search])
  

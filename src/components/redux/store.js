@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import { addCartReducer, deleteCartReducer, getCartReducer } from "./reducers/cartReducers";
 import { getChatBotReducer } from "./reducers/chatBotReducers";
 import { getConversationReducer, newConversationReducer } from "./reducers/conversationReducers";
+import { getCustomersReducer } from "./reducers/customerReducers";
 import { getMessageReducer, newMessageReducer } from "./reducers/messageReducers";
 import { orderDetailReducer, orderListReducer } from "./reducers/orderReducers";
 import { productAddReducer, productDeleteReducer, productDetailReducer, productEditReducer, productListReducer, productSearchReducer } from "./reducers/productReducers";
@@ -55,6 +56,8 @@ const reducer = combineReducers({
   newConversation:newConversationReducer,
   getMessage:getMessageReducer,
   newMessage:newMessageReducer,
+
+  getCustomers:getCustomersReducer,
 
   chatBot: getChatBotReducer,
 

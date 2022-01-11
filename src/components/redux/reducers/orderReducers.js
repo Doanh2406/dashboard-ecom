@@ -1,6 +1,6 @@
 import { ORDER_DETAIL_FAIL, ORDER_DETAIL_REQUEST, ORDER_DETAIL_SUCCESS, ORDER_LIST_FAIL, ORDER_LIST_REQUEST, ORDER_LIST_SUCCESS } from "../constants/orderConstants";
 
-export const orderListReducer = (state={}, action)=>{
+export const orderListReducer = (state=[], action)=>{
     switch (action.type) {
         case ORDER_LIST_REQUEST:
             return{

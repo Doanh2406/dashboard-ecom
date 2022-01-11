@@ -44,6 +44,7 @@ export default function SideBar() {
         { link: "/shopping", name: "Dashboards" },
         { link: "/shopping/:id", name: "Report" },
         { link: "/shop/add", name: "Live View" },
+        { link: "/shop/revenue", name: "Revenue" },
       ],
     },
     {
@@ -120,7 +121,7 @@ export default function SideBar() {
       name: "MY STORE",
       icons: <LanguageOutlinedIcon className="sb_icons" />,
       children: [
-        { link: "/store", name: "General" },
+        { link: "/store/general", name: "General" },
         { link: "/store/payment", name: "Campaigns" },
         { link: "/store/dilivery", name: "Dilivery" },
         { link: "/store/checkout", name: "Checkout" },

@@ -108,7 +108,6 @@ export default function Home() {
                     )
                   })
                 }
-
               </div>
               <div className='h1_cl1_row1'>
                 {
@@ -117,8 +116,6 @@ export default function Home() {
                       <Card key={index} data={item} />
                     )
                   })
-
-
                 }
               </div>
               <div className='h1_cl1_row1'>

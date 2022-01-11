@@ -25,7 +25,9 @@ import {
   CustomerDetail,
   Coupon,
   CouponsList,
-  CouponDetail
+  CouponDetail,
+  Revenue,
+  MyStore
 } from "./components/pages";
 import Footer from './components/Footer/Footer'
 import SignIn from "./components/pages/SignIn/SignIn";
@@ -121,8 +123,15 @@ function App() {
                 <Route path="/coupon/:id" key={document.location.href}>
                   <CouponDetail />
                 </Route>
+                <Route path="/shop/revenue" key={document.location.href}>
+                  <Revenue userId={userInfo._id} />
+                </Route>
+                <Route path="/store/general" key={document.location.href}>
+                  <MyStore />
+                </Route>
+                
                 <Route exact path="/" key={document.location.href}>
-                  <Dashboard />
+                  <Dashboard userId={userInfo._id} />
                 </Route>
                 <Route exact path="*" key={document.location.href}>
                   <NoMatchPage />

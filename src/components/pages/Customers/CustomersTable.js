@@ -64,7 +64,7 @@ const handleActions = (index) => {
         <div style={{ width: '20%' }} >
           <p>Full Name</p>
         </div>
-        <div style={{ width: '20%' }} >
+        <div style={{ width: '30%' }} >
           <p>Email</p>
         </div>
         <div style={{ width: '20%' }} >
@@ -86,13 +86,13 @@ const handleActions = (index) => {
       {
         list.map((item, index) => {
           let status;
-          switch (item.status) {
-            case 'active':
-              status = <p className='tb_status' style={{ backgroundColor: '#05b171' }}>Active</p>
+          switch (item.accepts_marketing) {
+            case true:
+              status = <p className='tb_status' style={{ backgroundColor: '#05b171' }}>Accepted</p>
               break;
         
             default:
-              status = <p className='tb_status' style={{ backgroundColor: '#ea4444' }}>Blocked</p>
+              status = <p className='tb_status' ></p>
               break;
           }
 
@@ -117,14 +117,14 @@ const handleActions = (index) => {
                 <img src={item.userAva?'http://localhost:5000/'+item.userAva:'http://localhost:5000/upload/constants/ava.png'} style={{ width: 50, height: 50, borderRadius: 10, }} alt='' />
               </div>
               <div style={{ width: '20%' }} >
-                <p>{item.name}</p>
+                <p>{item.first_name+' '+ item.last_name}</p>
               </div>
               
-              <div style={{ width: '20%' }} >
+              <div style={{ width: '30%' }} >
                 <p>{item.email}</p>
               </div>
               <div style={{ width: '20%' }} >
-                <p>{item.country?item.country:'Not Set Yet'}</p>
+                <p>{item.addresses[0].country_name?item.addresses[0].country_name:'Not Set Yet'}</p>
               </div>
               <div style={{ width: '20%' }} >
                 <p>{item.createdAt.slice(0,10)}</p>
@@ -134,20 +134,9 @@ const handleActions = (index) => {
               </div>
 
               <div style={{ width: '10%', display: 'flex', flexDirection: 'row-reverse', marginRight: 30 }} >
-                <p className={actions === index ? 'tb_th_row_actions_clicked' : 'tb_th_row_actions'} onClick={() => { handleActions(index) }}>...</p>
-                {
-                  actions == null ? null : actions === index ? (
-                    <>
-                      <div >
-                        <div className='tb_th_row_actions_active'>
-                          <p className='tb_th_row_actions_active_item item1' style={{ marginTop: 0 }}>Show Detail</p>
-                          <p className='tb_th_row_actions_active_item ' >Inbox  </p>
-                          <p className='tb_th_row_actions_active_item item3' >Block/Active</p>
-                        </div>
-                      </div>
-                    </>
-                  ) : null
-                }
+               {
+                 !item.accepts_marketing && <p style={{color:'#ff470d',cursor:'pointer',fontWeight:'bold'}}>Accept</p>
+               }
               </div>
             </div>
           )

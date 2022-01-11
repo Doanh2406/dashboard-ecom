@@ -208,7 +208,7 @@
     },
   ];
 
-
+  
 
   export const productdata = {
     labels: ['11/10','12/10','13/10','14/10','15/10','16/10','17/10','18/10','19/10','20/10','21/10','22/10'],
@@ -221,14 +221,14 @@
         borderColor: 'rgb(42,188,134,0.2)',
         yAxisID: 'y-axis-1',
       },
-      {
-        label: 'Sales',
-        data: [90, 110, 75, 90, 100, 150, 200, 150, 200,240,260,250],
-        fill: false,
-        backgroundColor: 'rgb(255,110,64)',
-        borderColor: 'rgb(255,110,64,0.2)',
-        yAxisID: 'y-axis-1',
-      },
+      // {
+      //   label: 'Sales',
+      //   data: [90, 110, 75, 90, 100, 150, 200, 150, 200,240,260,250],
+      //   fill: false,
+      //   backgroundColor: 'rgb(255,110,64)',
+      //   borderColor: 'rgb(255,110,64,0.2)',
+      //   yAxisID: 'y-axis-1',
+      // },
     ],
   };
 

@@ -6,10 +6,11 @@ export const orderList = ()=>async(dispatch)=>{
         type: ORDER_LIST_REQUEST,
         loading:true
     })
+    
     try {
-        const {data} = await Axios.get('/api/orders/list')
+        const {data} = await Axios.get('/api/order/61cd31348fbb09d42f17a535')
         dispatch({
-            typer: ORDER_LIST_SUCCESS,
+            type: ORDER_LIST_SUCCESS,
             payload:data
         })
     } catch (error) {
