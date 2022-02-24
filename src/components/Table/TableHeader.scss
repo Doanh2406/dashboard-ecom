@@ -2,7 +2,7 @@
 
 .tb_header{
   display: flex;
-  
+  position: relative;
   flex:1;
   flex-direction: row;
   align-items: center;
@@ -131,6 +131,12 @@
   position: absolute;
   flex-direction: column;
   margin-left: -10px;
+  left: 0;
+  top: 100px;
+  right: 0;
+  height: 300px !important;
+  overflow-y: auto;
+  
   box-shadow:
   0 2.8px 2.2px rgba(0, 0, 0, 0.034),
   0 6.7px 5.3px rgba(0, 0, 0, 0.048),
@@ -139,10 +145,33 @@
   0 41.8px 33.4px rgba(0, 0, 0, 0.086),
   0 100px 80px rgba(0, 0, 0, 0.12)
 ;
-  width: 15%;
+  width: 250px;
   z-index: 3;
   border-radius: $radius;
-  margin-top: 570px;
+  &::-webkit-scrollbar {
+    width:5px;
+    
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0px grey; 
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    
+    opacity: 0;
+    border-radius: 3px;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: $primary; 
+}
+
+  
 }
 .search_container_item{
   display: flex;

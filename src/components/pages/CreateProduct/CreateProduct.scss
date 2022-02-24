@@ -1,23 +1,18 @@
+@import '../../styles/value';
+
 .add__pro-container {
   border-radius: 10px;
 
   h2 {
     text-align: center;
+    
   }
 
   h3 {
     margin-left: 30px;
   }
-
-  input {
+  input{
     height: 40px;
-    border-radius: 10px;
-    width: 60%;
-    border-radius: 2px;
-    border: 1px solid #858585;
-    font-size: 14px;
-    color: #666;
-    margin: auto 0;
   }
 
   p {
@@ -29,25 +24,36 @@
   }
 
   .add__pro-top {
-    background-color: #fff;
-    border-radius: 10px;
-
+    
 
     .add__pro-name {
-      display: flex;
+     background-color: #fff;
       margin: 15px 0;
+      width: 97.5%;
+      border-radius: $radius;
+      padding: 10px;
+      div{
+        display: flex;
+        input{
+          width: 65%;
+        }
+      }
+      
     }
 
     .add__pro-category {
-      border: 2px solid #af9f9f;
+     background-color: #fff;
       display: flex;
-      margin: 0 30px;
-      height: 250px;
-
+      width: 98.9%;
+      flex-wrap: wrap;
+      border-radius: $radius;
       .add__pro-category__parent:last-child {
         border-right: none;
       }
-
+      h3{
+        display: flex;
+        width: 100%;
+      }
       ::-webkit-scrollbar {
         width: 6px;
         height: 6px;
@@ -56,17 +62,16 @@
       }
 
       ::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 5px grey;
-        border-radius: 10px;
+        opacity: 1;
       }
 
       ::-webkit-scrollbar-thumb {
-        background: rgb(214, 119, 76);
+        background: $primary;
         border-radius: 10px;
       }
 
       ::-webkit-scrollbar-thumb:hover {
-        background: rgba(58, 48, 48, .5)
+        
       }
 
       ::-webkit-resizer {
@@ -78,8 +83,10 @@
         width: 30%;
         overflow-y: auto;
         border-right: 1px solid #af9f9f;
-
+        padding-right: 10xp;
+        height: 230px;
         .add__pro-category__child {
+          cursor: pointer;
           list-style-type: none;
           width: 80%;
           padding: 10px 0;
@@ -100,8 +107,9 @@
 
     .add__pro-tag-name {
       margin: 30px;
-      height: 50px;
-
+      height: 20px;
+      width: 100%;
+      
       span {
         color: #eb3b0f;
         font-size: 16px;
@@ -121,18 +129,20 @@
 
   .add__pro-basic__infor {
     background-color: #fff;
+    margin-top: 20px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     padding: 15px 0;
-
+    width: 98.9%;
     &-title {
       color: #000;
+      
     }
 
     &-img {
       display: flex;
-
+     
       p {
         width: 29%;
       }
@@ -146,6 +156,7 @@
           display: inline-block;
           border: none;
           background-size: 100px 100px;
+          cursor: pointer;
         }
 
         &_avatar {
@@ -157,7 +168,18 @@
 
     &-description {
       display: flex;
+      textarea{
+        margin-top: 20px;
+        padding: 20px;
+        border-radius: $radius;
+        border: 1px solid rgb(173, 173, 173);
+        &:focus{
+          border: 1px solid $primary;
+          outline: none;
 
+        }
+        margin-bottom: 20px;
+      }
       &-content {
         border: 2px solid rgb(160, 151, 151);
         display: block;
@@ -175,23 +197,31 @@
     padding-bottom: 15px;
     margin-top: 20px;
     display: flex;
-
+    width: 98.9%;
     .add__pro__detail-group {
       display: flex;
-
+      input{
+        margin-top: 10px;
+        width: 60.5%;
+      }
       p {
         display: inline-block;
         line-height: 40px;
       }
 
       select {
+        
         width: 62.5%;
         height: 40px;
         text-align: center;
         border-radius: 10px;
         margin: auto 0;
-        font-size: 14px;
+        font-size: 15px;
         color: #2f2b2b;
+        &:focus{
+          outline: none;
+          border: 1px solid $primary;
+        }
       }
     }
 
@@ -204,7 +234,7 @@
     padding-bottom: 15px;
     margin-top: 20px;
     display: flex;
-
+    width: 98.9%;
     &-classify {
       display: flex;
       flex-direction: column;
@@ -221,9 +251,10 @@
           padding: 10px 43px;
           color: #fff;
           border-radius: 10px;
-          border: #5e4d4d 1px solid;
+          border: none;
           background-color: #ff6e40;
           font-size: 18px;
+          cursor: pointer;
         }
       }
 
@@ -249,9 +280,10 @@
             padding: 8px 10px;
             color: #fff;
             border-radius: 10px;
-            border: #5e4d4d 1px solid;
+            border: none;
             background-color: #ff6e40;
             font-size: 14px;
+            cursor: pointer;
           }
 
           button:first-child {
@@ -295,11 +327,12 @@
       width: 20%;
       margin: 10px 20px;
       padding: 8px 10px;
-      color: #000;
+      color: #fff;
       border-radius: 10px;
-      border: #b6a5a5 1px solid;
-      background-color: #fff;
+      border: none;
+      background-color: $danger;
       font-size: 18px;
+      cursor: pointer;
     }
 
     button:last-child {

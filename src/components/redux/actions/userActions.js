@@ -23,18 +23,20 @@ import {
   USER_UPDATE_SUCCESS,
 } from '../constants/userConstants';
 
-export const signUp = (name, email, password) => async (dispatch) => {
+export const signUp = (firstName, lastName,email, password) => async (dispatch) => {
   dispatch({
     type: USER_SIGNUP_REQUEST,
     payload: {
-      name,
+      firstName,
+      lastName,
       email,
       password,
     },
   });
   try {
     const {data} = await Axios.post('/api/users/signup', {
-      name,
+      firstName,
+      lastName,
       email,
       password,
     });
@@ -239,7 +241,7 @@ export const listUserSearch = (search) => async (dispatch) => {
   });
   try {
     const {data} = await Axios.get(
-      `/api/users/search?${search ? 'search=' + search : ''}`
+      `/api/users/search/${search ? search : ''}`
     );
     dispatch({
       type: USER_SEARCH_SUCCESS,

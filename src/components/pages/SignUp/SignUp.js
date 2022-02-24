@@ -4,7 +4,8 @@ import { NavLink, useHistory } from 'react-router-dom'
 import { signUp } from '../../redux/actions/userActions';
 import '../SignIn/SignIn.scss'
 export default function SignUp() {
-  const [name, setName] = useState();
+  const [firstName, setName] = useState();
+  const [lastName, setLastname] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [cPassword,setCPassword] = useState();
@@ -16,7 +17,7 @@ export default function SignUp() {
     if(password!==cPassword){
       alert('Password and confirm password are not match')
     }else{
-      await dispatch(signUp(name,email,password));
+      await dispatch(signUp(firstName,lastName,email,password));
       history.push('/')
     }
   }
@@ -27,7 +28,8 @@ export default function SignUp() {
       <div className='re_form'>
         <div className='re_form_fr'>
           <p style={{ fontSize: 32, marginBottom:-5 }}>Sign up</p>
-          <input required onChange={e=>setName(e.target.value)} style={{marginTop:30}} placeholder='Enter your name' />
+          <input required onChange={e=>setName(e.target.value)} style={{marginTop:30}} placeholder='Enter your first name' />
+          <input required onChange={e=>setLastname(e.target.value)} style={{marginTop:30}} placeholder='Enter your last name' />
           <input required onChange={e=>setEmail(e.target.value)}  placeholder='Enter your email' />
           <input type='password' required onChange={e=>setPassword(e.target.value)} placeholder='Enter your password' />
 

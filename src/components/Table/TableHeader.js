@@ -36,7 +36,7 @@ export default function TableHeader({search,setSearch, home, count, setCount, so
         }
         <div>
           <form className="search-container">
-            <input value={search} onChange={e => setSearch(e.target.value)} type="text" id="search-bar" placeholder="Search..." />
+            <input style={{width:'200px'}} value={search} onChange={e => setSearch(e.target.value)} type="text" id="search-bar" placeholder="Search..." />
             {
               product !== undefined && product.length > 0 ?  <div  className='search_container_form'>
                 {
@@ -45,12 +45,12 @@ export default function TableHeader({search,setSearch, home, count, setCount, so
                       <NavLink onClick={()=>dispatch(detailProduct(item._id))} to={`/shopping/${item._id}`} style={{ textDecoration: 'none' }}>
                         <div className='search_container_item' >
 
-                          <img src={'http://localhost:5000/upload/product/' + item.image[0].filename} alt='' />
+                          <img src={'http://localhost:5000/upload/product/' + item.productPicture[0].img} alt='' />
                           <div className='search_text'>
                             <p style={{ fontSize: 14 }} >Name: {item.name}</p>
-                            <p style={{ marginTop: -12 }}>Category: {item.category}</p>
-                            <p style={{ marginTop: -10 }}>Price: {'$' + item.price}</p>
-                            {item.sale && <p style={{ marginTop: -10 }}>Sale: {'$' + item.sale}</p>}
+                          
+                            <p style={{ marginTop: -10 }}>Price: {'$' + item.variant[0]?.price}</p>
+                           
                           </div>
 
                         </div>

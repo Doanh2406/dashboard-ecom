@@ -1,173 +1,679 @@
-import React, { useEffect, useState } from 'react'
-import './ProductDetail.scss'
-import LinkHome from '../../LinkHome/LinkHome'
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import Review from './Review';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router';
-import { detailProduct, editProduct,} from '../../redux/actions/productActions';
-import LoadingPage from '../../LoadingPage/LoadingPage';
+/** @format */
 
+import React, { useState, useEffect } from "react";
+import "../CreateProduct/CreateProduct.scss";
+import { MdKeyboardArrowRight } from "react-icons/md";
+import background from "../../../../src/assets/addIMG.png";
+import { useParams } from "react-router";
 
-export default function ProductDetail() {
-  let { id } = useParams();
-  const history = useHistory()
+import { useDispatch, useSelector } from "react-redux";
+import { addProduct } from "../../redux/actions/productActions";
+import { useHistory } from "react-router";
+import axios from "axios";
 
-  const dispatch = useDispatch()
-  const [tab, setTab] = useState(1);
-  const [photos, setPhotos] = useState(0);
-  const [category, setCategory] = useState();
-  const [name, setName] = useState();
-  const [sdescription, setSdesciption] = useState();
-  const [sale, setSale] = useState();
-  const [price, setPrice] = useState();
-  const [fearture, setFearture] = useState();
-  const [description, setDescription] = useState();
-  const [color, setColor] = useState();
-  const [countInStock, setCountInStock] = useState();
-  const [image, setImage] = useState()
-  const { loading, error, product } = useSelector(state => state.productDetail)
- 
-  const handleArrow = (n) => {
-    if (n > product.image.length - 1) {
-      setPhotos(0)
-      return;
-    }
-    if (n < 0) {
-      setPhotos(product.image.length - 1)
-      return;
-    }
-    setPhotos(n)
-  }
-  const handleOnSubmit = async () =>{
-    
-    await dispatch(editProduct(id,name,category,sdescription,price,countInStock,fearture,sale,description,color))
-    alert('success')
-    history.goBack();
-    // await dispatch(editProductImage(id,))
-  }
-  async function fetchData(){
-    
-    if(product){
-      if(product.length===0){
-        return await dispatch(detailProduct(id))
-      }
-    }
-    if(product){
-      return
-    }
-    
-  }
-  useEffect(() => {
-    if (product) {
-      setName(product.name)
-      setColor(product.color)
-      setSdesciption(product.sdescription)
-      setSale(product.sale)
-      setPrice(product.price)
-      setDescription(product.description)
-      setFearture(product.fearture)
-      setCountInStock(product.countInStock)
-    }
-    fetchData()
-
-  }, [dispatch,product])
-
+const categoryList = [
+  {
+    _id: "616d3cba44465c7dbdec838e",
+    name: "Fashion",
+    slug: "Thoi-Trang",
+    children: [
+      {
+        _id: "61c9cbbaa18b9cef23ed16cd",
+        name: "Shirt",
+        slug: "samsung",
+        children: [
+          {
+            _id: "61c9cbbaa18b9cef23ed16cd",
+            name: "31Aux",
+            slug: "note5",
+            children: [],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    _id: "616d3cba44465c7dbdec838e",
+    name: "Laptop",
+    slug: "Thoi-Trang",
+    children: [
+      {
+        _id: "61c9cbbaa18b9cef23ed16cd",
+        name: "Dell",
+        slug: "samsung",
+        children: [
+          {
+            _id: "61c9cbbaa18b9cef23ed16cd",
+            name: "Xps-2022",
+            slug: "note5",
+            children: [],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    _id: "616d3cba44465c7dbdec838e",
+    name: "Mobile",
+    slug: "Thoi-Trang",
+    children: [
+      {
+        _id: "61c9cbbaa18b9cef23ed16cd",
+        name: "Apple",
+        slug: "samsung",
+        children: [
+          {
+            _id: "61c9cbbaa18b9cef23ed16cd",
+            name: "Iphone 13",
+            slug: "note5",
+            children: [],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    _id: "616d3cba44465c7dbdec838e",
+    name: "Camera",
+    slug: "Thoi-Trang",
+    children: [
+      {
+        _id: "61c9cbbaa18b9cef23ed16cd",
+        name: "Sony",
+        slug: "samsung",
+        children: [
+          {
+            _id: "61c9cbbaa18b9cef23ed16cd",
+            name: "Synon",
+            slug: "note5",
+            children: [],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    _id: "616d44a144465c7dbdec8390",
+    name: "Technology",
+    slug: "Cong-Nghe",
+    children: [
+      {
+        _id: "61c9cbbaa18b9cef23ed16cd",
+        name: "Windows",
+        slug: "note5",
+        children: [
+          {
+            _id: "61c9cbbaa18b9cef23ed16cd",
+            name: "Windows 11",
+            slug: "note5",
+            children: [],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    _id: "616d44a144465c7dbdec8390",
+    name: "Software",
+    slug: "Cong-Nghe",
+    children: [
+      {
+        _id: "61c9cbbaa18b9cef23ed16cd",
+        name: "Antivirus ",
+        slug: "note5",
+        children: [
+          {
+            _id: "61c9cbbaa18b9cef23ed16cd",
+            name: "Bkav",
+            slug: "note5",
+            children: [],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    _id: "616d44a144465c7dbdec8390",
+    name: "Tablet",
+    slug: "Cong-Nghe",
+    children: [
+      {
+        _id: "61c9cbbaa18b9cef23ed16cd",
+        name: "Ipad",
+        slug: "note5",
+        children: [
+          {
+            _id: "61c9cbbaa18b9cef23ed16cd",
+            name: "Ipad 2022",
+            slug: "note5",
+            children: [],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    _id: "618be3e434604523215c3e6b",
+    name: "Mobile",
+    slug: "Mobile",
+    children: [],
+  },
+];
+const RenderCategory = ({ data, getIndex, getName, getIdCategory }) => {
   return (
     <>
-      {
-        loading ? <LoadingPage /> :
-          product.length!==0 && <div className='spd_container' >
-            <LinkHome title='Products Detail' />
-            <div className='spd_fr_container'>
-              <div className='spd_fr_fc'>
-                <div className='spd_fr_fc_fr'>
-                  <div className='spd_arrow' onClick={() => handleArrow(photos - 1)}>
-                    <ChevronLeftIcon />
-                  </div>
-                  <img src={'http://localhost:5000/upload/product/' + product.image[photos].filename} alt='' />
-                  <div className='spd_arrow' onClick={() => handleArrow(photos + 1)}>
-                    <ChevronRightIcon />
-                  </div>
-                </div>
-                <div className='spd_fr_fc_sr'>
-                  <div className='spd_arrow' onClick={() => handleArrow(photos - 1)}>
-                    <ChevronLeftIcon />
-                  </div>
-                  <img className='spd_photo_active' src={'http://localhost:5000/upload/product/' + product.image[photos].filename} alt='' />
-
-
-                  {
-                    product.image.length > 1 && <img className='spd_photo' src={photos + 1 === product.image.length ? 'http://localhost:5000/upload/product/' + product.image[0].filename : 'http://localhost:5000/upload/product/' + product.image[photos + 1].filename} alt='' />
-                  }
-                  {
-                    product.image.length > 2 && <img className='spd_photo' src={photos + 2 === product.image.length ? 'http://localhost:5000/upload/product/' + product.image[0].filename : photos + 1 === product.image.length ? 'http://localhost:5000/upload/product/' + product.image[1].filename : 'http://localhost:5000/upload/product/' + product.image[photos + 2].filename} alt='' />
-                  }
-                  {
-                    product.image.length > 3 && <img className='spd_photo' src={photos + 3 === product.image.length ? 'http://localhost:5000/upload/product/' + product.image[0].filename : photos + 2 === product.image.length ? 'http://localhost:5000/upload/product/' + product.image[1].filename : photos + 1 === product.image.length ? 'http://localhost:5000/upload/product/' + product.image[2].filename : 'http://localhost:5000/upload/product/' + product.image[photos + 3].filename} alt='' />
-                  }
-                  <div className='spd_arrow' onClick={() => handleArrow(photos + 1)}>
-                    <ChevronRightIcon />
-                  </div>
-                </div>
-                <div className='add_btn_container'>
-                  <label style={image&&{background:'gray'}} className="add_btn" htmlFor="upload-photo">Add new photos for your product</label>
-                  <input value={image} onChange={(e) => setImage(e.target.files)} id='upload-photo' name='upload-photo' className='add_btn_choose' type='file' accept='image/*' multiple />
-                </div>
-              </div>
-              <div className='spd_fr_sc'>
-                <div className='spd_fr_sc_title'>
-                  <select value={category} onChange={e => setCategory(e.target.value)} className='add_select' >
-
-                    <option>Accessories</option>
-                    <option>Phone</option>
-                    <option>Camera</option>
-                    <option>Headphone</option>
-                    <option>Others</option>
-                  </select>
-
-
-                </div>
-                <input value={color} onChange={(e) => setColor(e.target.value)} className='add_input' placeholder='Enter your tags color. exp: Red, Blue, White, Black ' />
-
-                <input value={name} onChange={e => setName(e.target.value)} className='add_input' placeholder='Enter your name of product' />
-                <input value={sdescription} onChange={e => setSdesciption(e.target.value)} className='add_input' placeholder='Enter your short desciption' />
-                <div className='spd_fr_sc_price'>
-                  <input value={sale} onChange={e => setSale(e.target.value)} style={{ width: '10%' }} className='add_input' placeholder='Sales?' />
-                  <input value={price} onChange={e => setPrice(e.target.value)} style={{ width: '10%', marginLeft: 10 }} className='add_input' placeholder='Price' />
-                </div>
-                <div className='spd_fr_sc_star'>
-
-                </div>
-                <p style={{ marginTop: 50, marginBottom: -10 }}>Feartures:</p>
-                <p>{product.features}</p>
-                <input value={fearture} onChange={e => setFearture(e.target.value)} className='add_input' placeholder='Enter your fearture' />
-                <p style={{ marginTop: 30, marginBottom: -0 }}>Count in stock:</p>
-                <input value={countInStock} onChange={(e) => setCountInStock(e.target.value)} className='add_input' placeholder='Count in stock' />
-              </div>
-            </div>
-            <div className='spd_sr_container'>
-              <div className='spd_sr_fr'>
-                <p className={tab === 1 ? 'spd_active' : 'spd_btn'} onClick={() => { setTab(1) }} >Descriptions</p>
-                <p className={tab === 2 ? 'spd_active' : 'spd_btn'} onClick={() => { setTab(2) }} >Review</p>
-              </div>
-              <div style={{ width: '100%', backgroundColor: '#dbdbdb', height: 1, }} />
-
-
-              {
-                tab === 1 ? <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder='Enter your detail description' style={{ width: '98.5%' }} className='add_text' /> : <Review />
-              }
-
-            </div>
-            <div className='add_sub' onClick={()=>handleOnSubmit()}>
-              <p>Submit </p>
-            </div>
-            <div style={{ height: 30 }} />
-
-          </div>
-      }
+      {data?.map((item, index) => (
+        <li
+          className="add__pro-category__child"
+          key={index}
+          onClick={() => {
+            getName(item.name);
+            if (item.children.length != 0) {
+              getIndex(index);
+              getIdCategory(item._id);
+            }
+          }}
+        >
+          {item.name}
+          {item.children.length == 0 ? null : (
+            <MdKeyboardArrowRight className="add__pro-category__child-icon" />
+          )}
+        </li>
+      ))}
     </>
-  )
-}
+  );
+};
+export default function CreateProduct({ userInfo }) {
+  const { id } = useParams();
+  
+  const [isChild, setIsChild] = useState();
+  const [isChild2, setIsChild2] = useState();
 
+  const [nameProduct, setNameProduct] = useState();
+  const [description, setDescription] = useState();
+  const [brand, setBrand] = useState();
+  const [origin, setOrigin] = useState();
+  const [sex, setSex] = useState();
+  const [material, setMaterial] = useState();
+  const [feature, setFeature] = useState();
+  const [variant, setVariant] = useState([]);
+
+  const [name, setName] = useState();
+  const [name1, setName1] = useState();
+  const [name2, setName2] = useState();
+  const [idCategory, setIdCategory] = useState();
+  const [image, setImage] = useState();
+  const [modal, setModal] = useState(false);
+
+  const [nameClass, setNameClass] = useState();
+  const [nameClasify, setNameClasify] = useState();
+
+  const [product, setProduct] = useState();
+
+  
+  useEffect(() => {
+    fetchProduct();
+  }, [])
+  
+  useEffect(()=>{
+    if(!product){
+      return
+    }else{
+      
+      setNameProduct(product.name)
+      setDescription(product.description)
+      setBrand(product.brand)
+      setOrigin(product.origin)
+      setSex(product.sex)
+      setMaterial(product.material)
+      setFeature(product.fearture)
+    
+    }
+  },[product])
+  
+  async function fetchProduct(){
+    const {data} = await axios.get(`/api/products/${id}`)
+    setProduct(data)
+  }
+
+  const handleOnchange = (e, index) => {
+    if (image[index]) {
+      image[index] = e.target.files[0];
+      const imageFke = [...image];
+      setImage(imageFke);
+    } else {
+      setImage((prev) => [...prev, e.target.files[0]]);
+    }
+  };
+  let textInput = React.createRef();
+  const handleChangeValueInput = (e) => {
+    if (textInput.current.value != "") {
+      setNameClass((prev) => [...prev, textInput.current.value]);
+    }
+  };
+  const handleClear = (e) => {
+    textInput.current.value = "";
+  };
+
+  const renderTableHeader = (nameClass, index) => {
+    // const handleSaveVariant = (e, index, type) => {
+    //     const value = e.target.textContent;
+    //   if (variant[index] == undefined) {
+    //     variant[index] = {};
+    //   } else {
+    //     if (value.length != 0) {
+    //       variant[index][type] = `${value}`;
+    //     }
+    //   }
+
+    //   const array = [...variant];
+    //   return setVariant(array);
+    // };
+
+    return nameClass?.map((item, index) => {
+      return (
+        <tr ref={textInput} key={index}>
+          <td contenteditable="true">{item}</td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+          <td contenteditable="true"></td>
+        </tr>
+      );
+    });
+  };
+
+  let history = useHistory();
+  const dispatch = useDispatch();
+  let tdInput = React.createRef();
+  const handleSubmit = async () => {
+    const trData = tdInput?.current?.children;
+    if (trData) {
+      Array.from(trData, (item) => {
+        variant.push({
+          name: `${item.childNodes[0].textContent}`,
+          price: `${item.childNodes[1].textContent}`,
+          option: `${item.childNodes[2].textContent}`,
+          inventory: `${item.childNodes[3].textContent}`,
+          width: `${item.childNodes[4].textContent}`,
+          height: `${item.childNodes[5].textContent}`,
+        });
+      });
+    }
+
+    const formData = new FormData();
+    formData.append("name", nameProduct);
+    formData.append("category", idCategory);
+    formData.append("description", description);
+    formData.append("brand", brand);
+    formData.append("sex", sex);
+    formData.append("origin", origin);
+    formData.append("material", material);
+    formData.append("fearture", feature);
+    formData.append("sale", 200);
+    if(image){
+      for (let i = 0; i < image.length; i++) {
+        formData.append("productPicture", image[i]);
+      }
+    }
+    if(variant){
+      for (let i = 0; i < variant.length; i++) {
+        formData.append(`${variant[i]["name"]}`, variant[i].name);
+        formData.append(`${variant[i]["price"]}`, variant[i].price);
+        formData.append(`${variant[i]["option"]}`, variant[i].option);
+        formData.append(`${variant[i]["inventory"]}`, variant[i].inventory);
+        formData.append(`${variant[i]["width"]}`, variant[i].width);
+        formData.append(`${variant[i]["height"]}`, variant[i].height);
+      }
+    }
+    // [{prixe.op,a},{}
+
+    // await dispatch(addProduct(formData));
+    const {data} = await axios.put(`/api/products/${id}/edit`, formData)
+    console.log(data)
+    history.push('/products/manager');
+  };
+  console.log(product)
+  return (
+    <div className="add__pro-container">
+      <div className="add__pro-top">
+        <div className="add__pro-name">
+          <h3>Product Name</h3>
+          <div>
+            <p>Product's Name </p>
+            <input
+              onChange={(e) => setNameProduct(e.target.value)}
+              type="text"
+              className="add__pro-name-input"
+              placeholder="Enter Here"
+              value={nameProduct}
+            />
+          </div>
+        </div>
+
+        <div className="add__pro-category">
+          <h3>Product Category</h3>
+          <div className="add__pro-tag-name">
+            {name ? (
+              <span>
+                {name}{" "}
+                <MdKeyboardArrowRight className="add__pro-category__child-icon" />
+              </span>
+            ) : null}
+            {name1 ? (
+              <span>
+                {name1}{" "}
+                <MdKeyboardArrowRight className="add__pro-category__child-icon" />
+              </span>
+            ) : null}
+            {name2 ? <span>{name2} </span> : null}
+          </div>
+
+          <ul className="add__pro-category__parent">
+            <RenderCategory
+              data={categoryList}
+              getIndex={setIsChild}
+              getName={setName}
+              getIdCategory={setIdCategory}
+            />
+          </ul>
+
+          <ul className="add__pro-category__parent">
+            <RenderCategory
+              data={categoryList[isChild]?.children}
+              getIndex={setIsChild2}
+              getName={setName1}
+              getIdCategory={setIdCategory}
+            />
+          </ul>
+          <ul className="add__pro-category__parent">
+            <RenderCategory
+              data={categoryList[isChild]?.children[isChild2]?.children}
+              getName={setName2}
+              getIdCategory={setIdCategory}
+            />
+          </ul>
+        </div>
+      </div>
+      <div className="add__pro-basic__infor">
+        <h3 className="add__pro-basic__infor-title">Basic information</h3>
+        <div className="add__pro-basic__infor-img">
+          <p>Product Image</p>
+          <div className="add__pro-basic__infor-img__group">
+            <div className="add__pro-basic__infor-img__group-item">
+              <label
+                for="myfile0"
+                className="add__pro-basic__infor-img__group_label"
+                id="showImg"
+              >
+                <img
+                  src={
+                    image?.[0] ? window.URL.createObjectURL(image[0]) : product?.productPicture[0]?.img ? 'http://localhost:5000/upload/product/'+ product?.productPicture[0]?.img : background
+                  }
+                  alt=""
+                  className="add__pro-basic__infor-img__group_avatar"
+                />
+              </label>
+              <input
+                onChange={(e) => handleOnchange(e, 0)}
+                type="file"
+                id="myfile0"
+                name="myfile0"
+                className="add__pro-basic__infor-img__group_file"
+                accept=".jpg,.png"
+                hidden
+                multiple
+              />
+            </div>
+            <div className="add__pro-basic__infor-img__group-item">
+              <label
+                for="myfile1"
+                className="add__pro-basic__infor-img__group_label"
+                id="showImg"
+              >
+                <img
+                  src={
+                    image?.[1] ? window.URL.createObjectURL(image[1]) : product?.productPicture[1]?.img ? 'http://localhost:5000/upload/product/'+ product?.productPicture[1]?.img : background
+                  }
+                  alt=""
+                  className="add__pro-basic__infor-img__group_avatar"
+                />
+              </label>
+              <input
+                onChange={(e) => handleOnchange(e, 1)}
+                type="file"
+                id="myfile1"
+                name="myfile1"
+                className="add__pro-basic__infor-img__group_file"
+                accept=".jpg,.png"
+                hidden
+                multiple
+              />
+            </div>
+            <div className="add__pro-basic__infor-img__group-item">
+              <label
+                for="myfile2"
+                className="add__pro-basic__infor-img__group_label"
+                id="showImg"
+              >
+                <img
+                 src={
+                  image?.[2] ? window.URL.createObjectURL(image[2]) : product?.productPicture[2]?.img ? 'http://localhost:5000/upload/product/'+ product?.productPicture[2]?.img : background
+                }
+                  alt=""
+                  className="add__pro-basic__infor-img__group_avatar"
+                />
+              </label>
+              <input
+                onChange={(e) => handleOnchange(e, 2)}
+                type="file"
+                id="myfile2"
+                name="myfile2"
+                className="add__pro-basic__infor-img__group_file"
+                accept=".jpg,.png"
+                hidden
+                multiple
+              />
+            </div>
+            <div className="add__pro-basic__infor-img__group-item">
+              <label
+                for="myfile3"
+                className="add__pro-basic__infor-img__group_label"
+                id="showImg"
+              >
+                <img
+                  src={
+                    image?.[3] ? window.URL.createObjectURL(image[3]) : product?.productPicture[3]?.img ? 'http://localhost:5000/upload/product/'+ product?.productPicture[3]?.img : background
+                  }
+                  alt=""
+                  className="add__pro-basic__infor-img__group_avatar"
+                />
+              </label>
+              <input
+                onChange={(e) => handleOnchange(e, 3)}
+                type="file"
+                id="myfile3"
+                name="myfile3"
+                className="add__pro-basic__infor-img__group_file"
+                accept=".jpg,.png"
+                hidden
+                multiple
+              />
+            </div>
+            <div className="add__pro-basic__infor-img__group-item">
+              <label
+                for="myfile4"
+                className="add__pro-basic__infor-img__group_label"
+                id="showImg"
+              >
+                <img
+                  src={
+                    image?.[4] ? window.URL.createObjectURL(image[4]) : product?.productPicture[4]?.img ? 'http://localhost:5000/upload/product/'+ product?.productPicture[4]?.img : background
+                  }
+                  alt=""
+                  className="add__pro-basic__infor-img__group_avatar"
+                />
+              </label>
+              <input
+                onChange={(e) => handleOnchange(e, 4)}
+                type="file"
+                id="myfile4"
+                name="myfile4"
+                className="add__pro-basic__infor-img__group_file"
+                accept=".jpg,.png"
+                hidden
+                multiple
+              />
+            </div>
+          </div>
+        </div>
+        <div className="add__pro-basic__infor-description">
+          <p>Description</p>
+          <textarea
+            onChange={(e) => setDescription(e.target.value)}
+            name=""
+            id=""
+            cols="10"
+            rows="5"
+            className="add__pro-basic__infor-description-content"
+            value={description}
+          ></textarea>
+        </div>
+      </div>
+      <div className="add__pro__detail-infor">
+        <h3>Details</h3>
+        <div className="add__pro__detail-group">
+          <p>Brand</p>
+          <select value={brand} onChange={(e) => setBrand(e.target.value)}>
+            <option value="0">Select Brand:</option>
+            <option value="IPHONE">IPHONE</option>
+            <option value="SAMSUNG">SAMSUNG</option>
+            <option value="APPlE">APPlE</option>
+            <option value="OPPO">OPPO</option>
+            <option value="XIAOMI">XIAOMI</option>
+            <option value="GOOGLE">GOOGLE</option>
+            <option value="HWUWEI">HWUWEI</option>
+            <option value="LG">LG</option>
+          </select>
+        </div>
+        <div className="add__pro__detail-group">
+          <p>Origin</p>
+          <select value={origin} onChange={(e) => setOrigin(e.target.value)}>
+            <option value="0">Select origin:</option>
+            <option value="VietNam">VietNam</option>
+            <option value="ThaiLan">ThaiLan</option>
+            <option value="Korea">Korea</option>
+            <option value="Japan">Japan</option>
+            <option value="USA">USA</option>
+            <option value="another">another</option>
+          </select>
+        </div>
+        <div className="add__pro__detail-group">
+          <p>Sex</p>
+          <select value={sex} onChange={(e) => setSex(e.target.value)}>
+            <option value="0">Select Sex:</option>
+            <option value="unisex">unisex</option>
+            <option value="male">male</option>
+            <option value="female">female</option>
+          </select>
+        </div>
+        <div className="add__pro__detail-group">
+          <p>Material</p>
+          <select value={material} onChange={(e) => setMaterial(e.target.value)}>
+            <option value="0">Select Material:</option>
+            <option value="Verlet">Verlet</option>
+            <option value="plastic">plastic</option>
+            <option value="Alunium">Alunium</option>
+            <option value="Draper">Draper</option>
+            <option value="Paper">Paper</option>
+            <option value="Steel">Steel</option>
+            <option value="Carton">Carton</option>
+          </select>
+        </div>
+        <div className="add__pro__detail-group">
+          <p>Feature</p>
+          <input
+            onChange={(e) => setFeature(e.target.value)}
+            type="text"
+            className="add__pro__detail-fearture"
+            value={feature}
+          />
+        </div>
+      </div>
+      <div className="add__pro__sale-infor">
+        <h3>Sale Informations</h3>
+        <div className="add__pro__sale-infor-classify">
+          <div className="add__pro__sale-infor-classify-header">
+            <p>Name Classify</p>
+            <input
+              onBlur={(e) => setNameClasify(e.target.value)}
+              type="text"
+              className="add__pro__sale-infor-classify-name"
+              value={nameClasify}
+            />
+            {!nameClasify ? <button>Next</button> : null}
+          </div>
+          {nameClasify ? (
+            <>
+              <div className="add__pro__sale-infor-classify-go">
+                <input
+                  ref={textInput}
+                  type="text"
+                  className="add__pro__sale-infor-classify-go-item"
+                />
+                <div className="add__pro__sale-infor-classify-go-button">
+                  <button onClick={handleChangeValueInput}>Add Classify</button>
+                  <button onClick={handleClear}>Clear</button>
+                </div>
+              </div>
+              <div className="add__pro__sale-infor-classify-infor">
+                <table>
+                  <thead>
+                    <tr>
+                      <td contenteditable="true">{nameClasify}</td>
+                      <td contenteditable="true">Price</td>
+                      <td contenteditable="true">Option</td>
+                      <td contenteditable="true">Inventory</td>
+                      <td contenteditable="true">Width</td>
+                      <td contenteditable="true">Height</td>
+                    </tr>
+                  </thead>
+                  <tbody ref={tdInput}>{renderTableHeader(nameClass)}</tbody>
+                </table>
+              </div>
+            </>
+          ) : null}
+        </div>
+      </div>
+      <div className="add__pro-container__action">
+        <button
+          onClick={() => setModal(!modal)}
+          className="add__pro-container__action-cancel"
+        >
+          Cancel
+        </button>
+        {modal ? (
+          <div className="modal-toast">
+            <div className="modal-container">
+              <p>Are You Sure ?</p>
+              <div
+                onClick={() => setModal(!modal)}
+                className="modal-container-button"
+              >
+                <button style={{background:'red'}} className="">Cancel</button>
+                <button className="">Yes</button>
+              </div>
+            </div>
+          </div>
+        ) : null}
+        <button
+          onClick={() => handleSubmit()}
+          className="add__pro-container__action-submit"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  );
+}

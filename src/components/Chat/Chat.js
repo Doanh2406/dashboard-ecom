@@ -71,6 +71,7 @@ export default function Chat({ userId }) {
     }
   },[list])
   const handelNewConversation = async(receiverId)=>{
+    console.log(receiverId, userId)
     await dispatch(newConversation(userId, receiverId))
     await dispatch(getConversation(userId));
     

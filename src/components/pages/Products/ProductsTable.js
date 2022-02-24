@@ -31,6 +31,7 @@ export default function ProductsTable({lite, products, page, handleNextPage, han
     }
   }
   async function fetchData() {
+     
     await dispatch(searchProduct(search, userInfo.email))
   }
   useEffect(() => {
@@ -82,10 +83,10 @@ export default function ProductsTable({lite, products, page, handleNextPage, han
           {
             products && products.slice(0, count).map((item, index) => {
               let stock;
-              item.countInStock > 0 ?
-                stock = <p style={{ color: '#05b171' }}>In Stock</p> :
+              item.variant[0]?.inventoryQly > 0 ?
+                stock = <p style={{ color: '#05b171' }}>In Stock ({item.variant[0]?.inventoryQly})</p> :
 
-                stock = <p style={{ color: '#ea4444' }}>Out of Stock</p>
+                stock = <p style={{ color: '#ea4444' }}>Out of Stock {}</p>
               return (
                 <div className='tb_th_row' key={index} >
                   <div className='st_check' style={{ marginBottom: 40, width: '10%', marginLeft: 20 }}>
@@ -101,7 +102,7 @@ export default function ProductsTable({lite, products, page, handleNextPage, han
                     </NavLink>
                   </div>
                   <div style={{ width: '20%' }} >
-                    <img src={'http://localhost:5000/upload/product/' + item.image[0].filename} style={{ width: 50, height: 50, borderRadius: 10, }} alt='' />
+                    <img src={'http://localhost:5000/upload/product/' + item?.productPicture[0]?.img} style={{ width: 50, height: 50, borderRadius: 10, }} alt='' />
                   </div>
 
                   <div style={{ width: '20%' }} >
@@ -111,10 +112,10 @@ export default function ProductsTable({lite, products, page, handleNextPage, han
                     {stock}
                   </div>
                   <div style={{ width: '20%' }} >
-                    <p>{'$' + item.price}</p>
+                    <p>{'$' + item.variant[0]?.price}</p>
                   </div>
                   <div style={{ width: '20%' }} >
-                    <p>{item.createdAt}</p>
+                    <p>{item.createdAt.split('T')[0]}</p>
                   </div>
 
 

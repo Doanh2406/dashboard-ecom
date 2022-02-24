@@ -70,7 +70,8 @@ export default function TableDashboard() {
           {
             products && products.slice(0, 3).map((item, index) => {
               let stock;
-              item.countInStock > 0 ?
+              
+              item.variant?.[0]?.inventoryQly > 0 ?
                 stock = <p style={{ color: '#05b171' }}>In Stock</p> :
 
                 stock = <p style={{ color: '#ea4444' }}>Out of Stock</p>
@@ -84,7 +85,7 @@ export default function TableDashboard() {
                     </NavLink>
                   </div>
                   <div style={{ width: '20%' }} >
-                    <img src={'http://localhost:5000/upload/product/' + item.image[0].filename} style={{ width: 50, height: 50, borderRadius: 10, }} alt='' />
+                    <img src={'http://localhost:5000/upload/product/' + item?.productPicture[0]?.img} style={{ width: 50, height: 50, borderRadius: 10, }} alt='' />
                   </div>
 
                   <div style={{ width: '20%' }} >
@@ -94,10 +95,10 @@ export default function TableDashboard() {
                     {stock}
                   </div>
                   <div style={{ width: '20%' }} >
-                    <p>{'$' + item.price}</p>
+                    <p>{'$' + item?.variant?.[0]?.price}</p>
                   </div>
                   <div style={{ width: '20%' }} >
-                    <p>{item.createdAt}</p>
+                    <p>{item.createdAt.split('T')[0]}</p>
                   </div>
 
 

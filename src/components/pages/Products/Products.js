@@ -76,8 +76,7 @@ export default function Products({lite}) {
     dispatch(listProductsColor(userInfo.email, color))
   }, [color])
 
-  
-
+ 
   return (
     <div>
     

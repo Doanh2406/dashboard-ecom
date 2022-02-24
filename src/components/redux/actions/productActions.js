@@ -21,27 +21,19 @@ import {
 
 //list all product
 export const listProducts =
-  (userCreate, sort, skip) => async (dispatch, getState) => {
+  (userCreate, sort, skip) => async (dispatch) => {
     dispatch({
       type: PRODUCT_LIST_REQUEST,
       loading: true,
     });
-    try {
-      const {
-        userLogin: {userInfo},
-      } = getState();
 
-      const config = {
-        headers: {
-          Authorization: `Bearer ${userInfo.token}`,
-        },
-      };
+    try {
+     
       const {data} = await Axios.post('/api/products/list', {
-        userCreate,
+        // userCreate,
         sort,
         skip,
       });
-
       dispatch({
         type: PRODUCT_LIST_SUCCESS,
         payload: data,
@@ -56,9 +48,10 @@ export const listProducts =
 // list product  search
 export const listProductsSearch = (userCreate, search) => async (dispatch) => {
   dispatch({
-    type: PRODUCT_LIST_REQUEST,
+    type: PRODUCT_SEARCH_REQUEST,
     loading: true,
   });
+  console.log('cc')
   try {
     const {data} = await Axios.post('/api/products/list', {userCreate, search});
     dispatch({
@@ -193,12 +186,10 @@ export const searchProduct = (search, userCreate) => async (dispatch) => {
     type: PRODUCT_SEARCH_REQUEST,
     loading: true,
   });
+  
   try {
-    const {data} = await Axios.post(`/api/products/search`, {
-      search,
-      userCreate,
-    });
-
+    const {data} = await Axios.get(`/api/products/search/${search}`, );
+    console.log(data)
     dispatch({
       type: PRODUCT_SEARCH_SUCCESS,
       payload: data,

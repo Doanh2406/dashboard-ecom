@@ -82,7 +82,7 @@ export default function Conversation({
       ]);
     }
   }, [chatBot]);
-  console.log(friendAvar)
+  
   return (
     <>
       <div className="conversation">
@@ -91,7 +91,7 @@ export default function Conversation({
             m.sender === userId ? (
               <YourMess key={index} message={m} />
             ) : (
-              <MyMess key={index} avar={friendAvar?friendAvar:'upload/constants/bot.png'} message={m} />
+              <MyMess key={index} avar={bot?'upload/constants/bot.png':friendAvar ? `${friendAvar}`:'upload/constants/ava.png'} message={m} />
             )
           )}
         <div ref={messagesEndRef} />

@@ -143,6 +143,7 @@ export default function SideBar() {
     dispatch(signout());
     history.push("/");
   };
+  
   return (
     <>
       {setting && <Setting action={handleSetting} />}
@@ -163,8 +164,8 @@ export default function SideBar() {
             alt="avatar"
           />
           <div className="sb_info_name_des">
-            <p className="sb_info_name">{userInfo.name}</p>
-            <p className="sb_info_des">{userInfo.role}</p>
+            <p className="sb_info_name">{userInfo.user.fullName}</p>
+            <p className="sb_info_des">{userInfo.user.role}</p>
             {show && (
               <>
                 <div className="sb_info_menu">

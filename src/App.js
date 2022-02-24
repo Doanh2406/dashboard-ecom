@@ -57,7 +57,7 @@ const outerTheme = createTheme({
 
 function App() {
   const {loading, error, userInfo} = useSelector((state) => state.userSignIn);
-
+  
   return (
     <ThemeProvider theme={outerTheme}>
       {loading ? <LoadingPage /> : null}
@@ -71,7 +71,7 @@ function App() {
               <Header />
             </div>
             <div className='body-content'>
-              <Chat userId={userInfo._id} />
+              <Chat userId={userInfo.user._id} />
               <Switch>
                 <Route exact path='/cart' key={document.location.href}>
                   <Cart />
