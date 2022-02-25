@@ -41,10 +41,9 @@ export default function SideBar() {
       name: "Analytics",
       icons: <BarChartOutlinedIcon className="sb_icons" />,
       children: [
-        { link: "/shopping", name: "Dashboards" },
-        { link: "/shopping/:id", name: "Report" },
-        { link: "/shop/add", name: "Live View" },
+        // { link: "/", name: "Dashboards" },
         { link: "/shop/revenue", name: "Revenue" },
+        { link: "/shop/predict", name: "Predict Sales" },
       ],
     },
     {

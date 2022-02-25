@@ -9,7 +9,7 @@ export default function LinkHome({title}) {
       <div className='or_home'>
         <NavLink to='/' className='or_link'>
           <AppsIcon style={{ fontSize: 16, marginRight: 10 }} />
-          <p>Dashboard</p>
+          <p>Home</p>
         </NavLink>
 
         <ChevronRightIcon style={{ fontSize: 14,marginRight:10 }} />

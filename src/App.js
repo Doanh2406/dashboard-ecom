@@ -37,6 +37,7 @@ import SignUp from './components/pages/SignUp/SignUp';
 import SideBar from './components/SideBar/SideBar';
 import Chat from './components/Chat/Chat';
 import CreateProduct from './components/pages/CreateProduct/CreateProduct';
+import PredictSales from './components/pages/Predict/PredictSales';
 
 const outerTheme = createTheme({
   palette: {
@@ -81,6 +82,9 @@ function App() {
                 </Route>
                 <Route exact path='/shopping/:id' key={document.location.href}>
                   <ShopProductsDetail />
+                </Route>
+                <Route exact path='/shop/predict' key={document.location.href}>
+                  <PredictSales />
                 </Route>
                 <Route exact path='/orders' key={document.location.href}>
                   <Orders />
